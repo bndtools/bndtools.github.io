@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Bndtools News.</title>
+        <link>http://bndtools.org</link>
+        <description><![CDATA[Bndtools News RSS Feed.]]></description>
+        <atom:link href="http://bndtools.org/rss.xml" rel="self"
+                   type="application/rss+xml" />
+        <lastBuildDate>Sat, 03 Dec 2011 00:00:00 UT</lastBuildDate>
+        <item>
+    <title>First Post</title>
+    <link>http://bndtools.org/posts/2011-12-03-first-post.html</link>
+    <description><![CDATA[Blah blah blah]]></description>
+    <pubDate>Sat, 03 Dec 2011 00:00:00 UT</pubDate>
+    <guid>http://bndtools.org/posts/2011-12-03-first-post.html</guid>
+</item>
+<item>
+    <title>Second Post</title>
+    <link>http://bndtools.org/posts/2011-12-04-second-post.html</link>
+    <description><![CDATA[Blah blah blah]]></description>
+    <pubDate>Sun, 04 Dec 2011 00:00:00 UT</pubDate>
+    <guid>http://bndtools.org/posts/2011-12-04-second-post.html</guid>
+</item>
+
+    </channel> 
+</rss>
