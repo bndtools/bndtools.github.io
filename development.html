@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Bndtools » Home</title>
+<meta name="description" content>
+<meta name="author" content="Neil Bartlett">
+<link rel="alternate" type="application/rss+xml" title="Bndtools News RSS Feed" href="./rss.xml"></link>
+
+<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+<!--[if lt IE 9]>
+<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<!-- Le styles -->
+<link href="./css/bootstrap.css" rel="stylesheet">
+<style type="text/css">
+body {
+padding-top: 60px;
+}
+</style>
+
+<!-- Le fav and touch icons -->
+<link rel="shortcut icon" href="./images/favicon.ico">
+<link rel="apple-touch-icon" href="./images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="./images/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="./images/apple-touch-icon-114x114.png">
+</head>
+
+<body>
+	<div class="topbar">
+		<div class="topbar-inner">
+			<div class="container-fluid">
+				<a class="brand" href="./index.html">
+					<img src="./images/logo-topbar.png"></img>
+				</a>
+				<ul class="nav">
+	<li><a href="./index.html">Home</a></li>
+	<li><a href="./news.html">News</a></li>
+	<li><a href="./installation.html">Install</a></li>
+	<li><a href="./tutorial.html">Tutorial</a></li>
+</ul>
+
+				<!--<p class="pull-right">Logged in as <a href="#">username</a></p>-->
+			</div>
+		</div>
+	</div>
+
+<div class="sidebar">
+	<div class="well">
+		<h5 id="site">Site</h5>
+<ul>
+<li><a href="./index.html">Home</a></li>
+<li><a href="./news.html">News</a></li>
+</ul>
+<h5 id="documentation">Documentation</h5>
+<ul>
+<li><a href="./installation.html">Installation</a></li>
+<li><a href="./tutorial.html">Tutorial</a></li>
+<li><a href="./development.html">Development</a></li>
+</ul>
+	</div>
+</div>
+<div class="container">
+	<div class="content">
+		<h1 id="bndtools-developer-guide">Bndtools Developer Guide</h1>
+<p><strong>This page is a tutorial for developers wishing to customise and enhance Bndtools itself.</strong> For general documentation please refer to the <a href="./tutorial.html" title="Bndtools Tutorial">Tutorial</a>.</p>
+<h1 id="building-bndtools">Building Bndtools</h1>
+<p>Bndtools is built with Bndtools! If you want to work on the bndtools source code, you have two options:</p>
+<ul>
+<li>Install the current public release of bndtools from the <a href="http://marketplace.eclipse.org/" title="Eclipse Marketplace">Eclipse Marketplace</a> and start working straight away.</li>
+<li>Build Bndtools from the command line using bnd (with ANT), then install the build results into your Eclipse IDE.</li>
+</ul>
+<h1 id="checking-out-from-github">Checking Out from GitHub</h1>
+<p>First check out the source code from GitHub as follows:</p>
+<pre><code>git clone git://github.com/njbartlett/bndtools.git
+</code></pre>
+<p>If you have Bndtools installed in your Eclipse IDE already (e.g. using Marketplace) then skip to <strong>Importing Into Eclipse</strong> below. Otherwise read on…</p>
+<h1 id="building-with-bndant">Building With bnd/ANT</h1>
+<p>Assuming you have Apache ANT (version 1.7 or better) installed, you can build bndtools from the command line by changing to the <code>bndtools.build</code> directory and typing:</p>
+<pre><code>ant build p2
+</code></pre>
+<p>After a minute or two, a directory named <code>generated/p2</code> will appear. This contains an Eclipse Update Site that you can use to install bndtools from the code you have just built.</p>
+<p>To install from the generated Update Site, open the Help menu in Eclipse and select “Install New Software”. In the update dialog, click the “Add” button (near the top left) and then click the “Local” button. Browse to the location of the <code>bndtools.build/generated/p2</code> directory that you just built. Then set the name of this update site to “Bndtools Local Snapshot” (or whatever you like, it’s not really important so long as you enter <em>something</em>). Click “OK”.</p>
+<p>Back in the update dialog, Bndtools will appear in the category list. Place a check next to it and click Next. Drive the rest of the wizard to completion… congratulations, you have just built and installed bndtools!</p>
+<h1 id="importing-into-eclipse">Importing Into Eclipse</h1>
+<p>Now you have Bndtools installed in your Eclipse IDE, you can import the bndtools projects into Eclipse to begin working on the source code.</p>
+<p>Open the File menu and select “Import” and then “Existing Projects into Workspace” (under the General category). Click “Next”. Click the “Browse” button (top right) and select the root directory of the bndtools projects.</p>
+<p>Ensure that all the following projects are checked:</p>
+<ul>
+<li><code>cnf</code></li>
+<li><code>bndtools.bndplugins</code></li>
+<li><code>bndtools.core</code></li>
+<li><code>bndtools.diff</code></li>
+<li><code>bndtools.jareditor</code></li>
+<li><code>bndtools.build</code></li>
+<li><code>bndtools.manual</code></li>
+<li><code>bndtools.release</code></li>
+<li><code>bndtools.repository.base</code></li>
+</ul>
+<p>NB: These projects must all be in the same directory!</p>
+<p>Click “Finish”… Eclipse will start to import and build the projects. <strong>If you see a dialog during the import prompting you to “Create a Bnd Configuration Project” click CANCEL.</strong></p>
+<p>You should now have all the bndtools projects in your workspace, ready to begin hacking!</p>
+<h1 id="launching-bndtools-from-eclipse">Launching Bndtools from Eclipse</h1>
+<p>To launch bndtools from Eclipse (e.g. to try out a change to debug), use one of the <code>.bndrun</code> files from the <code>bndtools.core</code> project. There are three launchers, one per architecture, i.e.:</p>
+<ul>
+<li><code>bndtools.cocoa.macosx.x86_64.bndrun</code> for running on Mac OS X (64-bit Intel x86)</li>
+<li><code>bndtools.gtk.linux.x86.bndrun</code> for running on Linux (32-bit Intel x86).</li>
+<li><code>bndtools.win32.x86.bndrun</code> for running on Win32 (XP, Vista etc).</li>
+</ul>
+<p>Right click on the file that matches your computer’s architecture and select “Run As” &gt; “OSGi Run”. If none of these files matches the architecture you want to run on, then please create a new one and submit it back as a patch.</p>
+		<footer>
+			<p>© <a href="mailto:njbartlett@gmail.com">Neil Bartlett</a> 2011. Built with <a href="http://twitter.github.com/bootstrap/">Bootstrap</a> and <a href="http://jaspervdj.be/hakyll/index.html">Hakyll</a>.</p>
+		</footer>
+	</div>
+</div>
+</body>
+</html>

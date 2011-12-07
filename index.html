@@ -1,71 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Bndtools » Home</title>
-    <meta name="description" content>
-    <meta name="author" content="Neil Bartlett">
+<head>
+<meta charset="utf-8">
+<title>Bndtools » Home</title>
+<meta name="description" content>
+<meta name="author" content="Neil Bartlett">
+<link rel="alternate" type="application/rss+xml" title="Bndtools News RSS Feed" href="./rss.xml"></link>
 
-    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+<!--[if lt IE 9]>
+<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
 
-    <!-- Le styles -->
-    <link href="./css/bootstrap.css" rel="stylesheet">
-    <style type="text/css">
-      body {
-        padding-top: 60px;
-      }
-    </style>
+<!-- Le styles -->
+<link href="./css/bootstrap.css" rel="stylesheet">
+<style type="text/css">
+body {
+padding-top: 60px;
+}
+</style>
 
-    <!-- Le fav and touch icons -->
-    <link rel="shortcut icon" href="./images/favicon.ico">
-    <link rel="apple-touch-icon" href="./images/apple-touch-icon.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="./images/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="./images/apple-touch-icon-114x114.png">
-  </head>
+<!-- Le fav and touch icons -->
+<link rel="shortcut icon" href="./images/favicon.ico">
+<link rel="apple-touch-icon" href="./images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="./images/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="./images/apple-touch-icon-114x114.png">
+</head>
 
-  <body>
-
-    <div class="topbar">
-      <div class="topbar-inner">
-        <div class="container-fluid">
-          <a class="brand" href="./index.html">
-	      <img src="./images/logo-topbar.png"></img>
-	      </a>
-          <ul class="nav">
+<body>
+	<div class="topbar">
+		<div class="topbar-inner">
+			<div class="container-fluid">
+				<a class="brand" href="./index.html">
+					<img src="./images/logo-topbar.png"></img>
+				</a>
+				<ul class="nav">
 	<li><a href="./index.html">Home</a></li>
-	<li><a href="./posts.html">Posts</a></li>
+	<li><a href="./news.html">News</a></li>
+	<li><a href="./installation.html">Install</a></li>
 	<li><a href="./tutorial.html">Tutorial</a></li>
 </ul>
 
-          <!--<p class="pull-right">Logged in as <a href="#">username</a></p>-->
-        </div>
-      </div>
-    </div>
+				<!--<p class="pull-right">Logged in as <a href="#">username</a></p>-->
+			</div>
+		</div>
+	</div>
 
-    <div class="container-fluid">
-		<div class="sidebar">
-			<div class="well">
-				<h5 id="site">Site</h5>
+<div class="sidebar">
+	<div class="well">
+		<h5 id="site">Site</h5>
 <ul>
 <li><a href="./index.html">Home</a></li>
-<li><a href="./posts.html">News</a></li>
+<li><a href="./news.html">News</a></li>
 </ul>
 <h5 id="documentation">Documentation</h5>
 <ul>
 <li><a href="./installation.html">Installation</a></li>
 <li><a href="./tutorial.html">Tutorial</a></li>
+<li><a href="./development.html">Development</a></li>
 </ul>
-			</div>
-		</div>
-      <div class="content">
-      	<!-- Main hero unit for a primary marketing message or call to action -->
+	</div>
+</div>
+<div class="container">
+	<div class="content">
+		<!-- Main hero unit for a primary marketing message or call to action -->
 <div class="hero-unit">
   <h1>Bndtools is Here</h1>
-  <p>The easy, powerful and productive way to develop for OSGi. Based on <a href="http://www.aqute.biz/Bnd/Bnd">bnd</a> and Eclipse.
-  <p><a class="btn primary large">Learn more »</a></p>
+  <p>The easy, powerful and productive way to develop with OSGi. Based on <a href="http://www.aqute.biz/Bnd/Bnd">bnd</a> and Eclipse.</p>
+  <p><a class="btn primary large" href="./installation.html">Install now »</a></p>
 </div>
 
 <section id="about">
@@ -74,27 +76,46 @@
 			<h2>Import Analysis</h2>
 			<p>Unlike tools that require package dependency information to be maintained manually, Bndtools uses bytecode analysis to accurately calculate the dependencies of your OSGi bundles.
 			<p><img class="thumbnail" src="./images/about01.png"></img></p>
-			<p><a class="btn" href="#">View details »</a></p>
+			<!--<p><a class="btn" href="#">View details &raquo;</a></p>-->
 		</div>
 		<div class="span5">
 			<h2>Repositories</h2>
 			<p>Bndtools features a pluggable repository model for bundles, that may be referenced at build-time and also used to satisfy runtime dependencies. Repository plug-ins exist for OBR and Maven/Nexus.</p>
 			<p><img class="thumbnail" src="./images/about02.png"></img></p>
-			<p><a class="btn" href="#">View details »</a></p>
+			<!--<p><a class="btn" href="#">View details &raquo;</a></p>-->
 		</div>
 		<div class="span5">
 			<h2>OBR Resolving</h2>
 			<p>Bndtools uses the OBR (OSGi Bundle Repository) standard to resolve runtime depedencies, allowing us to concentrate on just the &quot;top-level&quot; bundles that comprise our application.</p>
 			<p><img class="thumbnail" src="./images/about03.png"></img></p>
-			<p><a class="btn" href="#">View details »</a></p>
+			<!--<p><a class="btn" href="#">View details &raquo;</a></p>-->
+		</div>
+	</div>
+	
+	<p> </p>
+	
+	<div class="row">
+		<div class="span6">
+			<h2>Semantic Versioning</h2>
+			<p>The “Release” feature enables releasing bundles into repositories. During release, the bundles are compared against the previous baseline for changes, and the package/bundle versions are calculated automatically. This frees developers from having to reason about complex versioning issues.</p>
+			<p><img class="thumbnail" src="./images/about05.png"></img></p>
+		</div>
+		<div class="span5">
+			<h2>Instant Builder</h2>
+			<p>Eclipse automatically compiles your Java source code whenever you save — this is “The Eclipse Way”. Bndtools goes one step further and automatically assembles your bundles whenever the inputs to it are changed. As a result, your bundles are always up to date with the latest code, and ready to run!</p>
+			<p><img class="thumbnail" src="./images/about04.png"></img></p>
+		</div>
+		<div class="span5">
+			<h2>Integrated Testing</h2>
+			<p>Bndtools incorporates an integrated test runner for OSGi that launches an OSGi framework containing a selection of bundles, executes the test cases declared in those bundles, and shuts down OSGi. The whole process takes mere milliseconds and results are reported in the standard Eclipse JUnit view.</p>
+			<p><img class="thumbnail" src="./images/about06.png"></img></p>
 		</div>
 	</div>
 </section>
-        <footer>
-        	<p>© <a href="mailto:njbartlett@gmail.com">Neil Bartlett</a> 2011. Built with <a href="http://twitter.github.com/bootstrap/">Bootstrap</a> and <a href="http://jaspervdj.be/hakyll/index.html">Hakyll</a>.</p>
-        </footer>
-      </div>
-    </div>
-
-  </body>
+		<footer>
+			<p>© <a href="mailto:njbartlett@gmail.com">Neil Bartlett</a> 2011. Built with <a href="http://twitter.github.com/bootstrap/">Bootstrap</a> and <a href="http://jaspervdj.be/hakyll/index.html">Hakyll</a>.</p>
+		</footer>
+	</div>
+</div>
+</body>
 </html>

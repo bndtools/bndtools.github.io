@@ -6,20 +6,13 @@
         <description><![CDATA[Bndtools News RSS Feed.]]></description>
         <atom:link href="http://bndtools.org/rss.xml" rel="self"
                    type="application/rss+xml" />
-        <lastBuildDate>Sat, 03 Dec 2011 00:00:00 UT</lastBuildDate>
+        <lastBuildDate>Sun, 27 Nov 2011 00:00:00 UT</lastBuildDate>
         <item>
-    <title>First Post</title>
-    <link>http://bndtools.org/posts/2011-12-03-first-post.html</link>
-    <description><![CDATA[Blah blah blah]]></description>
-    <pubDate>Sat, 03 Dec 2011 00:00:00 UT</pubDate>
-    <guid>http://bndtools.org/posts/2011-12-03-first-post.html</guid>
-</item>
-<item>
-    <title>Second Post</title>
-    <link>http://bndtools.org/posts/2011-12-04-second-post.html</link>
-    <description><![CDATA[Blah blah blah]]></description>
-    <pubDate>Sun, 04 Dec 2011 00:00:00 UT</pubDate>
-    <guid>http://bndtools.org/posts/2011-12-04-second-post.html</guid>
+    <title>Bndtools 1.0.0 Released!</title>
+    <link>http://bndtools.org/posts/2011-11-27-bndtools-1-0-0-released.html</link>
+    <description><![CDATA[The first stable release of Bndtools is now available.]]></description>
+    <pubDate>Sun, 27 Nov 2011 00:00:00 UT</pubDate>
+    <guid>http://bndtools.org/posts/2011-11-27-bndtools-1-0-0-released.html</guid>
 </item>
 
     </channel> 
