@@ -76,26 +76,34 @@ section &gt; .row {
 	<p>Guide to checking out and building Bndtools from source.</p>
 </div>
 
+
+<h1 id="TOC">Table of Contents</h1><ul>
+                                   <li><a href="#building-bndtools">Building Bndtools</a></li>
+                                   <li><a href="#checking-out-from-github">Checking Out from GitHub</a></li>
+                                   <li><a href="#building-with-bndant">Building With bnd/ANT</a></li>
+                                   <li><a href="#importing-into-eclipse">Importing Into Eclipse</a></li>
+                                   <li><a href="#launching-bndtools-from-eclipse">Launching Bndtools from Eclipse</a></li>
+                                   </ul>
 <p><strong>This page is a tutorial for developers wishing to customise and enhance Bndtools itself.</strong> For general documentation please refer to the <a href="./tutorial.html" title="Bndtools Tutorial">Tutorial</a>.</p>
-<h1 id="building-bndtools">Building Bndtools</h1>
+<h1 id="building-bndtools"><a href="#TOC">Building Bndtools</a></h1>
 <p>Bndtools is built with Bndtools! If you want to work on the bndtools source code, you have two options:</p>
 <ul>
 <li>Install the current public release of bndtools from the <a href="http://marketplace.eclipse.org/" title="Eclipse Marketplace">Eclipse Marketplace</a> and start working straight away.</li>
 <li>Build Bndtools from the command line using bnd (with ANT), then install the build results into your Eclipse IDE.</li>
 </ul>
-<h1 id="checking-out-from-github">Checking Out from GitHub</h1>
+<h1 id="checking-out-from-github"><a href="#TOC">Checking Out from GitHub</a></h1>
 <p>First check out the source code from GitHub as follows:</p>
 <pre><code>git clone git://github.com/bndtools/bndtools.git
 </code></pre>
 <p>If you have Bndtools installed in your Eclipse IDE already (e.g. using Marketplace) then skip to <strong>Importing Into Eclipse</strong> below. Otherwise read on…</p>
-<h1 id="building-with-bndant">Building With bnd/ANT</h1>
+<h1 id="building-with-bndant"><a href="#TOC">Building With bnd/ANT</a></h1>
 <p>Assuming you have Apache ANT (version 1.7 or better) installed, you can build bndtools from the command line by changing to the <code>bndtools.build</code> directory and typing:</p>
 <pre><code>ant build p2
 </code></pre>
 <p>After a minute or two, a directory named <code>generated/p2</code> will appear. This contains an Eclipse Update Site that you can use to install bndtools from the code you have just built.</p>
 <p>To install from the generated Update Site, open the Help menu in Eclipse and select “Install New Software”. In the update dialog, click the “Add” button (near the top left) and then click the “Local” button. Browse to the location of the <code>bndtools.build/generated/p2</code> directory that you just built. Then set the name of this update site to “Bndtools Local Snapshot” (or whatever you like, it’s not really important so long as you enter <em>something</em>). Click “OK”.</p>
 <p>Back in the update dialog, Bndtools will appear in the category list. Place a check next to it and click Next. Drive the rest of the wizard to completion… congratulations, you have just built and installed bndtools!</p>
-<h1 id="importing-into-eclipse">Importing Into Eclipse</h1>
+<h1 id="importing-into-eclipse"><a href="#TOC">Importing Into Eclipse</a></h1>
 <p>Now you have Bndtools installed in your Eclipse IDE, you can import the bndtools projects into Eclipse to begin working on the source code.</p>
 <p>Open the File menu and select “Import” and then “Existing Projects into Workspace” (under the General category). Click “Next”. Click the “Browse” button (top right) and select the root directory of the bndtools projects.</p>
 <p>Ensure that all the following projects are checked:</p>
@@ -113,7 +121,7 @@ section &gt; .row {
 <p>NB: These projects must all be in the same directory!</p>
 <p>Click “Finish”… Eclipse will start to import and build the projects. <strong>If you see a dialog during the import prompting you to “Create a Bnd Configuration Project” click CANCEL.</strong></p>
 <p>You should now have all the bndtools projects in your workspace, ready to begin hacking!</p>
-<h1 id="launching-bndtools-from-eclipse">Launching Bndtools from Eclipse</h1>
+<h1 id="launching-bndtools-from-eclipse"><a href="#TOC">Launching Bndtools from Eclipse</a></h1>
 <p>To launch bndtools from Eclipse (e.g. to try out a change to debug), use one of the <code>.bndrun</code> files from the <code>bndtools.core</code> project. There are three launchers, one per architecture, i.e.:</p>
 <ul>
 <li><code>bndtools.cocoa.macosx.x86_64.bndrun</code> for running on Mac OS X (64-bit Intel x86)</li>

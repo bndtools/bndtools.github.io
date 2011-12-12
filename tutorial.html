@@ -76,7 +76,30 @@ section &gt; .row {
 	<p>Introduction to component development with Bndtools.</p>
 </div>
 
-<h1 id="introduction">Introduction</h1>
+
+<h1 id="TOC">Table of Contents</h1><ul>
+                                   <li><a href="#introduction">Introduction</a></li>
+                                   <li><a href="#installing-bndtools">Installing Bndtools</a></li>
+                                   <li><a href="#create-an-api-project">Create an API Project</a><ul>
+                                   <li><a href="#write-and-export-the-api">Write and Export the API</a></li>
+                                   <li><a href="#define-the-bundle">Define the Bundle</a></li>
+                                   </ul></li>
+                                   <li><a href="#create-an-implementation-project">Create an Implementation Project</a><ul>
+                                   <li><a href="#create-the-project">Create the Project</a></li>
+                                   <li><a href="#add-the-api-as-a-build-dependency">Add the API as a Build Dependency</a></li>
+                                   <li><a href="#write-an-implementation">Write an Implementation</a></li>
+                                   <li><a href="#test-the-implementation">Test the Implementation</a></li>
+                                   <li><a href="#build-the-implementation-bundle">Build the Implementation Bundle</a></li>
+                                   </ul></li>
+                                   <li><a href="#run-an-osgi-framework">Run an OSGi Framework</a><ul>
+                                   <li><a href="#add-the-declarative-services-runtime">Add the Declarative Services Runtime</a></li>
+                                   </ul></li>
+                                   <li><a href="#write-a-command-component">Write a Command Component</a><ul>
+                                   <li><a href="#create-a-bundle-for-the-command-component">Create a Bundle for the Command Component</a></li>
+                                   <li><a href="#add-the-command-bundle-to-the-runtime">Add the Command Bundle to the Runtime</a></li>
+                                   </ul></li>
+                                   </ul>
+<h1 id="introduction"><a href="#TOC">Introduction</a></h1>
 <p>In this tutorial we will build a sample application composed of two components and an API. The following diagram shows the bundle architecture (simplified):</p>
 <div class="figure">
 <img src="./images/tutorial/bundles.png"></img><p class="caption"></p>
@@ -87,9 +110,9 @@ section &gt; .row {
 <li>The Provider bundle imports the interface and publishes an instance of the service.</li>
 <li>The Command bundle imports the interface and binds to the service instance, and also publishes a <code>Command</code> service that is used by the Felix Shell bundle.</li>
 </ul>
-<h1 id="installing-bndtools">Installing Bndtools</h1>
+<h1 id="installing-bndtools"><a href="#TOC">Installing Bndtools</a></h1>
 <p>Please refer to the <a href="installation.html">Installation Instructions</a>.</p>
-<h1 id="create-an-api-project">Create an API Project</h1>
+<h1 id="create-an-api-project"><a href="#TOC">Create an API Project</a></h1>
 <p>First we need to create a Bndtools OSGi Project. This is just a standard Eclipse Java Project, with an additional builder for constructing OSGi bundles.</p>
 <ol style="list-style-type: decimal">
 <li><p>From the File menu, select <strong>New -&gt; Bndtools OSGi Project</strong>.</p>
@@ -118,7 +141,7 @@ section &gt; .row {
 <li>Bndtools uses a <code>cnf</code> project containing workspace-wide configuration that is normally shared between developers. It may also contain a repository of bundles.</li>
 <li>A file named <code>bnd.bnd</code> is created at the top of each Bndtools project, which controls the settings for the project. The same settings are used by bnd when it is invoked from an offline ANT build.</li>
 </ul>
-<h2 id="write-and-export-the-api">Write and Export the API</h2>
+<h2 id="write-and-export-the-api"><a href="#TOC">Write and Export the API</a></h2>
 <p>OSGi offers strong decoupling of producers and consumers of functionality. This is done by encouraging an API-based (or in Java terms, interface-based) programming model, where producers of functionality implement APIs and the consumers of functionality bind only to APIs, not any particular implementation. For our example we will use a fairly trivial API.</p>
 <p>In the <code>src</code> directory of the new project, create a package named <code>org.example.api</code>. In the new package create a Java interface named <code>Greeting</code>, as follows:</p>
 <pre><code>package org.example.api;
@@ -127,7 +150,7 @@ public interface Greeting {
     String sayHello(String name);
 }
 </code></pre>
-<h2 id="define-the-bundle">Define the Bundle</h2>
+<h2 id="define-the-bundle"><a href="#TOC">Define the Bundle</a></h2>
 <p>The project we have created defines a single bundle with a Bundle Symbolic Name (BSN) of <code>org.example.api</code> (i.e., the same as the project name). As soon as we created the project, a bundle file named <code>org.example.api.jar</code> was created in the <code>generated</code> directory, and it will be rebuilt every time we change the bundle definition or its source code.</p>
 <p>However, the bundle is currently empty, because we have not defined any Java packages to include in the bundle. This is an important difference of Bndtools with respect to other tools: bundles are always empty until we explicitly add some content. You can verify this by double-clicking the bundle file and viewing its contents: it will have only <code>META-INF/MANIFEST.MF</code> and <code>OSGI-OPT/bnd.bnd</code> entries.</p>
 <p>We want to add the package <code>org.example.api</code> to the exported packages of the bundle. So open the <code>bnd.bnd</code> file at the top of the project and select the <strong>Contents</strong> tab. Now the package can be added in one of two ways:</p>
@@ -155,14 +178,14 @@ public interface Greeting {
 <li>Bundles are always empty until we explicitly add contents to them. Adding a package to the <strong>Export Packages</strong> panel included that package in the bundle, and also declared it as an export in the <code>META-INF/MANIFEST.MF</code>.</li>
 <li><em>Normally</em> bundles contain more than just a single interface. This example is intentionally simplistic.</li>
 </ul>
-<h1 id="create-an-implementation-project">Create an Implementation Project</h1>
+<h1 id="create-an-implementation-project"><a href="#TOC">Create an Implementation Project</a></h1>
 <p>We will now create another project that defines two bundles: a provider and a client of the <code>Greeting</code> API.</p>
-<h2 id="create-the-project">Create the Project</h2>
+<h2 id="create-the-project"><a href="#TOC">Create the Project</a></h2>
 <p>Create another Bndtools project, named <code>org.example.impls</code>. At the <strong>Project Templates</strong> step, select <strong>Component Development (Declarative Services)</strong> and click <strong>Finish</strong>.</p>
 <div class="figure">
 <img src="./images/tutorial/09.png"></img><p class="caption"></p>
 </div>
-<h2 id="add-the-api-as-a-build-dependency">Add the API as a Build Dependency</h2>
+<h2 id="add-the-api-as-a-build-dependency"><a href="#TOC">Add the API as a Build Dependency</a></h2>
 <p>We need to add the API project as a build-time dependency of this new project.</p>
 <p>The <code>bnd.bnd</code> file of the newly created project will have opened automatically. Click the <strong>Build</strong> tab and add <code>org.example.api</code> in either of the following ways:</p>
 <ul>
@@ -181,7 +204,7 @@ public interface Greeting {
 <li>Build-time dependencies of the project can be added in the <strong>Build Path</strong> panel of the <code>bnd.bnd</code> editor.</li>
 <li>Adding dependencies in this way (i.e. rather than via Eclipse’s existing “Add to Build Path” menu) ensures that exactly the same dependencies are used when building offline with ANT.</li>
 </ul>
-<h2 id="write-an-implementation">Write an Implementation</h2>
+<h2 id="write-an-implementation"><a href="#TOC">Write an Implementation</a></h2>
 <p>We will write a class that implements the <code>Greeting</code> interface. When the project was created from the template, Java source for a class named <code>org.example.ExampleComponent</code> was generated. Open this source file now and make it implement <code>Greeting</code>:</p>
 <pre><code>@Component
 public class ExampleComponent implements Greeting {
@@ -193,7 +216,7 @@ public class ExampleComponent implements Greeting {
 }
 </code></pre>
 <p>Note the use of the <code>@Component</code> annotation. This enables our bundle to use OSGi Declarative Services to declare the API implementation class. This means that instances of the class will be automatically created and registered with the OSGi service registry. However the annotation is build-time only, and does not pollute our class with runtime dependencies — in other words, this is a “Plain Old Java Object” or POJO.</p>
-<h2 id="test-the-implementation">Test the Implementation</h2>
+<h2 id="test-the-implementation"><a href="#TOC">Test the Implementation</a></h2>
 <p>We should write a test case to ensure the implementation class works as expected. In the <code>test</code> folder, a test case class already exists named <code>org.example.ExampleComponentTest</code>. Write a test method as follows:</p>
 <pre><code>public class ExampleComponentTest extends TestCase {
 
@@ -209,7 +232,7 @@ public class ExampleComponent implements Greeting {
 </div>
 <p>Verify that the <strong>JUnit</strong> view shows a green bar. If not, go back and fix the code!</p>
 <p>Note that, since this is a unit test rather than an integration test, we did not need to run an OSGi Framework; the standard JUnit launcher is used. Again, this is possible because the component under test is a POJO.</p>
-<h2 id="build-the-implementation-bundle">Build the Implementation Bundle</h2>
+<h2 id="build-the-implementation-bundle"><a href="#TOC">Build the Implementation Bundle</a></h2>
 <p>As in the previous project, a bundle is automatically built based on the content of <code>bnd.bnd</code>. In the current project however, we want to build <em>two</em> separate bundles. To achieve this we need to enable a feature called “sub-bundles”.</p>
 <p>Right-click on the project <code>org.example.impls</code> and select <strong>New &gt; Bundle Descriptor</strong>. In the resulting dialog, type the name <code>provider</code> and click <strong>Finish</strong>.</p>
 <p>A popup dialog will ask whether to enable sub-bundles. Click <strong>OK</strong>.</p>
@@ -223,7 +246,7 @@ public class ExampleComponent implements Greeting {
 <li>In the case of single-bundle projects, the contents of that bundle are defined in <code>bnd.bnd</code>.</li>
 <li>In the case of multi-bundle projects, the contents of each bundle is defined in a separate <code>.bnd</code> file. The <code>bnd.bnd</code> file is still used to define project-wide settings, such as build dependencies.</li>
 </ul>
-<h1 id="run-an-osgi-framework">Run an OSGi Framework</h1>
+<h1 id="run-an-osgi-framework"><a href="#TOC">Run an OSGi Framework</a></h1>
 <p>We’d now like to run OSGi. To achieve this we need to create a “Run Descriptor” that defines the collection of bundles to run, along with some other run-time settings.</p>
 <p>Right-click on the project <code>org.example.impls</code> and select <strong>New &gt; Run Descriptor</strong>. In the resulting dialog, enter <code>run</code> as the file name and click <strong>Next</strong>. The next page of the dialog asks us to select a template; choose <strong>Apache Felix 4 with Shell</strong> and click <strong>Finish</strong>.</p>
 <div class="figure">
@@ -264,7 +287,7 @@ START LEVEL 1
 <li>If the OSGi Framework is still running, then saving the <code>bndrun</code> file will cause the list of bundles to be dynamically updated. So we can add and remove bundles without restarting.</li>
 <li>Editing an existing bundle — including editing the Java code that comprises it — will also result in the bundle being dynamically updated in the runtime.</li>
 </ul>
-<h2 id="add-the-declarative-services-runtime">Add the Declarative Services Runtime</h2>
+<h2 id="add-the-declarative-services-runtime"><a href="#TOC">Add the Declarative Services Runtime</a></h2>
 <p>The provider bundle uses Declarative Services; however for the component to be activated we need to include the runtime part of Declarative Services, known as the Service Component Runtime (SCR).</p>
 <p>In the <strong>Run Repositories</strong> panel there is a search box; type <code>scr</code> and hit enter: <code>org.apache.felix.scr</code> will appear as a match. Drag this bundle into the <strong>Run Requirements</strong> panel.</p>
 <p>Save the file. This time a dialog appears during save, because the SCR bundle has optional dependencies that we might want to include. Just click <strong>Finish</strong>.</p>
@@ -293,7 +316,7 @@ objectClass = org.example.api.Greeting
 service.id = 27
 </code></pre>
 <p>Our bundle now publishes a service under the <code>Greeting</code> interface.</p>
-<h1 id="write-a-command-component">Write a Command Component</h1>
+<h1 id="write-a-command-component"><a href="#TOC">Write a Command Component</a></h1>
 <p>Finally we will write a component that consumes the Greeting service and publishes a shell command that can be invoked from the Felix shell.</p>
 <p>First we need to make the Felix shell API available to compile against. Open <code>bnd.bnd</code> and change to the <strong>Build</strong> tab. Add <code>org.apache.felix.shell</code> to the list of build dependencies, and save the file:</p>
 <div class="figure">
@@ -339,12 +362,12 @@ public class GreetingCommand implements Command {
 	}
 }
 </code></pre>
-<h2 id="create-a-bundle-for-the-command-component">Create a Bundle for the Command Component</h2>
+<h2 id="create-a-bundle-for-the-command-component"><a href="#TOC">Create a Bundle for the Command Component</a></h2>
 <p>The command component is not part of the provider bundle, because it lives in a package that was not included. We could add it to the provider bundle, but it would make more sense to create a separate bundle for it.</p>
 <p>Right-click again on the <code>org.example.impls</code> project and select <strong>New &gt; Bundle Descriptor</strong> again. Enter the name as <code>command</code> and click <strong>Finish</strong>.</p>
 <p>Add the package <code>org.example.command</code> to the <strong>Private Packages</strong> panel of the newly created file. As before, this can be done using the “+” button in the toolbar or by drag-and-drop.</p>
 <p>We also need to declare that the bundle contains Declarative Services components. Change to the <strong>Components</strong> tab of the editor and click the <strong>Add</strong> button. In the name field, enter “*” (i.e. asterisk). Now save the file.</p>
-<h2 id="add-the-command-bundle-to-the-runtime">Add the Command Bundle to the Runtime</h2>
+<h2 id="add-the-command-bundle-to-the-runtime"><a href="#TOC">Add the Command Bundle to the Runtime</a></h2>
 <p>Switch back to the editor for <code>run.bndrun</code>. In the <strong>Run Requirements</strong> tab, add the <code>org.example.impls.command</code> bundle, and save the file.</p>
 <p>The command bundle will now appear in the list of bundles when typing <code>ps</code>:</p>
 <pre><code>-&gt; ps
