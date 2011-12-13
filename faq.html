@@ -54,12 +54,13 @@ section &gt; .row {
 		<ul class="dropdown-menu">
 			<li><a href="./index.html">Home</a></li>
 			<li><a href="./news.html">News</a></li>
-			<li><a href="./whatsnew1-0-0/">New in 1.0.0</a></li>
+			<li><a href="./whatsnew1-0-0/">What's New in 1.0.0</a></li>
 			
 			<li class="divider"></li>
 			
-			<li><a href="./faq.html">FAQ</a></li>
 			<li><a href="./installation.html">Installation</a></li>
+			<li><a href="./release-notes.html">Release Notes</a></li>
+			<li><a href="./faq.html">FAQ</a></li>
 			<li><a href="./tutorial.html">Tutorial</a><li>
 			<li><a href="./development.html">Development</a></li>
 		</ul>
@@ -73,21 +74,33 @@ section &gt; .row {
 
 <div class="container">
 	<div class="content">
-		<div class="subhero-unit">
+		<div class="hero-unit">
 	<h1>Bndtools FAQ</h1>
 	<p>Frequently Asked Questions</p>
 </div>
 
-
 <h1 id="TOC">Table of Contents</h1><ul>
                                    <li><a href="#how-do-i-add-bundles-to-the-repository">How Do I Add Bundles to the Repository?</a></li>
+                                   <li><a href="#why-is-my-bundle-empty">Why is My Bundle Empty?</a></li>
+                                   <li><a href="#whats-the-difference-between--include-and-include-resource">What’s the Difference Between “-include” and “Include-Resource”?</a></li>
                                    </ul>
 <h2 id="how-do-i-add-bundles-to-the-repository"><a href="#TOC">How Do I Add Bundles to the Repository?</a></h2>
 <p>There are several ways to add external bundles into your repository in order to make them available in your projects. The easiest way is to drag-and-drop from your native file management application (i.e. Windows Explorer, Mac Finder, etc) into the <strong>Repositories</strong> view in Bndtools. Note that you need to drop it onto a specific repository entry: usually the “Local Repository”. Note that you can multi-select many bundle files and drag/drop them at the same time.</p>
 <div class="figure">
-<img src="./images/faq/faq01.png"></img><p class="caption"></p>
+<img src="./images/faq/01.png"></img><p class="caption"></p>
 </div>
 <p>Importing the bundles this way is better than directly modifying the contents of the <code>cnf/repo</code> directory, since Bndtools is immediately aware of the new bundles and regenerates the OBR index for the repository.</p>
+<h2 id="why-is-my-bundle-empty"><a href="#TOC">Why is My Bundle Empty?</a></h2>
+<p>In Bndtools the contents of a bundle must be defined explicitly; if the contents are not defined then the bundle will be empty. Bundle contents are defined using the following three instructions (follow links to the bnd documentation for these instructions):</p>
+<ul>
+<li><a href="http://www.aqute.biz/Bnd/Format#private-package"><code>Private-Package</code></a> defines Java packages to be included in the bundle but not exported.</li>
+<li><a href="http://www.aqute.biz/Bnd/Format#export-package"><code>Export-Package</code></a> defines Java packages to be both included in the bundle <em>and</em> exported.</li>
+<li><a href="http://www.aqute.biz/Bnd/Format#include-resource"><code>Include-Resource</code></a> defines non-Java resource files (e.g. images, XML files etc) to be included in the bundle.</li>
+</ul>
+<p>Note that both <code>Private-Package</code> and <code>Export-Package</code> may be edited using the <em>Contents</em> tab of the GUI editor. There is currently no GUI assistance for the <code>Include-Resource</code> instruction so it must be entered using the <em>Source</em> tab.</p>
+<h2 id="whats-the-difference-between--include-and-include-resource"><a href="#TOC">What’s the Difference Between “-include” and “Include-Resource”?</a></h2>
+<p>The <a href="http://www.aqute.biz/Bnd/Format#directives"><code>-include</code></a> instruction is used to include a set of bnd instructions from another <code>.bnd</code> file into the current <code>.bnd</code> file. This can be useful if there are common settings or instructions used in multiple places.</p>
+<p>The <a href="http://www.aqute.biz/Bnd/Format#include-resource"><code>Include-Resource</code></a> instruction tells bnd to include a set of non-Java resources (e.g. images, XML files etc) in the output bundle.</p>
 
 		<footer>
 			<p>© <a href="mailto:njbartlett@gmail.com">Neil Bartlett</a> 2011. Built with <a href="http://twitter.github.com/bootstrap/">Bootstrap</a> and <a href="http://jaspervdj.be/hakyll/index.html">Hakyll</a>.</p>

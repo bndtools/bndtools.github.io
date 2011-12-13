@@ -75,15 +75,24 @@ section &gt; .row {
 <div class="container">
 	<div class="content">
 		<div class="hero-unit">
-  <h1>Bndtools News</h1>
+	<h1>Release Notes</h1>
+	<p>Notes for the latest Bndtools releases</p>
 </div>
-<ul>
-    <li>
-	<p><a href="./posts/2011-11-27-bndtools-1-0-0-released.html">Bndtools 1.0.0 Released!</a> - <em>27 November 2011</em> - by <em>Neil Bartlett</em></p>
-	<p>The first stable release of Bndtools is now available.</p>
-</li>
 
-</ul>
+<h1 id="TOC">Table of Contents</h1><ul>
+                                   <li><a href="#version-1.0.0">Version 1.0.0</a></li>
+                                   <li><a href="#version-1.0.1-not-released">Version 1.0.1 (NOT RELEASED)</a><ul>
+                                   <li><a href="#resolution-paths-in-run-bundles">Resolution paths in Run Bundles</a></li>
+                                   </ul></li>
+                                   </ul>
+<h1 id="version-1.0.0"><a href="#TOC">Version 1.0.0</a></h1>
+<p>See <a href="./whatsnew1-0-0/">what’s new in Bndtools version 1.0.0</a>.</p>
+<h1 id="version-1.0.1-not-released"><a href="#TOC">Version 1.0.1 (NOT RELEASED)</a></h1>
+<h3 id="resolution-paths-in-run-bundles"><a href="#TOC">Resolution paths in Run Bundles</a></h3>
+<p>Previously the generated list of Run Bundles resulting from OBR resolution contained a <code>resolution</code> attribute giving the absolute URL of the resolved resource. These paths are not used by Bndtools but they may be used by other tools (e.g. ANT tasks) to generate packaging artefacts based on the resolution results. However users reported that the presence of this generated information in a source file led to problems with sharing the file through version control (see <a href="https://github.com/bndtools/bndtools/issues/315">bug 315</a>).</p>
+<p>In this release, resolution paths are no longer generated directly in the bnd or bndrun file. Instead they are output into a file under the <code>generated</code> directory, named <code>&lt;runfile&gt;.resolved</code>. The format for the information is the same, i.e.:</p>
+<pre><code>&lt;bsn&gt;;version=&lt;version&gt;;resolution=&lt;url&gt;
+</code></pre>
 
 		<footer>
 			<p>© <a href="mailto:njbartlett@gmail.com">Neil Bartlett</a> 2011. Built with <a href="http://twitter.github.com/bootstrap/">Bootstrap</a> and <a href="http://jaspervdj.be/hakyll/index.html">Hakyll</a>.</p>
