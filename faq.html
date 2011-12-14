@@ -46,7 +46,7 @@ section &gt; .row {
 	<li><a href="./installation.html">Install</a></li>
 	<li><a href="./tutorial.html">Tutorial</a></li>
 	<li><a href="./faq.html">FAQ</a></li>
-	<!--<li><a href="/training.html">Training</a></li>-->
+	<li><a href="./training.html">Training</a></li>
 </ul>
 
 <ul class="nav secondary-nav">
@@ -65,9 +65,9 @@ section &gt; .row {
 			<li><a href="./tutorial.html">Tutorial</a><li>
 			<li><a href="./development.html">Development</a></li>
 			
-			<!--<li class="divider"/>
+			<li class="divider"></li>
 			
-			<li><a href="/training.html">Training</a></li>-->
+			<li><a href="./training.html">Training</a></li>
 		</ul>
 	</li>
 <ul>
@@ -86,6 +86,7 @@ section &gt; .row {
 
 <h1 id="TOC">Table of Contents</h1><ul>
                                    <li><a href="#how-do-i-add-bundles-to-the-repository">How Do I Add Bundles to the Repository?</a></li>
+                                   <li><a href="#how-do-i-remove-bundles-from-a-repository">How Do I Remove Bundles from a Repository?</a></li>
                                    <li><a href="#why-is-my-bundle-empty">Why is My Bundle Empty?</a></li>
                                    <li><a href="#whats-the-difference-between--include-and-include-resource">What’s the Difference Between “-include” and “Include-Resource”?</a></li>
                                    <li><a href="#how-can-i-configure-the-system-bundle-exports">How Can I Configure the System Bundle Exports?</a></li>
@@ -97,6 +98,20 @@ section &gt; .row {
 <img src="./images/faq/01.png"></img><p class="caption"></p>
 </div>
 <p>Importing the bundles this way is better than directly modifying the contents of the <code>cnf/repo</code> directory, since Bndtools is immediately aware of the new bundles and regenerates the OBR index for the repository.</p>
+<p><strong>NB:</strong> not all repository types support adding bundles! For example, the <code>OBR</code> repository type is based on an index file that may be anywhere local or remote; Bndtools would not know where to put the new bundle or how to update the index. However the following repository types <em>do</em> support additions:</p>
+<ul>
+<li><code>LocalOBR</code></li>
+<li><code>FileRepo</code></li>
+</ul>
+<h2 id="how-do-i-remove-bundles-from-a-repository"><a href="#TOC">How Do I Remove Bundles from a Repository?</a></h2>
+<p>Unfortunately the current repository API does not support a generic way to remove bundles. We plan to update this API, but for now it is necessary to remove the bundles manually from the filesystem.</p>
+<p>For repositories of type <code>LocalOBR</code> perform the following steps:</p>
+<ol style="list-style-type: decimal">
+<li>Delete the bundle file from <code>&lt;repo_dir&gt;/&lt;bsn&gt;</code>. If you want to delete all versions of the bundle, then also delete the <code>&lt;bsn&gt;</code> directory itself (i.e., do not leave an empty directory).</li>
+<li>Delete the OBR index file, <code>&lt;repo_dir&gt;/repository.xml</code>.</li>
+<li>Touch the <code>cnf/build.bnd</code> file. This causes the index file to be regenerated and the repository contents to be refreshed.</li>
+</ol>
+<p>For repositories of type <code>FileRepo</code>, perform the same steps except for deleting the OBR index (which will not exist anyway).</p>
 <h2 id="why-is-my-bundle-empty"><a href="#TOC">Why is My Bundle Empty?</a></h2>
 <p>In Bndtools the contents of a bundle must be defined explicitly; if the contents are not defined then the bundle will be empty. Bundle contents are defined using the following three instructions (follow links to the bnd documentation for these instructions):</p>
 <ul>
