@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Bndtools » Home</title>
+<meta name="description" content>
+<meta name="author" content="Neil Bartlett">
+<link rel="alternate" type="application/rss+xml" title="Bndtools News RSS Feed" href="./rss.xml"></link>
+
+<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+<!--[if lt IE 9]>
+<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<!-- Le styles -->
+<link href="./css/bootstrap.css" rel="stylesheet">
+<style type="text/css">
+body {
+	padding-top: 60px;
+}
+section {
+  padding-top: 40px;
+}
+section &gt; .row {
+  margin-bottom: 10px;
+}
+</style>
+
+<!-- Le fav and touch icons -->
+<link rel="shortcut icon" href="./images/favicon.ico">
+<link rel="apple-touch-icon" href="./images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="./images/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="./images/apple-touch-icon-114x114.png">
+</head>
+
+<body>
+	<div class="topbar" data-dropdown="dropdown">
+		<div class="topbar-inner">
+			<div class="container-fluid">
+				<a class="brand" href="./index.html">
+					<img src="./images/logo-topbar.png"></img>
+				</a>
+				<ul class="nav">
+	<li><a href="./index.html">Home</a></li>
+	<li><a href="./news.html">News</a></li>
+	<li><a href="./installation.html">Install</a></li>
+	<li><a href="./tutorial.html">Tutorial</a></li>
+	<!--<li><a href="/concepts.html">Concepts</a></li> -->
+	<li><a href="./faq.html">FAQ</a></li>
+	<li><a href="./training.html">Training</a></li>
+</ul>
+
+<ul class="nav secondary-nav">
+	<li class="dropdown">
+		<a href="#" class="dropdown-toggle">Navigation</a>
+		<ul class="dropdown-menu">
+			<li><a href="./index.html">Home</a></li>
+			<li><a href="./news.html">News</a></li>
+			<li><a href="./whatsnew1-0-0/">What's New in 1.0.0</a></li>
+
+			<li class="divider"></li>
+
+			<li><a href="./docs_index.html">Docs</a></li>
+			<li><a href="./installation.html">... Installation</a></li>
+			<li><a href="./tutorial.html">... Tutorial</a><li>
+			<li><a href="./concepts.html">... Concepts</a></li>
+			<li><a href="./faq.html">... FAQ</a></li>
+			<li><a href="./release-notes.html">... Release Notes</a></li>
+			<li><a href="./development.html">... Development</a></li>
+
+			<li class="divider"></li>
+
+			<li><a href="./training.html">Training</a></li>
+		</ul>
+	</li>
+<ul>
+
+				<!--<p class="pull-right">Logged in as <a href="#">username</a></p>-->
+			</div>
+		</div>
+	</div>
+
+<div class="container">
+	<div class="content">
+		<div class="hero-unit">
+	<h1>Bndtools Concepts</h1>
+	<p>Introduction to the Basics</p>
+</div>
+
+<h1 id="TOC">Table of Contents</h1><ul>
+                                   <li><a href="#repositories"><span class="toc-section-number">1</span> Repositories</a><ul>
+                                   <li><a href="#obr-repository"><span class="toc-section-number">1.1</span> OBR Repository</a></li>
+                                   <li><a href="#local-obr-repository"><span class="toc-section-number">1.2</span> Local OBR Repository</a></li>
+                                   <li><a href="#file-repository"><span class="toc-section-number">1.3</span> File Repository</a></li>
+                                   <li><a href="#maven-local-repository"><span class="toc-section-number">1.4</span> Maven Local Repository</a></li>
+                                   <li><a href="#maven-remote-repository"><span class="toc-section-number">1.5</span> Maven Remote Repository</a></li>
+                                   </ul></li>
+                                   <li><a href="#bundles-and-bnd-files"><span class="toc-section-number">2</span> Bundles and Bnd Files</a><ul>
+                                   <li><a href="#the-project-settings-file-bnd.bnd"><span class="toc-section-number">2.1</span> The Project Settings File: bnd.bnd</a></li>
+                                   <li><a href="#single-bundle-and-multiple-bundle-projects"><span class="toc-section-number">2.2</span> Single-Bundle and Multiple-Bundle Projects</a></li>
+                                   <li><a href="#derived-bundle-symbolic-names"><span class="toc-section-number">2.3</span> Derived Bundle Symbolic Names</a></li>
+                                   </ul></li>
+                                   </ul>
+<p><strong>WARNING this document is a work-in-progress and several sections may be incomplete or inaccurate!</strong></p>
+<h1 id="repositories"><a href="#TOC"><span class="header-section-number">1</span> Repositories</a></h1>
+<p>Bndtools uses <em>repositories</em> to supply dependencies to be used at build-time and at runtime. A repository is just a collection of bundles. It may be located anywhere: in the workspace; somewhere else on the local file system; or on a remote server.</p>
+<p>Bndtools uses repositories in the following ways:</p>
+<ul>
+<li>To look up bundles specified on the Build Path by Bundle Symbolic Name (BSN) and version;</li>
+<li>To look up packages specified in <code>-buildpackages</code> using OBR filter syntax;</li>
+<li>To resolve the Run Requirements list;</li>
+<li>To look up bundles specified in the Run Bundles list by BSN and version.</li>
+</ul>
+<p>Repositories are implemented as bnd plug-ins, and can be configured by editing the Plugins sections of the workspace configuration file (<em>Bndtools</em> menu » <em>Open main bnd config</em>).</p>
+<div class="figure">
+<img src="./images/concepts/repositories01.png"></img><p class="caption"></p>
+</div>
+<p>Since repositories are implemented as plug-ins, it is theoretically possible to support almost any kind of repository, by developing a new plug-in type. Of course it is more convenient to use an existing repository plug-in. Bnd and Bndtools support the following repository types out-of-the-box.</p>
+<h2 id="obr-repository"><a href="#TOC"><span class="header-section-number">1.1</span> OBR Repository</a></h2>
+<p>This type of repository is based on the <a href="http://www.osgi.org/Repository/BIndex">OSGi Bundle Repository</a> pseudo-standard. The repository contents are defined by the contents of an index file — usually named <code>repository.xml</code> — as generated by the Bindex tool. The index may be either local or remote, and the resource referenced by the index may also be either local or remote. In the case of remote index and/or resources, a local cache is used to avoid repeated downloads and to enable offline builds.</p>
+<p>This type of repository is not editable from within Bndtools. Modifying the content of the repository would require running the Bindex tool to regenerate the index file.</p>
+<p>The following properties are supported:</p>
+<table>
+<col width="11%"></col>
+<col width="44%"></col>
+<col width="44%"></col>
+<thead>
+<tr class="header">
+<th align="left">Name</th>
+<th align="left">Description</th>
+<th align="left">Required?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>name</code></td>
+<td align="left">Name for the repository.</td>
+<td align="left">No.</td>
+</tr>
+<tr class="even">
+<td align="left"><code>mode</code></td>
+<td align="left">Resolution mode: <code>build</code>, <code>runtime</code> or <code>any</code>. Controls the resolution phase in which this repository may be used.</td>
+<td align="left">No. Default: <code>any</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>locations</code></td>
+<td align="left">Comma-separated list of index URLs. <strong>NB:</strong> surround this value with single-quotes if it contains more than one entry.</td>
+<td align="left">No. Default: empty</td>
+</tr>
+<tr class="even">
+<td align="left"><code>cache</code></td>
+<td align="left">Local cache directory for remote resources.</td>
+<td align="left">No. Default: <code>cnf/cache/.obr/</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="local-obr-repository"><a href="#TOC"><span class="header-section-number">1.2</span> Local OBR Repository</a></h2>
+<p>This type of repository is also based on OBR but it maintains a local filesystem directory of bundles. It is editable from within Bndtools and the OBR index is updated automatically when bundles are deployed into it.</p>
+<p>The following properties are supported:</p>
+<table>
+<col width="11%"></col>
+<col width="44%"></col>
+<col width="44%"></col>
+<thead>
+<tr class="header">
+<th align="left">Name</th>
+<th align="left">Description</th>
+<th align="left">Required?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>name</code></td>
+<td align="left">Name for the repository.</td>
+<td align="left">No.</td>
+</tr>
+<tr class="even">
+<td align="left"><code>local</code></td>
+<td align="left">The local filesystem directory.</td>
+<td align="left">Yes.</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>readonly</code></td>
+<td align="left">Whether the repository should be read-only, i.e. disabled for editing from Bndtools.</td>
+<td align="left">No. Default: false</td>
+</tr>
+<tr class="even">
+<td align="left"><code>mode</code></td>
+<td align="left">Resolution mode: <code>build</code>, <code>runtime</code> or <code>any</code>. Controls the resolution phase in which this repository may be used.</td>
+<td align="left">No. Default: <code>any</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>locations</code></td>
+<td align="left">Comma-separated list of <em>additional</em> index URLs. <strong>NB:</strong> surround this value with single-quotes if it contains more than one entry.</td>
+<td align="left">No. Default: empty</td>
+</tr>
+<tr class="even">
+<td align="left"><code>cache</code></td>
+<td align="left">Local cache directory for remote resources.</td>
+<td align="left">No. Default: <code>${local}/.obrcache</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="file-repository"><a href="#TOC"><span class="header-section-number">1.3</span> File Repository</a></h2>
+<p>This type of repository is based on a very simple file system directory structure. It is editable from within Bndtools. <strong>NB:</strong> it does not support OBR indexes, so repositories of this type cannot participate in OBR resolution of Run Configurations.</p>
+<p>The following properties are supported:</p>
+<table>
+<col width="11%"></col>
+<col width="44%"></col>
+<col width="44%"></col>
+<thead>
+<tr class="header">
+<th align="left">Name</th>
+<th align="left">Description</th>
+<th align="left">Required?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>name</code></td>
+<td align="left">Name for the repository.</td>
+<td align="left">No.</td>
+</tr>
+<tr class="even">
+<td align="left"><code>location</code></td>
+<td align="left">The local filesystem directory.</td>
+<td align="left">Yes.</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>readonly</code></td>
+<td align="left">Whether the repository should be read-only, i.e. disabled for editing from Bndtools.</td>
+<td align="left">No. Default: false</td>
+</tr>
+</tbody>
+</table>
+<h2 id="maven-local-repository"><a href="#TOC"><span class="header-section-number">1.4</span> Maven Local Repository</a></h2>
+<p>This type of repository is used to access bundles in the Maven local repository, usually found in <code>$HOME/.m2/repository</code>. Note that this plug-in accesses the Maven repository directly and does not building with Maven.</p>
+<table>
+<col width="11%"></col>
+<col width="44%"></col>
+<col width="44%"></col>
+<thead>
+<tr class="header">
+<th align="left">Name</th>
+<th align="left">Description</th>
+<th align="left">Required?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>name</code></td>
+<td align="left">Name for the repository.</td>
+<td align="left">No.</td>
+</tr>
+<tr class="even">
+<td align="left"><code>root</code></td>
+<td align="left">The location of the Maven repository.</td>
+<td align="left">No. Default: <code>$HOME/.m2/repository</code></td>
+</tr>
+</tbody>
+</table>
+<p>Note that if you use the <a href="http://felix.apache.org/site/apache-felix-maven-bundle-plugin-bnd.html">Bundle Plugin for Maven</a> then you can also use the <a href="#obr-repository">OBR</a> repository type, since the Bundle Plugin generates an OBR index file whenever <code>maven install</code> is executed. For example:</p>
+<pre><code>aQute.lib.deployer.obr.OBR;locations='file:${user.home}/.m2/repository/repository.xml'
+</code></pre>
+<h2 id="maven-remote-repository"><a href="#TOC"><span class="header-section-number">1.5</span> Maven Remote Repository</a></h2>
+<p>This type of repository can be used to access bundles in a remote Maven repository, including Maven Central or any Nexus repository. <strong>NB:</strong> this repository type is not browseable; if you attempt to view the contents of the repository using the Repositories View in Bndtools, it will appear to be empty. However it will be possible to reference JARs from the repository in your <code>-buildpath</code> or <code>-runbundles</code> if the group ID and artefact ID is known.</p>
+<p>For example to reference a JAR with group ID <code>org.osgi</code> and artefact ID <code>osgi_R4_core</code>, use the following syntax:</p>
+<pre><code>-buildpath: org.osgi+osgi_R4_core
+</code></pre>
+<table>
+<col width="15%"></col>
+<col width="48%"></col>
+<col width="36%"></col>
+<thead>
+<tr class="header">
+<th align="left">Name</th>
+<th align="left">Description</th>
+<th align="left">Required?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>repositories</code></td>
+<td align="left">Comma-separated list of Maven repository URLs. <strong>NB:</strong> surround this value with single-quotes if it contains more than one entry.</td>
+<td align="left">No. Default: empty</td>
+</tr>
+</tbody>
+</table>
+<h1 id="bundles-and-bnd-files"><a href="#TOC"><span class="header-section-number">2</span> Bundles and Bnd Files</a></h1>
+<p>Bndtools follows the “generated manifest” approach to building OSGi bundles; this is in contrast to the “manifest first” approach used by some other tools. See the OSGi Community Wiki page on <a href="http://wiki.osgi.org/wiki/Tooling_Approaches">Tooling Approaches</a> for an explanation of the difference between these approaches.</p>
+<p>Bndtools projects are based on standard Eclipse Java projects. After the Java code is compiled into classfiles, the Bndtools builder takes over and produces one or more OSGi bundles. It uses <code>.bnd</code> files to control the contents of the OSGi bundles that it generates.</p>
+<h2 id="the-project-settings-file-bnd.bnd"><a href="#TOC"><span class="header-section-number">2.1</span> The Project Settings File: bnd.bnd</a></h2>
+<p>A Bndtools project always contains a file named <code>bnd.bnd</code>. This file contains project settings such as the Build Path, which defines the libraries that are visible to the project at build time:</p>
+<div class="figure">
+<img src="./images/concepts/bundles01.png"></img><p class="caption"></p>
+</div>
+<h2 id="single-bundle-and-multiple-bundle-projects"><a href="#TOC"><span class="header-section-number">2.2</span> Single-Bundle and Multiple-Bundle Projects</a></h2>
+<p>Bndtools projects either generate a single bundle or multiple bundles. In the single-bundle mode (which is the default) all the instructions defining that bundle are listed in the <code>bnd.bnd</code> file: in other words, the <code>bnd.bnd</code> file controls both the project settings <em>and</em> the instructions for generating a single bundle.</p>
+<p>In the multiple-bundle mode, the <code>bnd.bnd</code> still contains project settings such as Build Path. However the instructions controlling the output of bundles is separated into several other <code>.bnd</code> files. These are known as “sub-bundles”, and turning on multiple-bundles mode is known as enabling “sub-bundles”:</p>
+<div class="figure">
+<img src="./images/concepts/bundles02.png"></img><p class="caption"></p>
+</div>
+<p>When sub-bundles mode is turned on, one bundle is generated for <em>each</em> other <code>.bnd</code> file in the top-level of the Bndtools project. Those <code>.bnd</code> files contain only the instructions required to define the contents of a bundle such as Private Packages, Export Packages, etc.</p>
+<h2 id="derived-bundle-symbolic-names"><a href="#TOC"><span class="header-section-number">2.3</span> Derived Bundle Symbolic Names</a></h2>
+<p>The bundle symbolic name (BSN) of a generated bundle is derived from the project name and — if sub-bundles is enabled — the name of the sub-bundle file.</p>
+<p>In single-bundle mode, the BSN of the bundle will be equal to the name of the Bndtools project. So if the project name is <code>org.example</code> then the BSN of the bundle will be <code>org.example</code>:</p>
+<pre><code>Bundle-SymbolicName: org.example
+</code></pre>
+<p>In sub-bundles mode, the BSN of each bundle is equal the name of the project plus the name of the sub-bundle file excluding its <code>.bnd</code> extension. So if the project name is <code>org.example</code> and there is a sub-bundle file named <code>foo.bnd</code> the BSN will be <code>org.example.foo</code>:</p>
+<pre><code>Bundle-SymbolicName: org.example.foo
+</code></pre>
+<p>You should not attempt to override the generated BSN, e.g. by including a <code>Bundle-SymbolicName</code> head in the <code>.bnd</code> file, because Bndtools uses the association between project names and bundle names in order to find bundles when projects depend on them.</p>
+
+	</div>
+	<footer>
+		<div class="well">
+			<p>© <a href="mailto:njbartlett@gmail.com">Neil Bartlett</a> 2011. Built with <a href="http://twitter.github.com/bootstrap/">Bootstrap</a> and <a href="http://jaspervdj.be/hakyll/index.html">Hakyll</a>.</p>
+		</div>
+	</footer>
+</div>
+
+<!--
+<div class="sidebar">
+	<div class="well">
+		<h2>Navigation</h2>
+		<ul>
+			<li><a href="foo">Item</a></li>
+			<li>Item</li>
+		</ul>
+	</div>
+</div>
+-->
+
+<script src="http://code.jquery.com/jquery-1.5.2.min.js"></script>
+<script src="./js/bootstrap-dropdown.js"></script>
+
+</body>
+</html>
