@@ -14,6 +14,7 @@
 
 <!-- Le styles -->
 <link href="./css/bootstrap.css" rel="stylesheet">
+<link href="./css/hk-kate.css" rel="stylesheet">
 <style type="text/css">
 body {
 	padding-top: 60px;
@@ -154,12 +155,7 @@ section &gt; .row {
 <h2 id="write-and-export-the-api"><a href="#TOC"><span class="header-section-number">3.1</span> Write and Export the API</a></h2>
 <p>OSGi offers strong decoupling of producers and consumers of functionality. This is done by encouraging an API-based (or in Java terms, interface-based) programming model, where producers of functionality implement APIs and the consumers of functionality bind only to APIs, not any particular implementation. For our example we will use a fairly trivial API.</p>
 <p>In the <code>src</code> directory of the new project, create a package named <code>org.example.api</code>. In the new package create a Java interface named <code>Greeting</code>, as follows:</p>
-<pre><code>package org.example.api;
-
-public interface Greeting {
-    String sayHello(String name);
-}
-</code></pre>
+<pre class="sourceCode"><code class="sourceCode Java"><span class="kw">package</span><span class="kw"> org.example.api;</span><br /><br /><span class="kw">public</span> <span class="kw">interface</span> Greeting {<br />    String <span class="fu">sayHello</span>(String name);<br />}</code></pre>
 <h2 id="define-the-bundle"><a href="#TOC"><span class="header-section-number">3.2</span> Define the Bundle</a></h2>
 <p>The project we have created defines a single bundle with a Bundle Symbolic Name (BSN) of <code>org.example.api</code> (i.e., the same as the project name). As soon as we created the project, a bundle file named <code>org.example.api.jar</code> was created in the <code>generated</code> directory, and it will be rebuilt every time we change the bundle definition or its source code.</p>
 <p>However, the bundle is currently empty, because we have not defined any Java packages to include in the bundle. This is an important difference of Bndtools with respect to other tools: bundles are always empty until we explicitly add some content. You can verify this by double-clicking the bundle file and viewing its contents: it will have only <code>META-INF/MANIFEST.MF</code> and <code>OSGI-OPT/bnd.bnd</code> entries.</p>
@@ -216,26 +212,11 @@ public interface Greeting {
 </ul>
 <h2 id="write-an-implementation"><a href="#TOC"><span class="header-section-number">4.3</span> Write an Implementation</a></h2>
 <p>We will write a class that implements the <code>Greeting</code> interface. When the project was created from the template, Java source for a class named <code>org.example.ExampleComponent</code> was generated. Open this source file now and make it implement <code>Greeting</code>:</p>
-<pre><code>@Component
-public class ExampleComponent implements Greeting {
-
-	public String sayHello(String name) {
-		return &quot;Hello &quot; + name;
-	}
-
-}
-</code></pre>
+<pre class="sourceCode"><code class="sourceCode Java">@Component<br /><span class="kw">public</span> <span class="kw">class</span> ExampleComponent <span class="kw">implements</span> Greeting {<br /><br />	<span class="kw">public</span> String <span class="fu">sayHello</span>(String name) {<br />		<span class="kw">return</span> <span class="st">&quot;Hello &quot;</span> + name;<br />	}<br /><br />}</code></pre>
 <p>Note the use of the <code>@Component</code> annotation. This enables our bundle to use OSGi Declarative Services to declare the API implementation class. This means that instances of the class will be automatically created and registered with the OSGi service registry. However the annotation is build-time only, and does not pollute our class with runtime dependencies — in other words, this is a “Plain Old Java Object” or POJO.</p>
 <h2 id="test-the-implementation"><a href="#TOC"><span class="header-section-number">4.4</span> Test the Implementation</a></h2>
 <p>We should write a test case to ensure the implementation class works as expected. In the <code>test</code> folder, a test case class already exists named <code>org.example.ExampleComponentTest</code>. Write a test method as follows:</p>
-<pre><code>public class ExampleComponentTest extends TestCase {
-
-	public void testSaysHello() throws Exception {
-		String result = new ExampleComponent().sayHello(&quot;Bob&quot;);
-		assertEquals(&quot;Hello Bob&quot;, result);
-	}
-}
-</code></pre>
+<pre class="sourceCode"><code class="sourceCode Java"><span class="kw">public</span> <span class="kw">class</span> ExampleComponentTest <span class="kw">extends</span> TestCase {<br /><br />	<span class="kw">public</span> <span class="dt">void</span> <span class="fu">testSaysHello</span>() <span class="kw">throws</span> Exception {<br />		String result = <span class="kw">new</span> <span class="fu">ExampleComponent</span>().<span class="fu">sayHello</span>(<span class="st">&quot;Bob&quot;</span>);<br />		<span class="fu">assertEquals</span>(<span class="st">&quot;Hello Bob&quot;</span>, result);<br />	}<br />}</code></pre>
 <p>Now right-click on the file and select <strong>Run As &gt; JUnit Test</strong>.</p>
 <div class="figure">
 <img src="./images/tutorial/12.png"></img><p class="caption"></p>
@@ -333,45 +314,7 @@ service.id = 27
 <img src="./images/tutorial/17.png"></img><p class="caption"></p>
 </div>
 <p>Now create a new Java package under the <code>src</code> folder named <code>org.example.command</code>. In this package create a class <code>GreetingCommand</code> as follows:</p>
-<pre><code>import java.io.PrintStream;
-import java.util.StringTokenizer;
-
-import org.apache.felix.shell.Command;
-import org.example.api.Greeting;
-
-import aQute.bnd.annotation.component.*;
-
-@Component
-public class GreetingCommand implements Command {
-
-	private Greeting greetingSvc;
-
-	@Reference
-	public void setGreeting(Greeting greetingSvc) {
-		this.greetingSvc = greetingSvc;
-	}
-
-	public void execute(String line, PrintStream out, PrintStream err) {
-		StringTokenizer tokenizer = new StringTokenizer(line);
-		tokenizer.nextToken(); // discard first token
-
-		String name = &quot;&quot;;
-		if (tokenizer.hasMoreTokens())
-			name = tokenizer.nextToken();
-
-		System.out.println(greetingSvc.sayHello(name));
-	}
-	public String getName() {
-		return &quot;greet&quot;;
-	}
-	public String getShortDescription() {
-		return &quot;Example command&quot;;
-	}
-	public String getUsage() {
-		return &quot;greet &lt;name&gt;&quot;;
-	}
-}
-</code></pre>
+<pre class="sourceCode"><code class="sourceCode Java"><span class="kw">import</span><span class="kw"> java.io.PrintStream;</span><br /><span class="kw">import</span><span class="kw"> java.util.StringTokenizer;</span><br /><br /><span class="kw">import</span><span class="kw"> org.apache.felix.shell.Command;</span><br /><span class="kw">import</span><span class="kw"> org.example.api.Greeting;</span><br /><br /><span class="kw">import</span><span class="kw"> aQute.bnd.annotation.component.*;</span><br /><br />@Component<br /><span class="kw">public</span> <span class="kw">class</span> GreetingCommand <span class="kw">implements</span> Command {<br /><br />	<span class="kw">private</span> Greeting greetingSvc;<br /><br />	@Reference<br />	<span class="kw">public</span> <span class="dt">void</span> <span class="fu">setGreeting</span>(Greeting greetingSvc) {<br />		<span class="kw">this</span>.<span class="fu">greetingSvc</span> = greetingSvc;<br />	}<br /><br />	<span class="kw">public</span> <span class="dt">void</span> <span class="fu">execute</span>(String line, PrintStream out, PrintStream err) {<br />		StringTokenizer tokenizer = <span class="kw">new</span> StringTokenizer(line);<br />		tokenizer.<span class="fu">nextToken</span>(); <span class="co">// discard first token</span><br /><br />		String name = <span class="st">&quot;&quot;</span>;<br />		<span class="kw">if</span> (tokenizer.<span class="fu">hasMoreTokens</span>())<br />			name = tokenizer.<span class="fu">nextToken</span>();<br /><br />		System.<span class="fu">out</span>.<span class="fu">println</span>(greetingSvc.<span class="fu">sayHello</span>(name));<br />	}<br />	<span class="kw">public</span> String <span class="fu">getName</span>() {<br />		<span class="kw">return</span> <span class="st">&quot;greet&quot;</span>;<br />	}<br />	<span class="kw">public</span> String <span class="fu">getShortDescription</span>() {<br />		<span class="kw">return</span> <span class="st">&quot;Example command&quot;</span>;<br />	}<br />	<span class="kw">public</span> String <span class="fu">getUsage</span>() {<br />		<span class="kw">return</span> <span class="st">&quot;greet &lt;name&gt;&quot;</span>;<br />	}<br />}</code></pre>
 <h2 id="create-a-bundle-for-the-command-component"><a href="#TOC"><span class="header-section-number">6.1</span> Create a Bundle for the Command Component</a></h2>
 <p>The command component is not part of the provider bundle, because it lives in a package that was not included. We could add it to the provider bundle, but it would make more sense to create a separate bundle for it.</p>
 <p>Right-click again on the <code>org.example.impls</code> project and select <strong>New &gt; Bundle Descriptor</strong> again. Enter the name as <code>command</code> and click <strong>Finish</strong>.</p>
