@@ -1,81 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<title>Bndtools » Home</title>
-<meta name="description" content>
-<meta name="author" content="Neil Bartlett">
-<link rel="alternate" type="application/rss+xml" title="Bndtools News RSS Feed" href="./rss.xml"></link>
+  <head>
+    <meta charset="utf-8">
+    <title>Bndtools</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content>
+    <meta name="author" content>
 
-<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
-<!--[if lt IE 9]>
-<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-<![endif]-->
+    <!-- Le styles -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+    </style>
+    <!--<link href="css/bootstrap-responsive.css" rel="stylesheet">-->
 
-<!-- Le styles -->
-<link href="./css/bootstrap.css" rel="stylesheet">
-<link href="./css/hk-kate.css" rel="stylesheet" media="screen">
-<style type="text/css">
-body {
-	padding-top: 60px;
-}
-section {
-  padding-top: 40px;
-}
-section &gt; .row {
-  margin-bottom: 10px;
-}
-</style>
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
 
-<!-- Le fav and touch icons -->
-<link rel="shortcut icon" href="./images/favicon.ico">
-<link rel="apple-touch-icon" href="./images/apple-touch-icon.png">
-<link rel="apple-touch-icon" sizes="72x72" href="./images/apple-touch-icon-72x72.png">
-<link rel="apple-touch-icon" sizes="114x114" href="./images/apple-touch-icon-114x114.png">
-</head>
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="images/favicon.ico">
+  </head>
 
-<body>
-	<div class="topbar" data-dropdown="dropdown">
-		<div class="topbar-inner">
-			<div class="container-fluid">
-				<a class="brand" href="./index.html">
-					<img src="./images/logo-topbar.png"></img>
-				</a>
-				<ul>
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="./index.html"><img src="./images/logo-topbar.png"></img></a>
+		  <!--
+          <div class="btn-group pull-right">
+            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+              <i class="icon-user"></i> Username
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Profile</a></li>
+              <li class="divider"></li>
+              <li><a href="#">Sign Out</a></li>
+            </ul>
+          </div>
+		  -->
+          <div class="nav-collapse">
+            <ul class="nav">
+			  <li><a href="./index.html">Home</a></li>
+<li><a href="./installation.html">Install</a></li>
+<li><a href="./tutorial.html">Tutorial</a></li>
+<li><a href="./help.html">Get Help</a></li>
+<li><a href="./faq.html">FAQ</a></li>
+
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span2">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+
 	<li><a href="./index.html">Home</a></li>
-	<li><a href="./news.html">News</a></li>
-	<li><a href="./installation.html">Install</a></li>
-	<li><a href="./tutorial.html">Tutorial</a></li>
-	<li><a href="./faq.html">FAQ</a></li>
+	<li><a href="./licence.html">Licence</a></li>
+	<li><a href="./community.html">Get Involved</a></li>
 	<li><a href="./training.html">Training</a></li>
-<ul>
-			</div>
-		</div>
-	</div>
 
-<div class="container">
-	<div class="content">
-		<!-- Main hero unit for a primary marketing message or call to action -->
+<li class="divider"></li>
+<li class="nav-header">Documentation</li>
+	<li><a href="./installation.html">Installation</a></li>
+	<li><a href="./tutorial.html">Tutorial</a></li>
+	<li><a href="./concepts.html">Concepts Guide</a></li>
+	<li><a href="./faq.html">FAQ</a></li>
+	<li><a href="./release-notes.html">Release Notes</a></li>
+
+<li class="divider"></li>
+<li class="nav-header">Development</h1>
+	<li><a class="external-left" href="https://github.com/bndtools/bndtools/issues">Bug Reports</a></li>
+	<li><a class="external-left" href="https://bndtools.ci.cloudbees.com/job/bndtools.master/">Build Status</a></li>
+	<li><a href="./development.html">Developer Guide</a></li>
+	<li><a href="./acknowledge.html">Acknowledgements</a></li>
+
+</ul>
+
+          </div><!--/.well -->
+        </div><!--/span-->
+        <div class="span10">
+          <!-- Main hero unit for a primary marketing message or call to action -->
 <div class="hero-unit">
   <h1>Bndtools</h1>
   <p>The easy, powerful and productive way to develop with OSGi. Based on <a href="http://www.aqute.biz/Bnd/Bnd">bnd</a> and Eclipse.</p>
-  <p><a class="btn primary large" href="./installation.html">Install now »</a></p>
+  <p><a class="btn btn-primary btn-large" href="./installation.html">Install now »</a></p>
 </div>
 
-<div class="row">
-	<div class="span6">
+<div class="row-fluid">
+	<div class="span4">
 		<h2>Import Analysis</h2>
 		<p>Unlike tools that require package dependency information to be maintained manually, Bndtools uses bytecode analysis to accurately calculate the dependencies of your OSGi bundles.
 		<p><img class="thumbnail" src="./images/about01.png"></img></p>
 		<!--<p><a class="btn" href="#">View details &raquo;</a></p>-->
 	</div>
-	<div class="span5">
+	<div class="span3">
 		<h2>Repositories</h2>
 		<p>Bndtools features a pluggable repository model for bundles, that may be referenced at build-time and also used to satisfy runtime dependencies. Repository plug-ins exist for OBR and Maven/Nexus.</p>
 		<p><img class="thumbnail" src="./images/about02.png"></img></p>
 		<!--<p><a class="btn" href="#">View details &raquo;</a></p>-->
 	</div>
-	<div class="span5">
+	<div class="span3">
 		<h2>OBR Resolving</h2>
 		<p>Bndtools uses the OBR (OSGi Bundle Repository) standard to resolve runtime depedencies, allowing us to concentrate on just the &quot;top-level&quot; bundles that comprise our application.</p>
 		<p><img class="thumbnail" src="./images/about03.png"></img></p>
@@ -85,56 +128,50 @@ section &gt; .row {
 
 <p> </p>
 
-<div class="row">
-	<div class="span6">
+<div class="row-fluid">
+	<div class="span4">
 		<h2>Semantic Versioning</h2>
 		<p>The “Release” feature enables releasing bundles into repositories. During release, the bundles are compared against the previous baseline for changes, and the package/bundle versions are calculated automatically. This frees developers from having to reason about complex versioning issues.</p>
 		<p><img class="thumbnail" src="./images/about05.png"></img></p>
 	</div>
-	<div class="span5">
+	<div class="span3">
 		<h2>Instant Builder</h2>
 		<p>Eclipse automatically compiles your Java source code whenever you save — this is “The Eclipse Way”. Bndtools goes one step further and automatically assembles your bundles whenever the inputs to it are changed. As a result, your bundles are always up to date with the latest code, and ready to run!</p>
 		<p><img class="thumbnail" src="./images/about04.png"></img></p>
 	</div>
-	<div class="span5">
+	<div class="span3">
 		<h2>Integrated Testing</h2>
 		<p>Bndtools incorporates an integrated test runner for OSGi that launches an OSGi framework containing a selection of bundles, executes the test cases declared in those bundles, and shuts down OSGi. The whole process takes mere milliseconds and results are reported in the standard Eclipse JUnit view.</p>
 		<p><img class="thumbnail" src="./images/about06.png"></img></p>
 	</div>
 </div>
 
-	</div>
-	<footer>
-		<div class="well">
-			<p>© <a href="mailto:njbartlett@gmail.com">Neil Bartlett</a> 2011. Built with <a href="http://twitter.github.com/bootstrap/">Bootstrap</a> and <a href="http://jaspervdj.be/hakyll/index.html">Hakyll</a>.</p>
-		</div>
-	</footer>
-</div>
+        </div><!--/span-->
+      </div><!--/row-->
 
-<div class="sidebar">
-	<div class="well">
-		<h2>Navigation</h2>
-<ul>
-	<li><a href="./index.html">Home</a></li>
-	<li><a href="./news.html">News</a></li>
-	<li><a href="./whatsnew1-0-0/">What's New in 1.0.0</a></li>
-</ul>
+    </div><!--/.fluid-container-->
+      <footer>
+        <div class="well">
+        <p>© <a href="mailto:njbartlett@gmail.com">Neil Bartlett</a> 2011. Built with <a href="http://twitter.github.com/bootstrap/">Bootstrap</a> and <a href="http://jaspervdj.be/hakyll/index.html">Hakyll</a>.</p>
+        </div>
+      </footer>
 
-<h3>Documentation</h3>
-<ul>
-	<li><a href="./installation.html">Installation</a></li>
-	<li><a href="./tutorial.html">Tutorial</a></li>
-	<li><a href="./concepts.html">Index of Concepts</a></li>
-	<li><a href="./faq.html">FAQ</a></li>
-	<li><a href="./release-notes.html">Release Notes</a></li>
-	<li><a href="./development.html">Development</a></li>
-	<li><a href="./training.html">Training</a></li>
-</ul>
-	</div>
-</div>
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../assets/js/jquery.js"></script>
+    <script src="../assets/js/bootstrap-transition.js"></script>
+    <script src="../assets/js/bootstrap-alert.js"></script>
+    <script src="../assets/js/bootstrap-modal.js"></script>
+    <script src="../assets/js/bootstrap-dropdown.js"></script>
+    <script src="../assets/js/bootstrap-scrollspy.js"></script>
+    <script src="../assets/js/bootstrap-tab.js"></script>
+    <script src="../assets/js/bootstrap-tooltip.js"></script>
+    <script src="../assets/js/bootstrap-popover.js"></script>
+    <script src="../assets/js/bootstrap-button.js"></script>
+    <script src="../assets/js/bootstrap-collapse.js"></script>
+    <script src="../assets/js/bootstrap-carousel.js"></script>
+    <script src="../assets/js/bootstrap-typeahead.js"></script>
 
-<script src="http://code.jquery.com/jquery-1.5.2.min.js"></script>
-<script src="./js/bootstrap-dropdown.js"></script>
-
-</body>
+  </body>
 </html>

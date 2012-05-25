@@ -1,61 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<title>Bndtools » Home</title>
-<meta name="description" content>
-<meta name="author" content="Neil Bartlett">
-<link rel="alternate" type="application/rss+xml" title="Bndtools News RSS Feed" href="./rss.xml"></link>
+  <head>
+    <meta charset="utf-8">
+    <title>Bndtools</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content>
+    <meta name="author" content>
 
-<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
-<!--[if lt IE 9]>
-<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-<![endif]-->
+    <!-- Le styles -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+    </style>
+    <!--<link href="css/bootstrap-responsive.css" rel="stylesheet">-->
 
-<!-- Le styles -->
-<link href="./css/bootstrap.css" rel="stylesheet">
-<link href="./css/hk-kate.css" rel="stylesheet" media="screen">
-<style type="text/css">
-body {
-	padding-top: 60px;
-}
-section {
-  padding-top: 40px;
-}
-section &gt; .row {
-  margin-bottom: 10px;
-}
-</style>
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
 
-<!-- Le fav and touch icons -->
-<link rel="shortcut icon" href="./images/favicon.ico">
-<link rel="apple-touch-icon" href="./images/apple-touch-icon.png">
-<link rel="apple-touch-icon" sizes="72x72" href="./images/apple-touch-icon-72x72.png">
-<link rel="apple-touch-icon" sizes="114x114" href="./images/apple-touch-icon-114x114.png">
-</head>
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="images/favicon.ico">
+  </head>
 
-<body>
-	<div class="topbar" data-dropdown="dropdown">
-		<div class="topbar-inner">
-			<div class="container-fluid">
-				<a class="brand" href="./index.html">
-					<img src="./images/logo-topbar.png"></img>
-				</a>
-				<ul>
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="./index.html"><img src="./images/logo-topbar.png"></img></a>
+		  <!--
+          <div class="btn-group pull-right">
+            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+              <i class="icon-user"></i> Username
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Profile</a></li>
+              <li class="divider"></li>
+              <li><a href="#">Sign Out</a></li>
+            </ul>
+          </div>
+		  -->
+          <div class="nav-collapse">
+            <ul class="nav">
+			  <li><a href="./index.html">Home</a></li>
+<li><a href="./installation.html">Install</a></li>
+<li><a href="./tutorial.html">Tutorial</a></li>
+<li><a href="./help.html">Get Help</a></li>
+<li><a href="./faq.html">FAQ</a></li>
+
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span2">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+
 	<li><a href="./index.html">Home</a></li>
-	<li><a href="./news.html">News</a></li>
-	<li><a href="./installation.html">Install</a></li>
-	<li><a href="./tutorial.html">Tutorial</a></li>
-	<li><a href="./faq.html">FAQ</a></li>
+	<li><a href="./licence.html">Licence</a></li>
+	<li><a href="./community.html">Get Involved</a></li>
 	<li><a href="./training.html">Training</a></li>
-<ul>
-			</div>
-		</div>
-	</div>
 
-<div class="container">
-	<div class="content">
-		<div class="hero-unit">
+<li class="divider"></li>
+<li class="nav-header">Documentation</li>
+	<li><a href="./installation.html">Installation</a></li>
+	<li><a href="./tutorial.html">Tutorial</a></li>
+	<li><a href="./concepts.html">Concepts Guide</a></li>
+	<li><a href="./faq.html">FAQ</a></li>
+	<li><a href="./release-notes.html">Release Notes</a></li>
+
+<li class="divider"></li>
+<li class="nav-header">Development</h1>
+	<li><a class="external-left" href="https://github.com/bndtools/bndtools/issues">Bug Reports</a></li>
+	<li><a class="external-left" href="https://bndtools.ci.cloudbees.com/job/bndtools.master/">Build Status</a></li>
+	<li><a href="./development.html">Developer Guide</a></li>
+	<li><a href="./acknowledge.html">Acknowledgements</a></li>
+
+</ul>
+
+          </div><!--/.well -->
+        </div><!--/span-->
+        <div class="span10">
+          <div class="hero-unit">
   <h1>Bndtools News</h1>
 </div>
 <ul>
@@ -66,38 +109,32 @@ section &gt; .row {
 
 </ul>
 
-	</div>
-	<footer>
-		<div class="well">
-			<p>© <a href="mailto:njbartlett@gmail.com">Neil Bartlett</a> 2011. Built with <a href="http://twitter.github.com/bootstrap/">Bootstrap</a> and <a href="http://jaspervdj.be/hakyll/index.html">Hakyll</a>.</p>
-		</div>
-	</footer>
-</div>
+        </div><!--/span-->
+      </div><!--/row-->
 
-<div class="sidebar">
-	<div class="well">
-		<h2>Navigation</h2>
-<ul>
-	<li><a href="./index.html">Home</a></li>
-	<li><a href="./news.html">News</a></li>
-	<li><a href="./whatsnew1-0-0/">What's New in 1.0.0</a></li>
-</ul>
+    </div><!--/.fluid-container-->
+      <footer>
+        <div class="well">
+        <p>© <a href="mailto:njbartlett@gmail.com">Neil Bartlett</a> 2011. Built with <a href="http://twitter.github.com/bootstrap/">Bootstrap</a> and <a href="http://jaspervdj.be/hakyll/index.html">Hakyll</a>.</p>
+        </div>
+      </footer>
 
-<h3>Documentation</h3>
-<ul>
-	<li><a href="./installation.html">Installation</a></li>
-	<li><a href="./tutorial.html">Tutorial</a></li>
-	<li><a href="./concepts.html">Index of Concepts</a></li>
-	<li><a href="./faq.html">FAQ</a></li>
-	<li><a href="./release-notes.html">Release Notes</a></li>
-	<li><a href="./development.html">Development</a></li>
-	<li><a href="./training.html">Training</a></li>
-</ul>
-	</div>
-</div>
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../assets/js/jquery.js"></script>
+    <script src="../assets/js/bootstrap-transition.js"></script>
+    <script src="../assets/js/bootstrap-alert.js"></script>
+    <script src="../assets/js/bootstrap-modal.js"></script>
+    <script src="../assets/js/bootstrap-dropdown.js"></script>
+    <script src="../assets/js/bootstrap-scrollspy.js"></script>
+    <script src="../assets/js/bootstrap-tab.js"></script>
+    <script src="../assets/js/bootstrap-tooltip.js"></script>
+    <script src="../assets/js/bootstrap-popover.js"></script>
+    <script src="../assets/js/bootstrap-button.js"></script>
+    <script src="../assets/js/bootstrap-collapse.js"></script>
+    <script src="../assets/js/bootstrap-carousel.js"></script>
+    <script src="../assets/js/bootstrap-typeahead.js"></script>
 
-<script src="http://code.jquery.com/jquery-1.5.2.min.js"></script>
-<script src="./js/bootstrap-dropdown.js"></script>
-
-</body>
+  </body>
 </html>
