@@ -84,7 +84,7 @@
 	<li><a href="./tutorial.html">Tutorial</a></li>
 	<li><a href="./concepts.html">Concepts Guide</a></li>
 	<li><a href="./faq.html">FAQ</a></li>
-	<li><a href="./release-notes.html">Release Notes</a></li>
+	<li><a href="./whatsnew2-0-0.html">New in 2.0</a></li>
 
 <li class="divider"></li>
 <li class="nav-header">Development</h1>
@@ -144,18 +144,15 @@
 <p>The <a href="http://www.aqute.biz/Bnd/Format#include-resource"><code>Include-Resource</code></a> instruction tells bnd to include a set of non-Java resources (e.g. images, XML files etc) in the output bundle.</p>
 <h2 id="how-can-i-configure-the-system-bundle-exports"><a href="#TOC"><span class="header-section-number">0.5</span> How Can I Configure the System Bundle Exports?</a></h2>
 <p>To add extra packages to the exports of the OSGi System Bundle, use the <code>-runsystempackages</code> instruction to your run configuration file. For example:</p>
-<pre><code>-runsystempackages: sun.reflect
-</code></pre>
+<pre><code>-runsystempackages: sun.reflect</code></pre>
 <p>You can also add library JARs to the Java application “classpath” using the <code>-runpath</code> instruction, which would then allow you to expose the contents of those libraries via system bundle exports:</p>
 <pre><code>-runpath: jide-oss-1.0.0.jar
--runsystempackages: com.jidesoft.swing, com.jidesoft.animation
-</code></pre>
+-runsystempackages: com.jidesoft.swing, com.jidesoft.animation</code></pre>
 <p>Note that using the <code>-runsystempackages</code> instruction is equivalent to setting the OSGi property <code>org.osgi.framework.system.packages.extra</code>; however it is better to use <code>-runsystempackages</code> because then the OBR resolver inside Bndtools will take account of the availability of those packages during resolution.</p>
 <h2 id="how-can-i-depend-on-a-plain-jar-file-at-build-time"><a href="#TOC"><span class="header-section-number">0.6</span> How Can I Depend on a Plain JAR File at Build Time?</a></h2>
 <p>Sometimes it is useful to add a plain JAR file to the build-time dependencies of a project. For example we may want to use a “pure” API JAR to build against, but use a different artefact at runtime. Or we may be planning to embed the dependency in our bundle.</p>
 <p>Plain JAR files should be added to the Build Path using the <code>version=file</code> attribute. Unfortunately there is currently no GUI support for this attribute so you will have to edit the <em>Source</em> tab:</p>
-<pre><code>-buildpath: libs/servlet-api-3.0.jar;version=file
-</code></pre>
+<pre><code>-buildpath: libs/servlet-api-3.0.jar;version=file</code></pre>
 <p>Note that this approach is better than using Eclipse’s <em>Add to Build Path</em> action, because the latter will not be visible when the project is built offline using ANT; i.e. a project that compiles in Eclipse may not compile in ANT. Using the <code>-buildpath</code> approach ensures that both Eclipse and ANT build the project in exactly the same way.</p>
 
         </div><!--/span-->

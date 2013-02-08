@@ -84,7 +84,7 @@
 	<li><a href="./tutorial.html">Tutorial</a></li>
 	<li><a href="./concepts.html">Concepts Guide</a></li>
 	<li><a href="./faq.html">FAQ</a></li>
-	<li><a href="./release-notes.html">Release Notes</a></li>
+	<li><a href="./whatsnew2-0-0.html">New in 2.0</a></li>
 
 <li class="divider"></li>
 <li class="nav-header">Development</h1>
@@ -119,13 +119,11 @@
 </ul>
 <h1 id="checking-out-from-github"><a href="#TOC"><span class="header-section-number">2</span> Checking Out from GitHub</a></h1>
 <p>First check out the source code from GitHub as follows:</p>
-<pre><code>git clone git://github.com/bndtools/bndtools.git
-</code></pre>
+<pre><code>git clone git://github.com/bndtools/bndtools.git</code></pre>
 <p>If you have Bndtools installed in your Eclipse IDE already (e.g. using Marketplace) then skip to <strong>Importing Into Eclipse</strong> below. Otherwise read on…</p>
 <h1 id="building-with-bndant"><a href="#TOC"><span class="header-section-number">3</span> Building With bnd/ANT</a></h1>
 <p>Assuming you have Apache ANT (version 1.7 or better) installed, you can build bndtools from the command line by changing to the <code>bndtools.build</code> directory and typing:</p>
-<pre><code>ant build p2
-</code></pre>
+<pre><code>ant build p2</code></pre>
 <p>After a minute or two, a directory named <code>generated/p2</code> will appear. This contains an Eclipse Update Site that you can use to install bndtools from the code you have just built.</p>
 <p>To install from the generated Update Site, open the Help menu in Eclipse and select “Install New Software”. In the update dialog, click the “Add” button (near the top left) and then click the “Local” button. Browse to the location of the <code>bndtools.build/generated/p2</code> directory that you just built. Then set the name of this update site to “Bndtools Local Snapshot” (or whatever you like, it’s not really important so long as you enter <em>something</em>). Click “OK”.</p>
 <p>Back in the update dialog, Bndtools will appear in the category list. Place a check next to it and click Next. Drive the rest of the wizard to completion… congratulations, you have just built and installed bndtools!</p>
@@ -137,7 +135,6 @@
 <li><code>cnf</code></li>
 <li><code>bndtools.bndplugins</code></li>
 <li><code>bndtools.core</code></li>
-<li><code>bndtools.diff</code></li>
 <li><code>bndtools.jareditor</code></li>
 <li><code>bndtools.build</code></li>
 <li><code>bndtools.manual</code></li>

@@ -84,7 +84,7 @@
 	<li><a href="./tutorial.html">Tutorial</a></li>
 	<li><a href="./concepts.html">Concepts Guide</a></li>
 	<li><a href="./faq.html">FAQ</a></li>
-	<li><a href="./release-notes.html">Release Notes</a></li>
+	<li><a href="./whatsnew2-0-0.html">New in 2.0</a></li>
 
 <li class="divider"></li>
 <li class="nav-header">Development</h1>
@@ -116,6 +116,13 @@
 		<div class="span5">
 			<h1>Report Issues</h1>
 			<p>Bndtools is <a href="http://github.com/bndtools/bndtools">hosted at GitHub</a> and we use the <a href="http://github.com/bndtools/bndtools/issues">GitHub issue tracker</a> system as our principle bug reporting system. If you have found a problem please let us know!</p>
+			<p><b>Note:</b> when you report an issue, please make sure to report the Git descriptors of the Bndtools that you are using.
+			These descriptors can be found in the manifests of the Bndtools JARs:
+			just open one of the Bndtools JARs that are in your Eclipse plugins directory and copy&amp;paste the Git descriptor headers from its manifest.
+			The headers you're looking for are <code>Git-Descriptor</code> and <code>Git-SHA</code>. An example is shown below.
+			<pre>Git-Descriptor: 1.0.1.RC1-221-gc3bc5b7
+Git-SHA: c3bc5b704eb6281bce25f08abc95a640a85df416</pre>
+			</p>
 			<p>
 				<a class="btn btn-primary" href="https://github.com/bndtools/bndtools/issues">Browse Issues»</a>
 				<a class="btn btn-primary" href="https://github.com/bndtools/bndtools/issues/new">Raise a Bug »</a>
