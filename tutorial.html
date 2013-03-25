@@ -175,7 +175,7 @@
 }</code></pre>
 <h2 id="define-the-bundle"><a href="#TOC"><span class="header-section-number">3.2</span> Define the Bundle</a></h2>
 <p>The project we have created defines a single bundle with a Bundle Symbolic Name (BSN) of <code>org.example.api</code> (i.e., the same as the project name). As soon as we created the project, a bundle file named <code>org.example.api.jar</code> was created in the <code>generated</code> directory, and it will be rebuilt every time we change the bundle definition or its source code.</p>
-<p>However, the bundle is currently empty, because we have not defined any Java packages to include in the bundle. This is an important difference of Bndtools with respect to other tools: bundles are always empty until we explicitly add some content. You can verify this by double-clicking the bundle file and viewing its contents: it will have only <code>META-INF/MANIFEST.MF</code> and <code>OSGI-OPT/bnd.bnd</code> entries.</p>
+<p>However, the bundle is currently empty, because we have not defined any Java packages to include in the bundle. This is an important difference of Bndtools with respect to other tools: bundles are always empty until we explicitly add some content. You can verify this by double-clicking the bundle file and viewing its contents: it will only have an <code>META-INF/MANIFEST.MF</code> entry.</p>
 <p>We want to add the package <code>org.example.api</code> to the exported packages of the bundle. So open the <code>bnd.bnd</code> file at the top of the project and select the <strong>Contents</strong> tab. Now the package can be added in one of two ways:</p>
 <ul>
 <li>Click the “+” icon in the header of the <strong>Export Packages</strong> section, then select <code>org.example.api</code> from the dialog and click <strong>OK</strong>… <em>or</em></li>
@@ -222,6 +222,7 @@
 <div class="figure">
 <img src="./images/tutorial/11.png"></img><p class="caption"></p>
 </div>
+<p>Save the file.</p>
 <p><em>Important Points:</em></p>
 <ul>
 <li>Build-time dependencies of the project can be added in the <strong>Build Path</strong> panel of the <code>bnd.bnd</code> editor.</li>
@@ -229,19 +230,26 @@
 </ul>
 <h2 id="write-an-implementation"><a href="#TOC"><span class="header-section-number">4.3</span> Write an Implementation</a></h2>
 <p>We will write a class that implements the <code>Greeting</code> interface. When the project was created from the template, Java source for a class named <code>org.example.ExampleComponent</code> was generated. Open this source file now and make it implement <code>Greeting</code>:</p>
-<pre class="sourceCode Java"><code class="sourceCode java">@Component
-<span class="kw">public</span> <span class="kw">class</span> ExampleComponent <span class="kw">implements</span> Greeting {
+<pre class="sourceCode Java"><code class="sourceCode java"><span class="kw">package org.example;</span>
 
+<span class="kw">import org.example.api.Greeting;</span>
+
+<span class="kw">import aQute.bnd.annotation.component.Component;</span>
+
+@Component
+<span class="kw">public</span> <span class="kw">class</span> ExampleComponent <span class="kw">implements</span> Greeting {
 	<span class="kw">public</span> String <span class="fu">sayHello</span>(String name) {
 		<span class="kw">return</span> <span class="st">&quot;Hello &quot;</span> + name;
 	}
-
 }</code></pre>
-<p>Note the use of the <code>@Component</code> annotation. This enables our bundle to use OSGi Declarative Services to declare the API implementation class. This means that instances of the class will be automatically created and registered with the OSGi service registry. However the annotation is build-time only, and does not pollute our class with runtime dependencies – in other words, this is a “Plain Old Java Object” or POJO.</p>
+<p>Note the use of the <code>@Component</code> annotation. This enables our bundle to use OSGi Declarative Services to declare the API implementation class. This means that instances of the class will be automatically created and registered with the OSGi service registry. The annotation is build-time only, and does not pollute our class with runtime dependencies – in other words, this is a “Plain Old Java Object” or POJO.</p>
 <h2 id="test-the-implementation"><a href="#TOC"><span class="header-section-number">4.4</span> Test the Implementation</a></h2>
 <p>We should write a test case to ensure the implementation class works as expected. In the <code>test</code> folder, a test case class already exists named <code>org.example.ExampleComponentTest</code>. Write a test method as follows:</p>
-<pre class="sourceCode Java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> ExampleComponentTest <span class="kw">extends</span> TestCase {
+<pre class="sourceCode Java"><code class="sourceCode java"><span class="kw">package org.example;</span>
 
+<span class="kw">import junit.framework.TestCase;</span>
+
+<span class="kw">public</span> <span class="kw">class</span> ExampleComponentTest <span class="kw">extends</span> TestCase {
 	<span class="kw">public</span> <span class="dt">void</span> <span class="fu">testSaysHello</span>() <span class="kw">throws</span> Exception {
 		String result = <span class="kw">new</span> <span class="fu">ExampleComponent</span>().<span class="fu">sayHello</span>(<span class="st">&quot;Bob&quot;</span>);
 		<span class="fu">assertEquals</span>(<span class="st">&quot;Hello Bob&quot;</span>, result);
@@ -274,21 +282,50 @@
 <img src="./images/tutorial/14.png"></img><p class="caption"></p>
 </div>
 <p>In the editor for the new <code>run.bndrun</code> file, click on <strong>Run OSGi</strong> near the top-right corner. Shortly, the Felix Shell prompt “<code>g!</code>” will appear in the <strong>Console</strong> view. Type the <code>lb</code> command to view the list of bundles:</p>
-<p>g! lb START LEVEL 1 ID|State |Level|Name 0|Active | 0|System Bundle (4.0.3) 1|Active | 1|Apache Felix Gogo Runtime (0.10.0) 2|Active | 1|Apache Felix Gogo Shell (0.10.0) 3|Active | 1|Apache Felix Gogo Command (0.12.0) g!</p>
+<pre><code>g! lb
+START LEVEL 1
+   ID|State      |Level|Name
+    0|Active     |    0|System Bundle (4.0.3)
+    1|Active     |    1|Apache Felix Gogo Runtime (0.10.0)
+    2|Active     |    1|Apache Felix Gogo Shell (0.10.0)
+    3|Active     |    1|Apache Felix Gogo Command (0.12.0)
+g!</code></pre>
 <p>Next we want to include the <code>org.example.impls.provider</code> and <code>osgi.cmpn</code> bundles. This can be done as follows:</p>
 <ul>
-<li>Click the “+” icon in the toolbar of the <strong>Run Requirements</strong> panel. In the dialog, double-click <code>org.example.impls.provider</code> and <code>osgi.cmpn</code> under “Workspace” and click <strong>Finish</strong>.</li>
+<li>Click the “+” icon in the toolbar of the <strong>Run Requirements</strong> panel to open the ‘Add Bundle Requirement’ dialog.</li>
+<li>Under “Workspace”, double-click <code>org.example.impls.provider</code>.</li>
+<li>Under “Bndtools Hub”, double-click <code>osgi.cmpn</code>.</li>
+<li>Click <strong>Finish</strong>.</li>
 </ul>
-<p>Also add the osgi.cmpn bundle. The <strong>Run Requirements</strong> panel should now look like this:</p>
+<p>The <strong>Run Requirements</strong> panel should now look like this:</p>
 <div class="figure">
 <img src="./images/tutorial/15.png"></img><p class="caption"></p>
 </div>
 <p>Check <strong>Auto-resolve on save</strong> and then save the file. Returning to the <strong>Console</strong> view, type <code>lb</code> again:</p>
-<p>g! lb START LEVEL 1 ID|State |Level|Name 0|Active | 0|System Bundle (4.0.3) 1|Active | 1|Apache Felix Gogo Runtime (0.10.0) 2|Active | 1|Apache Felix Declarative Services (1.6.0) 3|Active | 1|org.example.impls.provider (0.0.0) 4|Active | 1|osgi.cmpn (4.2.0.200908310645) 5|Active | 1|Apache Felix Gogo Shell (0.10.0) 6|Active | 1|Apache Felix Gogo Command (0.12.0) 7|Active | 1|org.example.api (0.0.0) g!</p>
+<pre><code>g! lb
+START LEVEL 1
+   ID|State      |Level|Name
+    0|Active     |    0|System Bundle (4.0.3)
+    1|Active     |    1|Apache Felix Gogo Runtime (0.10.0)
+    2|Active     |    1|Apache Felix Gogo Shell (0.10.0)
+    3|Active     |    1|Apache Felix Gogo Command (0.12.0)
+    4|Active     |    1|Apache Felix Configuration Admin Service (1.4.0)
+    5|Active     |    1|Apache Felix Log Service (1.0.1)
+    6|Active     |    1|Apache Felix Declarative Services (1.6.2)
+    7|Active     |    1|org.example.api (0.0.0)
+    8|Active     |    1|org.example.impls.provider (0.0.0)
+    9|Active     |    1|osgi.cmpn (4.2.0.200908310645)
+g!</code></pre>
 <p>The provider bundle has been added to the runtime dynamically. Note that the API bundle and Apache Felix Declarative Services are also added because they resolved as dependencies of the provider.</p>
-<p>We can now look at the services published by our provider bundle using the command <code>inspect service capability 3</code>… (or the short form <code>inspect s c 3</code>):</p>
-<pre><code>g! inspect c service 2</code></pre>
-<p>org.example.impls.provider [2] provides: service; org.example.api.Greeting with properties: component.id = 0 component.name = org.example.ExampleComponent service.id = 6 g!</p>
+<p>We can now look at the services published by our provider bundle using the command <code>inspect capability service 8</code>:</p>
+<pre><code>g! inspect capability service 8
+org.example.impls.provider [8] provides:
+----------------------------------------
+service; org.example.api.Greeting with properties:
+   component.id = 0
+   component.name = org.example.ExampleComponent
+   service.id = 24
+g!</code></pre>
 <p>Our bundle now publishes a service under the <code>Greeting</code> interface.</p>
 <p><em>Important Points:</em></p>
 <ul>
@@ -304,16 +341,22 @@
 <img src="./images/tutorial/17.png"></img><p class="caption"></p>
 </div>
 <p>Now create a new Java package under the <code>src</code> folder named <code>org.example.command</code>. In this package create a class <code>GreetingCommand</code> as follows:</p>
-<pre class="sourceCode Java"><code class="sourceCode java"><span class="kw">import org.example.api.Greeting;</span>
+<pre class="sourceCode Java"><code class="sourceCode java"><span class="kw">package org.example.command;</span>
+
+<span class="kw">import org.apache.felix.service.command.CommandProcessor;</span>
+<span class="kw">import org.example.api.Greeting;</span>
+
 <span class="kw">import aQute.bnd.annotation.component.Component;</span>
 <span class="kw">import aQute.bnd.annotation.component.Reference;</span>
 
-@<span class="fu">Component</span>(properties={
-		<span class="st">&quot;osgi.command.scope=example&quot;</span>, 
-		<span class="st">&quot;osgi.command.function=greet&quot;</span>}, 
-		provide=Object.<span class="fu">class</span>)
+@<span class="fu">Component</span>(properties =	{
+		<span class="co">/* Felix GoGo Shell Commands */</span>
+		CommandProcessor.<span class="fu">COMMAND_SCOPE</span> + <span class="st">&quot;:String=example&quot;</span>,
+		CommandProcessor.<span class="fu">COMMAND_FUNCTION</span> + <span class="st">&quot;:String=greet&quot;</span>
+	},
+	provide = Object.<span class="fu">class</span>
+)
 <span class="kw">public</span> <span class="kw">class</span> GreetingCommand {
-
 	<span class="kw">private</span> Greeting greetingSvc;
 
 	@Reference
@@ -329,13 +372,29 @@
 <p>The command component is not part of the provider bundle, because it lives in a package that was not included. We could add it to the provider bundle, but it would make more sense to create a separate bundle for it.</p>
 <p>Right-click again on the <code>org.example.impls</code> project and select <strong>New &gt; Bundle Descriptor</strong> again. Enter the name as <code>command</code> and click <strong>Finish</strong>.</p>
 <p>Add the package <code>org.example.command</code> to the <strong>Private Packages</strong> panel of the newly created file. As before, this can be done using the “+” button in the toolbar or by drag-and-drop.</p>
-<p>We also need to declare that the bundle contains Declarative Services components. Change to the <strong>Components</strong> tab of the editor and click the <strong>Add</strong> button. In the name field, enter “*” (i.e. asterisk). Now save the file.</p>
+<p>We also need to declare that the bundle contains Declarative Services components. Change to the <strong>Contents</strong> tab of the editor and in the <strong>Declarative Services</strong> drop-down select <strong>Bnd Annotations</strong>. Now save the file.</p>
 <h2 id="add-the-command-bundle-to-the-runtime"><a href="#TOC"><span class="header-section-number">6.2</span> Add the Command Bundle to the Runtime</a></h2>
 <p>Switch back to the editor for <code>run.bndrun</code>. In the <strong>Run Requirements</strong> tab, add the <code>org.example.impls.command</code> bundle, and save the file.</p>
 <p>The command bundle will now appear in the list of bundles when typing <code>lb</code>:</p>
-<p>~~~~~~~~~~ g! lb START LEVEL 1 ID|State |Level|Name 0|Active | 0|System Bundle (4.0.3) 1|Active | 1|Apache Felix Declarative Services (1.6.0) 2|Active | 1|org.example.impls.provider (0.0.0) 3|Active | 1|Apache Felix Gogo Runtime (0.10.0) 4|Active | 1|osgi.cmpn (4.2.0.200908310645) 5|Active | 1|Apache Felix Gogo Shell (0.10.0) 6|Active | 1|Apache Felix Gogo Command (0.12.0) 7|Active | 1|org.example.impls.command (0.0.0) 8|Active | 1|org.example.api (0.0.0) g! ~~~~~~~~~~ Finally, the <code>greet</code> command will now be available from the Gogo shell:</p>
-<pre><code>g! greet BndTools</code></pre>
-<p>Hello BndTools</p>
+<pre><code>g! lb
+START LEVEL 1
+   ID|State      |Level|Name
+    0|Active     |    0|System Bundle (4.0.3)
+    1|Active     |    1|Apache Felix Gogo Runtime (0.10.0)
+    2|Active     |    1|Apache Felix Gogo Shell (0.10.0)
+    3|Active     |    1|Apache Felix Gogo Command (0.12.0)
+    4|Active     |    1|Apache Felix Configuration Admin Service (1.4.0)
+    5|Active     |    1|Apache Felix Log Service (1.0.1)
+    6|Active     |    1|Apache Felix Declarative Services (1.6.2)
+    7|Active     |    1|org.example.api (0.0.0)
+    8|Active     |    1|org.example.impls.provider (0.0.0)
+    9|Active     |    1|osgi.cmpn (4.2.0.200908310645)
+   10|Active     |    1|org.example.impls.command (0.0.0)
+g!</code></pre>
+<p>Finally, the <code>greet</code> command will now be available from the Gogo shell:</p>
+<pre><code>g! greet BndTools
+Hello BndTools
+g!</code></pre>
 
         </div><!--/span-->
       </div><!--/row-->
