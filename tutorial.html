@@ -39,7 +39,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="./index.html"><img src="./images/logo-topbar.png" /></a>
+          <a class="brand" href="./index.html"><img src="./images/logo-topbar.png"></img></a>
 		  <!--
           <div class="btn-group pull-right">
             <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
@@ -85,7 +85,7 @@
 	<li><a href="./tutorial.html">Tutorial</a></li>
 	<li><a href="./concepts.html">Concepts Guide</a></li>
 	<li><a href="./faq.html">FAQ</a></li>
-	<li><a href="./whatsnew2-0-0.html">New in 2.0</a></li>
+	<li><a href="./whatsnew.html">What's New</a></li>
 
 <li class="divider"></li>
 <li class="nav-header">Development</h1>
@@ -127,7 +127,7 @@
 <h1 id="introduction"><a href="#TOC"><span class="header-section-number">1</span> Introduction</a></h1>
 <p>In this tutorial we will build a sample application composed of two components and an API. The following diagram shows the bundle architecture (simplified):</p>
 <div class="figure">
-<img src="./images/tutorial/bundles.png" /><p class="caption"></p>
+<img src="./images/tutorial/bundles.png"></img><p class="caption"></p>
 </div>
 <p>In the tutorial we create the top three bundles (rectangles):</p>
 <ul>
@@ -142,22 +142,22 @@
 <ol style="list-style-type: decimal">
 <li><p>From the File menu, select <strong>New -&gt; Bndtools OSGi Project</strong>.</p>
 <div class="figure">
-<img src="./images/tutorial/01.png" /><p class="caption"></p>
+<img src="./images/tutorial/01.png"></img><p class="caption"></p>
 </div></li>
 <li><p>On the next page, enter <code>org.example.api</code> as the name of the project. Select at least J2SE-1.5 for the JRE execution environment.</p>
 <div class="figure">
-<img src="./images/tutorial/02.png" /><p class="caption"></p>
+<img src="./images/tutorial/02.png"></img><p class="caption"></p>
 </div></li>
 <li><p>Next you are offered a choice of project templates to start off your project. Select <strong>Empty Project</strong> and click <strong>Finish</strong>. The new project will be created.</p>
 <div class="figure">
-<img src="./images/tutorial/03.png" /><p class="caption"></p>
+<img src="./images/tutorial/03.png"></img><p class="caption"></p>
 </div></li>
 <li><p>If this is the first time you have used Bndtools in this workspace, you will now see the “Welcome” dialog. Click <strong>Next</strong> followed by <strong>Finish</strong> to allow Bndtools to setup a configuration project and import a basic repository. A repository is a place where bundles that you use in your projects are stored. A remote “BndTools hub” repository is created by default that contains some often used bundles.</p>
 <div class="figure">
-<img src="./images/tutorial/04.png" /><p class="caption"></p>
+<img src="./images/tutorial/04.png"></img><p class="caption"></p>
 </div>
 <div class="figure">
-<img src="./images/tutorial/05.png" /><p class="caption"></p>
+<img src="./images/tutorial/05.png"></img><p class="caption"></p>
 </div></li>
 </ol>
 <p><em>Important Points:</em></p>
@@ -185,15 +185,15 @@
 <p>(TIP: Advanced users may prefer to enter <code>Export-Package: org.example.api</code> manually in the <strong>Source</strong> tab).</p>
 <p>As soon as this is done, a popup dialog appears titled “Missing Package Info”. This dialog is related to package versioning: it is asking us to declare the version of this exported package. Click <strong>OK</strong>.</p>
 <div class="figure">
-<img src="./images/tutorial/06.png" /><p class="caption"></p>
+<img src="./images/tutorial/06.png"></img><p class="caption"></p>
 </div>
 <p>The <strong>Contents</strong> tab should now appear as in the following screenshot:</p>
 <div class="figure">
-<img src="./images/tutorial/07.png" /><p class="caption"></p>
+<img src="./images/tutorial/07.png"></img><p class="caption"></p>
 </div>
 <p>Save the file, and the bundle will be rebuilt to include the selected export. We can confirm by opening the <strong>Imports/Exports</strong> view and selecting the bundle file in the <strong>Package Explorer</strong>. Note the package has been assigned version 1.0.0:</p>
 <div class="figure">
-<img src="./images/tutorial/08.png" /><p class="caption"></p>
+<img src="./images/tutorial/08.png"></img><p class="caption"></p>
 </div>
 <p><em>Important Points:</em></p>
 <ul>
@@ -207,7 +207,7 @@
 <h2 id="create-the-project"><a href="#TOC"><span class="header-section-number">4.1</span> Create the Project</a></h2>
 <p>Create another Bndtools project, named <code>org.example.impls</code>. At the <strong>Project Templates</strong> step, select <strong>Component Development (Declarative Services)</strong> and click <strong>Finish</strong>.</p>
 <div class="figure">
-<img src="./images/tutorial/09.png" /><p class="caption"></p>
+<img src="./images/tutorial/09.png"></img><p class="caption"></p>
 </div>
 <h2 id="add-the-api-as-a-build-dependency"><a href="#TOC"><span class="header-section-number">4.2</span> Add the API as a Build Dependency</a></h2>
 <p>We need to add the API project as a build-time dependency of this new project.</p>
@@ -215,13 +215,13 @@
 <ul>
 <li><p>Click the “+” icon in the toolbar of the <strong>Build Path</strong> panel. Double-click <code>org.example.api</code> under “Workspace” in the resulting dialog; it will move over to the right-hand side. Click <strong>Finish</strong></p>
 <div class="figure">
-<img src="./images/tutorial/10.png" /><p class="caption"></p>
+<img src="./images/tutorial/10.png"></img><p class="caption"></p>
 </div></li>
 <li><p><strong>OR</strong> drag-and-drop <code>org.example.api</code> from the <strong>Repositories</strong> view into the <strong>Build Path</strong> panel.</p></li>
 </ul>
 <p>In either case, the <code>org.example.api</code> bundle will appear in the <strong>Build Path</strong> panel with the version annotation “latest”:</p>
 <div class="figure">
-<img src="./images/tutorial/11.png" /><p class="caption"></p>
+<img src="./images/tutorial/11.png"></img><p class="caption"></p>
 </div>
 <p>Save the file.</p>
 <p><em>Important Points:</em></p>
@@ -237,7 +237,7 @@
 
 <span class="kw">import aQute.bnd.annotation.component.Component;</span>
 
-<span class="fu">@Component</span>
+@Component
 <span class="kw">public</span> <span class="kw">class</span> ExampleComponent <span class="kw">implements</span> Greeting {
 	<span class="kw">public</span> String <span class="fu">sayHello</span>(String name) {
 		<span class="kw">return</span> <span class="st">&quot;Hello &quot;</span> + name;
@@ -258,7 +258,7 @@
 }</code></pre>
 <p>Now right-click on the file and select <strong>Run As &gt; JUnit Test</strong>.</p>
 <div class="figure">
-<img src="./images/tutorial/12.png" /><p class="caption"></p>
+<img src="./images/tutorial/12.png"></img><p class="caption"></p>
 </div>
 <p>Verify that the <strong>JUnit</strong> view shows a green bar. If not, go back and fix the code!</p>
 <p>Note that, since this is a unit test rather than an integration test, we did not need to run an OSGi Framework; the standard JUnit launcher is used. Again, this is possible because the component under test is a POJO.</p>
@@ -267,7 +267,7 @@
 <p>Right-click on the project <code>org.example.impls</code> and select <strong>New &gt; Bundle Descriptor</strong>. In the resulting dialog, type the name <code>provider</code> and click <strong>Finish</strong>.</p>
 <p>A popup dialog will ask whether to enable sub-bundles. Click <strong>OK</strong>.</p>
 <div class="figure">
-<img src="./images/tutorial/13.png" /><p class="caption"></p>
+<img src="./images/tutorial/13.png"></img><p class="caption"></p>
 </div>
 <p>Some settings will be moved from <code>bnd.bnd</code> into the new <code>provider.bnd</code> file. You should now find a bundle in <code>generated</code> named <code>org.example.impls.provider.jar</code> which contains the <code>org.example</code> package and a Declarative Services component declaration in <code>OSGI-INF/org.example.ExampleComponent.xml</code>.</p>
 <p><em>Important Points:</em></p>
@@ -280,7 +280,7 @@
 <p>We’d now like to run OSGi. To achieve this we need to create a “Run Descriptor” that defines the collection of bundles to run, along with some other run-time settings.</p>
 <p>Right-click on the project <code>org.example.impls</code> and select <strong>New &gt; Run Descriptor</strong>. In the resulting dialog, enter <code>run</code> as the file name and click <strong>Next</strong>. The next page of the dialog asks us to select a template; choose <strong>Apache Felix 4 with Gogo Shell</strong> and click <strong>Finish</strong>.</p>
 <div class="figure">
-<img src="./images/tutorial/14.png" /><p class="caption"></p>
+<img src="./images/tutorial/14.png"></img><p class="caption"></p>
 </div>
 <p>In the editor for the new <code>run.bndrun</code> file, click on <strong>Run OSGi</strong> near the top-right corner. Shortly, the Felix Shell prompt “<code>g!</code>” will appear in the <strong>Console</strong> view. Type the <code>lb</code> command to view the list of bundles:</p>
 <pre><code>g! lb
@@ -300,7 +300,7 @@ g!</code></pre>
 </ul>
 <p>The <strong>Run Requirements</strong> panel should now look like this:</p>
 <div class="figure">
-<img src="./images/tutorial/15.png" /><p class="caption"></p>
+<img src="./images/tutorial/15.png"></img><p class="caption"></p>
 </div>
 <p>Check <strong>Auto-resolve on save</strong> and then save the file. Returning to the <strong>Console</strong> view, type <code>lb</code> again:</p>
 <pre><code>g! lb
@@ -339,7 +339,7 @@ g!</code></pre>
 <p>Finally we will write a component that consumes the Greeting service and publishes a shell command that can be invoked from the Felix shell.</p>
 <p>First we need to make the Felix shell API available to compile against. Open <code>bnd.bnd</code> and change to the <strong>Build</strong> tab. Add <code>org.apache.felix.gogo.runtime</code> to the list of build dependencies, and save the file:</p>
 <div class="figure">
-<img src="./images/tutorial/17.png" /><p class="caption"></p>
+<img src="./images/tutorial/17.png"></img><p class="caption"></p>
 </div>
 <p>Now create a new Java package under the <code>src</code> folder named <code>org.example.command</code>. In this package create a class <code>GreetingCommand</code> as follows:</p>
 <pre class="sourceCode Java"><code class="sourceCode java"><span class="kw">package org.example.command;</span>
@@ -350,7 +350,7 @@ g!</code></pre>
 <span class="kw">import aQute.bnd.annotation.component.Component;</span>
 <span class="kw">import aQute.bnd.annotation.component.Reference;</span>
 
-<span class="fu">@Component</span>(properties =	{
+@<span class="fu">Component</span>(properties =	{
 		<span class="co">/* Felix GoGo Shell Commands */</span>
 		CommandProcessor.<span class="fu">COMMAND_SCOPE</span> + <span class="st">&quot;:String=example&quot;</span>,
 		CommandProcessor.<span class="fu">COMMAND_FUNCTION</span> + <span class="st">&quot;:String=greet&quot;</span>
@@ -360,7 +360,7 @@ g!</code></pre>
 <span class="kw">public</span> <span class="kw">class</span> GreetingCommand {
 	<span class="kw">private</span> Greeting greetingSvc;
 
-	<span class="fu">@Reference</span>
+	@Reference
 	<span class="kw">public</span> <span class="dt">void</span> <span class="fu">setGreeting</span>(Greeting greetingSvc) {
 		<span class="kw">this</span>.<span class="fu">greetingSvc</span> = greetingSvc;
 	}
