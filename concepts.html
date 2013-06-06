@@ -277,7 +277,7 @@
 </tbody>
 </table>
 <p>Note that if you use the <a href="http://felix.apache.org/site/apache-felix-maven-bundle-plugin-bnd.html">Bundle Plugin for Maven</a> then you can also use the <a href="#obr-repository">OBR</a> repository type, since the Bundle Plugin generates an OBR index file whenever <code>maven install</code> is executed. For example:</p>
-<pre><code>aQute.lib.deployer.obr.OBR;locations='file:${user.home}/.m2/repository/repository.xml'</code></pre>
+<pre><code>aQute.bnd.deployer.repository.FixedIndexedRepo;locations='file:${user.home}/.m2/repository/repository.xml';name='Maven Repo'</code></pre>
 <h2 id="maven-remote-repository"><a href="#TOC"><span class="header-section-number">1.5</span> Maven Remote Repository</a></h2>
 <p>This type of repository can be used to access bundles in a remote Maven repository, including Maven Central or any Nexus repository. <strong>NB:</strong> this repository type is not browseable; if you attempt to view the contents of the repository using the Repositories View in Bndtools, it will appear to be empty. However it will be possible to reference JARs from the repository in your <code>-buildpath</code> or <code>-runbundles</code> if the group ID and artefact ID is known.</p>
 <p>For example to reference a JAR with group ID <code>org.osgi</code> and artefact ID <code>osgi_R4_core</code>, use the following syntax:</p>
