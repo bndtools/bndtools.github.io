@@ -1,116 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Bndtools</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content>
-    <meta name="author" content>
+    <head>
+        <meta charset="utf-8">
+        <title>Bndtools</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/normalize.css" />
+        <link rel="stylesheet" href="css/foundation.css" />
+        <link rel="stylesheet" href="css/docs.css" />
+        <link rel="shortcut icon" href="images/favicon.ico">
+        <script src="js/modernizr.js"></script>
+    </head>
+    <body>
+        <div class="row main-container">
 
-    <!-- Le styles -->
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <style type="text/css">
-      body {
-        padding-top: 60px;
-        padding-bottom: 40px;
-      }
-      .sidebar-nav {
-        padding: 9px 0;
-      }
-    </style>
-    <!--<link href="css/bootstrap-responsive.css" rel="stylesheet">-->
+            <!-- Sidebar -->
+            <div class="large-3 medium-4 small-4 columns">
+                <div class="sidebar">
+                    <nav>
+                        <ul class="side-nav">
 
-    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+<li><a href="/">Home</a></li>
+<li><a href="/community.html">Get Involved</a></li>
+<li><a href="/training.html">Training</a></li>
+<li><a href="/#donate">Donate</a></li>
 
-    <!-- Le fav and touch icons -->
-    <link rel="shortcut icon" href="images/favicon.ico">
-  </head>
+<li class="divider"/>
+<li class="heading">Documentation</li>
+<li><a href="/installation.html">Installation</a></li>
+<li><a href="/tutorial.html">Tutorial</a></li>
+<li><a href="/concepts.html">Concepts Guide</a></li>
+<li><a href="/repositories.html">Repositories</a></li>
+<li><a href="/faq.html">FAQ</a></li>
+<li><a href="https://github.com/bndtools/bndtools/wiki/Changelogs">What's New</a></li>
 
-  <body>
-
-    <div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container-fluid">
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="./index.html"><img src="./images/logo-topbar.png" /></a>
-		  <!--
-          <div class="btn-group pull-right">
-            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-              <i class="icon-user"></i> Username
-              <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-              <li><a href="#">Profile</a></li>
-              <li class="divider"></li>
-              <li><a href="#">Sign Out</a></li>
-            </ul>
-          </div>
-		  -->
-          <div class="nav-collapse">
-            <ul class="nav">
-			  <li><a href="./index.html">Home</a></li>
-<li><a href="./installation.html">Install</a></li>
-<li><a href="./tutorial.html">Tutorial</a></li>
-<li><a href="./help.html">Get Help</a></li>
-<li><a href="./faq.html">FAQ</a></li>
-
-            </ul>
-          </div><!--/.nav-collapse -->
-        </div>
-      </div>
-    </div>
-
-    <div class="container-fluid">
-      <div class="row-fluid">
-        <div class="span2">
-          <div class="well sidebar-nav">
-            <ul class="nav nav-list">
-
-	<li><a href="./">Home</a></li>
-	<li><a href="./licence.html">Licence</a></li>
-	<li><a href="./community.html">Get Involved</a></li>
-	<li><a href="./training.html">Training</a></li>
-  <li><a href="./#donate">Donate</a></li>
-
-<li class="divider"></li>
-<li class="nav-header">Documentation</li>
-	<li><a href="./installation.html">Installation</a></li>
-	<li><a href="./tutorial.html">Tutorial</a></li>
-	<li><a href="./concepts.html">Concepts Guide</a></li>
-	<li><a href="./faq.html">FAQ</a></li>
-	<li><a href="./whatsnew2-0-0.html">New in 2.0</a></li>
-
-<li class="divider"></li>
-<li class="nav-header">Development</h1>
-	<li><a class="external-left" href="https://github.com/bndtools/bndtools/issues">Bug Reports</a></li>
-	<li><a class="external-left" href="https://bndtools.ci.cloudbees.com/job/bndtools.master/">Build Status</a></li>
-	<li><a href="./development.html">Developer Guide</a></li>
-	<li><a href="./acknowledge.html">Acknowledgements</a></li>
+<li class="divider"/>
+<li class="heading">Development</h1>
+<li><a class="external-left" href="https://github.com/bndtools/bndtools/issues">Bug Reports</a></li>
+<li><a class="external-left" href="https://bndtools.ci.cloudbees.com/job/bndtools.master/">Build Status</a></li>
+<li><a href="/development.html">Developer Guide</a></li>
+<li><a href="/acknowledge.html">Acknowledgements</a></li>
 
 </ul>
 
-          </div><!--/.well -->
-        </div><!--/span-->
-        <div class="span10">
-          <div class="hero-unit">
+                    </nav>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="large-9 medium-8 small-8 columns">
+                <div class="hero-unit">
 	<div class="row-fluid">
 		<div class="span8">
 			<h1>OSGi Training</h1>
 			<p>Get up to speed in OSGi quickly, with the lead developer of Bndtools</p>
 			<p>
-				<a class="btn btn-primary btn-large" href="#schedule">Book now »</a>
-				<a class="btn btn-large" href="#synopsis">Read more »</a>
+				<a class="btn btn-primary btn-large" href="#schedule">Book now &raquo;</a>
+				<a class="btn btn-large" href="#synopsis">Read more &raquo;</a>
 			</p>
 		</div>
 		<div class="span3">
-			<img src="./images/njbartlett_sq.jpg" width="210px" />
+			<img src="/images/njbartlett_sq.jpg" width="210px"/>
 		</div>
 	</div>
 </div>
@@ -122,13 +71,13 @@
 
 		<p>On day one, you will be introduced to OSGi and learn how it meets the challenge of building modular, scalable application architectures for the Java Platform. We will review the three principal open source implementations and then dive into the construction of modules, learning how to define dependencies between them and manage versions of APIs.</p>
 
-		<p>Next you'll move onto OSGi Services, the lynchpin of OSGi's programming model and the key to creating flexible, reusable components. You will use the Declarative Services (DS) specification to build components that react to their environment, configure themselves dynamically and interact with other components. Then you will look at one of the most important patterns used in constructing real applications using services, namely the &quot;Whiteboard Pattern&quot;.</p>
+		<p>Next you'll move onto OSGi Services, the lynchpin of OSGi's programming model and the key to creating flexible, reusable components. You will use the Declarative Services (DS) specification to build components that react to their environment, configure themselves dynamically and interact with other components. Then you will look at one of the most important patterns used in constructing real applications using services, namely the "Whiteboard Pattern".</p>
 		
 		<p>On day two, we will return to practical topics such as how to build and test modules using industry-standard tools such as ANT, Maven, JUnit and Hudson/Jenkins. Also we will cover how to define and manage a runtime application using combinations of modules and configurations, and how to correctly evolve APIs and implementations over time.</p>
 
 		<p>Day two concludes with a review of alternative component models including Blueprint, Spring Dynamic Modules, Guice/Peaberry and Apache Felix iPOJO.</p>
 
-		<p>On day three you will learn about the full module lifecycle, how to safely update modules at runtime, and how the lifecycle affects services. We will discuss another common and useful OSGi pattern known as the &quot;Extender Pattern&quot;, examine examples of existing extenders such as the Eclipse extension registry, and build our own extender.</p>
+		<p>On day three you will learn about the full module lifecycle, how to safely update modules at runtime, and how the lifecycle affects services. We will discuss another common and useful OSGi pattern known as the "Extender Pattern", examine examples of existing extenders such as the Eclipse extension registry, and build our own extender.</p>
 
 		<p>The second half of day three comprises a review of the Compendium of useful services offered by the OSGi specification, and also some useful third-party modules and tools. These will include:</p>
 
@@ -144,7 +93,7 @@
 
 		<p>Day four finishes with the topic of OSGi interoperability with Java EE specifications including JNDI, JTA, JPA, JDBC and JMX.</p>
 		
-		<p><a class="btn btn-primary btn-large" href="http://www.paremus.com/services/training-osgi-4day.html">Full details »</a></p>
+		<p><a class="btn btn-primary btn-large" href="http://www.paremus.com/services/training-osgi-4day.html">Full details &raquo;</a></p>
 	</div>
 </section>
 
@@ -168,40 +117,40 @@
 				<td>20 to 23 February 2012</td>
 				<td align="right">
 					Early bird to 13 Jan: <strong>£1,095</strong>
-					<br />
+					<br/>
 					From 14 Jan: <strong>£1,395</strong>
 			   </td>
-				<td><a class="btn disabled">Book now »</a></td>
+				<td><a class="btn disabled">Book now &raquo;</a></td>
 			</tr>
 			<tr>
 				<td>New York (USA)</td>
 				<td>27 February to 1 March 2012</td>
 				<td align="right">
 					Early bird to 20 Jan: <strong>US$2,095</strong>
-					<br />
+					<br/>
 					From 21 Jan: <strong>US$2,495</strong>
 			   </td>
-				<td><a class="btn disabled">Book now »</a></td>
+				<td><a class="btn disabled">Book now &raquo;</a></td>
 			</tr>
 			<tr>
 				<td>Washington DC (USA)</td>
 				<td>4 to 7 June 2012</td>
 				<td align="right">
 					Early bird to 27 Apr: <strong>US$1,895</strong>
-					<br />
+					<br/>
 					From 28 Apr: <strong>US$2,295</strong>
 			   </td>
-				<td><a class="btn btn-primary" href="http://osgi-training-washington-june24.eventbrite.co.uk/">Book now »</a></td>
+				<td><a class="btn btn-primary" href="http://osgi-training-washington-june24.eventbrite.co.uk/">Book now &raquo;</a></td>
 			</tr>
 			<tr>
 				<td>Sydney (Australia)</td>
 				<td>September 2012</td>
 				<td align="right">
 					Early bird to 30 Jul: <strong>TBC</strong>
-					<br />
+					<br/>
 					From 1 Aug: <strong>TBC</strong>
 			   </td>
-				<td><a class="btn btn-primary" href="mailto:training@paremus.com?subject=Please%20send%20me%20information%20about%20OSGi%20Training%20in%20Sydney">Enquire »</a></td>
+				<td><a class="btn btn-primary" href="mailto:training@paremus.com?subject=Please%20send%20me%20information%20about%20OSGi%20Training%20in%20Sydney">Enquire &raquo;</a></td>
 			</tr>
 		</tbody>
 	</table>
@@ -209,21 +158,8 @@
 	
 	
 
-        </div><!--/span-->
-      </div><!--/row-->
+            </div>
 
-    </div><!--/.fluid-container-->
-      <footer>
-        <div class="well">
-        <p>© <a href="mailto:njbartlett@gmail.com">Neil Bartlett</a> 2011. Built with <a href="http://twitter.github.com/bootstrap/">Bootstrap</a> and <a href="http://jaspervdj.be/hakyll/index.html">Hakyll</a>.</p>
         </div>
-      </footer>
-
-    <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="js/jquery.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-
-  </body>
+    </body>
 </html>
