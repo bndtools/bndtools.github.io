@@ -52,7 +52,7 @@
 <li><a class="external-left" href="https://github.com/bndtools/bndtools/wiki/Changelogs">What's New</a></li>
 
 <li class="divider"/>
-<li class="heading">Development</h1>
+<li class="heading">Development</li>
 <li><a class="external-left" href="https://github.com/bndtools/bndtools/issues">Bug Reports</a></li>
 <li><a class="external-left" href="https://bndtools.ci.cloudbees.com/job/bndtools.master/">Build Status</a></li>
 <li><a href="/development.html">Developer Guide</a></li>
@@ -80,9 +80,9 @@
 <li><a href="#derived-bundle-symbolic-names"><span class="toc-section-number">3.3</span> Derived Bundle Symbolic Names</a></li>
 </ul></li>
 </ul>
-<h1 id="repositories"><a href="#repositories"><span class="header-section-number">1</span> Repositories</a></h1>
+<h1 id="repositories"><span class="header-section-number">1</span> Repositories</h1>
 <p>Bndtools uses <em>repositories</em> to supply dependencies to be used at build-time and at runtime. See the <a href="repositories.html">separate section on repositories</a>.</p>
-<h1 id="plug-ins-and-plug-in-paths"><a href="#plug-ins-and-plug-in-paths"><span class="header-section-number">2</span> Plug-ins and Plug-in Paths</a></h1>
+<h1 id="plug-ins-and-plug-in-paths"><span class="header-section-number">2</span> Plug-ins and Plug-in Paths</h1>
 <p>Repositories and other kinds of plug-in can be added to the workspace by editing the <code>-plugin</code> entry in <code>cnf/build.bnd</code>. Plug-ins are specified by their class name, with additional configuration properties passed as follows:</p>
 <pre><code>-plugin: &lt;classname&gt;;&lt;property&gt;=&lt;value&gt;;&lt;property&gt;=&lt;value&gt;,\
          &lt;classname&gt;;&lt;property&gt;=&lt;value&gt;;&lt;property&gt;=&lt;value&gt;</code></pre>
@@ -97,22 +97,22 @@
 <p>If the plug-in class is not built into bnd/Bndtools then we must use the <code>path:</code> directive to specify the classpath for the plug-in, e.g.:</p>
 <pre><code>-plugin: org.example.MyPlugin; \
             path:=&quot;plugins/myplugin-1.0.jar,/usr/lib/foo.jar&quot;</code></pre>
-<h1 id="bundles-and-bnd-files"><a href="#bundles-and-bnd-files"><span class="header-section-number">3</span> Bundles and Bnd Files</a></h1>
+<h1 id="bundles-and-bnd-files"><span class="header-section-number">3</span> Bundles and Bnd Files</h1>
 <p>Bndtools follows the &quot;generated manifest&quot; approach to building OSGi bundles; this is in contrast to the &quot;manifest first&quot; approach used by some other tools. See the OSGi Community Wiki page on <a href="http://wiki.osgi.org/wiki/Tooling_Approaches">Tooling Approaches</a> for an explanation of the difference between these approaches.</p>
 <p>Bndtools projects are based on standard Eclipse Java projects. After the Java code is compiled into classfiles, the Bndtools builder takes over and produces one or more OSGi bundles. It uses <code>.bnd</code> files to control the contents of the OSGi bundles that it generates.</p>
-<h2 id="the-project-settings-file-bnd.bnd"><a href="#the-project-settings-file-bnd.bnd"><span class="header-section-number">3.1</span> The Project Settings File: bnd.bnd</a></h2>
+<h2 id="the-project-settings-file-bnd.bnd"><span class="header-section-number">3.1</span> The Project Settings File: bnd.bnd</h2>
 <p>A Bndtools project always contains a file named <code>bnd.bnd</code>. This file contains project settings such as the Build Path, which defines the libraries that are visible to the project at build time:</p>
 <div class="figure">
 <img src="/images/concepts/bundles01.png" />
 </div>
-<h2 id="single-bundle-and-multiple-bundle-projects"><a href="#single-bundle-and-multiple-bundle-projects"><span class="header-section-number">3.2</span> Single-Bundle and Multiple-Bundle Projects</a></h2>
+<h2 id="single-bundle-and-multiple-bundle-projects"><span class="header-section-number">3.2</span> Single-Bundle and Multiple-Bundle Projects</h2>
 <p>Bndtools projects either generate a single bundle or multiple bundles. In the single-bundle mode (which is the default) all the instructions defining that bundle are listed in the <code>bnd.bnd</code> file: in other words, the <code>bnd.bnd</code> file controls both the project settings <em>and</em> the instructions for generating a single bundle.</p>
 <p>In the multiple-bundle mode, the <code>bnd.bnd</code> still contains project settings such as Build Path. However the instructions controlling the output of bundles is separated into several other <code>.bnd</code> files. These are known as &quot;sub-bundles&quot;, and turning on multiple-bundles mode is known as enabling &quot;sub-bundles&quot;:</p>
 <div class="figure">
 <img src="/images/concepts/bundles02.png" />
 </div>
 <p>When sub-bundles mode is turned on, one bundle is generated for <em>each</em> other <code>.bnd</code> file in the top-level of the Bndtools project. Those <code>.bnd</code> files contain only the instructions required to define the contents of a bundle such as Private Packages, Export Packages, etc.</p>
-<h2 id="derived-bundle-symbolic-names"><a href="#derived-bundle-symbolic-names"><span class="header-section-number">3.3</span> Derived Bundle Symbolic Names</a></h2>
+<h2 id="derived-bundle-symbolic-names"><span class="header-section-number">3.3</span> Derived Bundle Symbolic Names</h2>
 <p>The bundle symbolic name (BSN) of a generated bundle is derived from the project name and -- if sub-bundles is enabled -- the name of the sub-bundle file.</p>
 <p>In single-bundle mode, the BSN of the bundle will be equal to the name of the Bndtools project. So if the project name is <code>org.example</code> then the BSN of the bundle will be <code>org.example</code>:</p>
 <pre><code>Bundle-SymbolicName: org.example</code></pre>
