@@ -94,6 +94,7 @@
 <p>In this tutorial we will build a sample application composed of two components and an API. The following diagram shows the bundle architecture (simplified):</p>
 <div class="figure">
 <img src="/images/tutorial/bundles.png" />
+
 </div>
 <p>In the tutorial we create the top three bundles (rectangles):</p>
 <ul>
@@ -109,21 +110,26 @@
 <li><p>From the File menu, select <strong>New -&gt; Bndtools OSGi Project</strong>.</p>
 <div class="figure">
 <img src="/images/tutorial/01.png" />
+
 </div></li>
 <li><p>On the next page, enter <code>org.example.api</code> as the name of the project. Select at least J2SE-1.5 for the JRE execution environment.</p>
 <div class="figure">
 <img src="/images/tutorial/02.png" />
+
 </div></li>
 <li><p>Next you are offered a choice of project templates to start off your project. Select <strong>Empty Project</strong> and click <strong>Finish</strong>. The new project will be created.</p>
 <div class="figure">
 <img src="/images/tutorial/03.png" />
+
 </div></li>
 <li><p>If this is the first time you have used Bndtools in this workspace, you will now see the &quot;Welcome&quot; dialog. Click <strong>Next</strong> followed by <strong>Finish</strong> to allow Bndtools to setup a configuration project and import a basic repository. A repository is a place where bundles that you use in your projects are stored. A remote &quot;BndTools hub&quot; repository is created by default that contains some often used bundles.</p>
 <div class="figure">
 <img src="/images/tutorial/04.png" />
+
 </div>
 <div class="figure">
 <img src="/images/tutorial/05.png" />
+
 </div></li>
 </ol>
 <p><em>Important Points:</em></p>
@@ -152,14 +158,17 @@ public interface Greeting {
 <p>As soon as this is done, a popup dialog appears titled &quot;Missing Package Info&quot;. This dialog is related to package versioning: it is asking us to declare the version of this exported package. Click <strong>OK</strong>.</p>
 <div class="figure">
 <img src="/images/tutorial/06.png" />
+
 </div>
 <p>The <strong>Contents</strong> tab should now appear as in the following screenshot:</p>
 <div class="figure">
 <img src="/images/tutorial/07.png" />
+
 </div>
 <p>Save the file, and the bundle will be rebuilt to include the selected export. We can confirm by opening the <strong>Imports/Exports</strong> view and selecting the bundle file in the <strong>Package Explorer</strong>. Note the package has been assigned version 1.0.0:</p>
 <div class="figure">
 <img src="/images/tutorial/08.png" />
+
 </div>
 <p><em>Important Points:</em></p>
 <ul>
@@ -174,6 +183,7 @@ public interface Greeting {
 <p>Create another Bndtools project, named <code>org.example.impls</code>. At the <strong>Project Templates</strong> step, select <strong>Component Development (Declarative Services)</strong> and click <strong>Finish</strong>.</p>
 <div class="figure">
 <img src="/images/tutorial/09.png" />
+
 </div>
 <h2 id="add-the-api-as-a-build-dependency"><span class="header-section-number">4.2</span> Add the API as a Build Dependency</h2>
 <p>We need to add the API project as a build-time dependency of this new project.</p>
@@ -182,12 +192,14 @@ public interface Greeting {
 <li><pre><code>Click the &quot;+&quot; icon in the toolbar of the **Build Path** panel. Double-click `org.example.api` under &quot;Workspace&quot; in the resulting dialog; it will move over to the right-hand side. Click **Finish**</code></pre>
 <div class="figure">
 <img src="/images/tutorial/10.png" />
+
 </div></li>
 <li><pre><code>**OR** drag-and-drop `org.example.api` from the **Repositories** view into the **Build Path** panel.</code></pre></li>
 </ul>
 <p>In either case, the <code>org.example.api</code> bundle will appear in the <strong>Build Path</strong> panel with the version annotation &quot;latest&quot;:</p>
 <div class="figure">
 <img src="/images/tutorial/11.png" />
+
 </div>
 <p>Save the file.</p>
 <p><em>Important Points:</em></p>
@@ -225,6 +237,7 @@ public class ExampleComponentTest extends TestCase {
 <p>Now right-click on the file and select <strong>Run As &gt; JUnit Test</strong>.</p>
 <div class="figure">
 <img src="/images/tutorial/12.png" />
+
 </div>
 <p>Verify that the <strong>JUnit</strong> view shows a green bar. If not, go back and fix the code!</p>
 <p>Note that, since this is a unit test rather than an integration test, we did not need to run an OSGi Framework; the standard JUnit launcher is used. Again, this is possible because the component under test is a POJO.</p>
@@ -234,6 +247,7 @@ public class ExampleComponentTest extends TestCase {
 <p>A popup dialog will ask whether to enable sub-bundles. Click <strong>OK</strong>.</p>
 <div class="figure">
 <img src="/images/tutorial/13.png" />
+
 </div>
 <p>Some settings will be moved from <code>bnd.bnd</code> into the new <code>provider.bnd</code> file. You should now find a bundle in <code>generated</code> named <code>org.example.impls.provider.jar</code> which contains the <code>org.example</code> package and a Declarative Services component declaration in <code>OSGI-INF/org.example.ExampleComponent.xml</code>.</p>
 <p><em>Important Points:</em></p>
@@ -247,6 +261,7 @@ public class ExampleComponentTest extends TestCase {
 <p>Right-click on the project <code>org.example.impls</code> and select <strong>New &gt; Run Descriptor</strong>. In the resulting dialog, enter <code>run</code> as the file name and click <strong>Next</strong>. The next page of the dialog asks us to select a template; choose <strong>Apache Felix 4 with Gogo Shell</strong> and click <strong>Finish</strong>.</p>
 <div class="figure">
 <img src="/images/tutorial/14.png" />
+
 </div>
 <p>In the editor for the new <code>run.bndrun</code> file, click on <strong>Run OSGi</strong> near the top-right corner. Shortly, the Felix Shell prompt &quot;<code>g!</code>&quot; will appear in the <strong>Console</strong> view. Type the <code>lb</code> command to view the list of bundles:</p>
 <pre><code>g! lb
@@ -267,6 +282,7 @@ g!</code></pre>
 <p>The <strong>Run Requirements</strong> panel should now look like this:</p>
 <div class="figure">
 <img src="/images/tutorial/15.png" />
+
 </div>
 <p>Check <strong>Auto-resolve on save</strong> and then save the file. Returning to the <strong>Console</strong> view, type <code>lb</code> again:</p>
 <pre><code>g! lb
@@ -306,6 +322,7 @@ g!</code></pre>
 <p>First we need to make the Felix shell API available to compile against. Open <code>bnd.bnd</code> and change to the <strong>Build</strong> tab. Add <code>org.apache.felix.gogo.runtime</code> to the list of build dependencies, and save the file:</p>
 <div class="figure">
 <img src="/images/tutorial/17.png" />
+
 </div>
 <p>Now create a new Java package under the <code>src</code> folder named <code>org.example.command</code>. In this package create a class <code>GreetingCommand</code> as follows:</p>
 <pre class="Java"><code>package org.example.command;

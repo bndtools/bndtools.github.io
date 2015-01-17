@@ -103,12 +103,14 @@
 <p>A Bndtools project always contains a file named <code>bnd.bnd</code>. This file contains project settings such as the Build Path, which defines the libraries that are visible to the project at build time:</p>
 <div class="figure">
 <img src="/images/concepts/bundles01.png" />
+
 </div>
 <h2 id="single-bundle-and-multiple-bundle-projects"><span class="header-section-number">3.2</span> Single-Bundle and Multiple-Bundle Projects</h2>
 <p>Bndtools projects either generate a single bundle or multiple bundles. In the single-bundle mode (which is the default) all the instructions defining that bundle are listed in the <code>bnd.bnd</code> file: in other words, the <code>bnd.bnd</code> file controls both the project settings <em>and</em> the instructions for generating a single bundle.</p>
 <p>In the multiple-bundle mode, the <code>bnd.bnd</code> still contains project settings such as Build Path. However the instructions controlling the output of bundles is separated into several other <code>.bnd</code> files. These are known as &quot;sub-bundles&quot;, and turning on multiple-bundles mode is known as enabling &quot;sub-bundles&quot;:</p>
 <div class="figure">
 <img src="/images/concepts/bundles02.png" />
+
 </div>
 <p>When sub-bundles mode is turned on, one bundle is generated for <em>each</em> other <code>.bnd</code> file in the top-level of the Bndtools project. Those <code>.bnd</code> files contain only the instructions required to define the contents of a bundle such as Private Packages, Export Packages, etc.</p>
 <h2 id="derived-bundle-symbolic-names"><span class="header-section-number">3.3</span> Derived Bundle Symbolic Names</h2>
