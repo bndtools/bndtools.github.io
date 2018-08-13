@@ -1,4 +1,5 @@
 plugins:
+  - jekyll-redirect-from
   - jekyll-seo-tag
   - jekyll-sitemap
 markdown: kramdown
@@ -13,6 +14,13 @@ defaults:
       path: ""
     values:
       layout: default
+      author: Bndtools.org
+      image: /images/swirl-128.png
+
+title: Bndtools
+
+logo: /images/swirl-128.png
+
 
 exclude:
   - 'Gemfile'
@@ -20,8 +28,9 @@ exclude:
   - 'README.md'
   - 'CONTRIBUTING.md'
   - 'LICENSE'
+  - '.travis.yml'
   - '.gitignore'
   - '.project'
-  - 'build.sh'
-  - '/examples'
-  - '/bundler'
+  - 'run.sh'
+  - '/vendor'
+

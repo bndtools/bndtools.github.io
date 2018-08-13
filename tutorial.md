@@ -9,7 +9,7 @@ Introduction
 
 In this tutorial we will build a sample application composed of two components and an API. The following diagram shows the bundle architecture (simplified):
 
-![]($images$bundles.png)
+![](/images/tutorial/bundles.png)
 
 In the tutorial we create the top three bundles (rectangles):
 
@@ -29,21 +29,21 @@ First we need to create a Bndtools OSGi Project. This is just a standard Eclipse
 
 1. From the File menu, select **New -> Bndtools OSGi Project**.
 
-	![]($images$01.png)
+	![](/images/tutorial/01.png)
 
 1. On the next page, enter `org.example.api` as the name of the project. Select at least J2SE-1.5 for the JRE execution environment.
 
-	![]($images$02.png)
+	![](/images/tutorial/02.png)
 
 1. Next you are offered a choice of project templates to start off your project. Select **Empty Project** and click **Finish**. The new project will be created.
 
-	![]($images$03.png)
+	![](/images/tutorial/03.png)
 
 1. If this is the first time you have used Bndtools in this workspace, you will now see the "Welcome" dialog. Click **Next** followed by **Finish** to allow Bndtools to setup a configuration project and import a basic repository. A repository is a place where bundles that you use in your projects are stored. A remote "BndTools hub" repository is created by default that contains some often used bundles.
 
-	![]($images$04.png)
+	![](/images/tutorial/04.png)
 
-	![]($images$05.png)
+	![](/images/tutorial/05.png)
 
 
 
@@ -85,15 +85,15 @@ We want to add the package `org.example.api` to the exported packages of the bun
 
 As soon as this is done, a popup dialog appears titled "Missing Package Info". This dialog is related to package versioning: it is asking us to declare the version of this exported package. Click **OK**.
 
-![]($images$06.png)
+![](/images/tutorial/06.png)
 
 The **Contents** tab should now appear as in the following screenshot:
 
-![]($images$07.png)
+![](/images/tutorial/07.png)
 
 Save the file, and the bundle will be rebuilt to include the selected export. We can confirm by opening the **Imports/Exports** view and selecting the bundle file in the **Package Explorer**. Note the package has been assigned version 1.0.0:
 
-![]($images$08.png)
+![](/images/tutorial/08.png)
 
 *Important Points:*
 
@@ -114,7 +114,7 @@ Create the Project
 
 Create another Bndtools project, named `org.example.impls`. At the **Project Templates** step, select **Component Development (Declarative Services)** and click **Finish**.
 
-![]($images$09.png)
+![](/images/tutorial/09.png)
 
 Add the API as a Build Dependency
 ---------------------------------
@@ -125,13 +125,13 @@ The `bnd.bnd` file of the newly created project will have opened automatically. 
 
  *	Click the "+" icon in the toolbar of the **Build Path** panel. Double-click `org.example.api` under "Workspace" in the resulting dialog; it will move over to the right-hand side. Click **Finish**
  
-	![]($images$10.png)
+	![](/images/tutorial/10.png)
 
  *	**OR** drag-and-drop `org.example.api` from the **Repositories** view into the **Build Path** panel.
 
 In either case, the `org.example.api` bundle will appear in the **Build Path** panel with the version annotation "latest":
 
-![]($images$11.png)
+![](/images/tutorial/11.png)
 
 Save the file.
 
@@ -182,7 +182,7 @@ public class ExampleComponentTest extends TestCase {
 
 Now right-click on the file and select **Run As > JUnit Test**.
 
-![]($images$12.png)
+![](/images/tutorial/12.png)
 
 Verify that the **JUnit** view shows a green bar. If not, go back and fix the code!
 
@@ -197,7 +197,7 @@ Right-click on the project `org.example.impls` and select **New > Bundle Descrip
 
 A popup dialog will ask whether to enable sub-bundles. Click **OK**.
 
-![]($images$13.png)
+![](/images/tutorial/13.png)
 
 Some settings will be moved from `bnd.bnd` into the new `provider.bnd` file. You should now find a bundle in `generated` named `org.example.impls.provider.jar` which contains the `org.example` package and a Declarative Services component declaration in `OSGI-INF/org.example.ExampleComponent.xml`.
 
@@ -214,7 +214,7 @@ We'd now like to run OSGi. To achieve this we need to create a "Run Descriptor" 
 
 Right-click on the project `org.example.impls` and select **New > Run Descriptor**. In the resulting dialog, enter `run` as the file name and click **Next**. The next page of the dialog asks us to select a template; choose **Apache Felix 4 with Gogo Shell** and click **Finish**.
 
-![]($images$14.png)
+![](/images/tutorial/14.png)
 
 In the editor for the new `run.bndrun` file, click on **Run OSGi** near the top-right corner. Shortly, the Felix Shell prompt "`g! `" will appear in the **Console** view. Type the `lb` command to view the list of bundles:
 
@@ -238,7 +238,7 @@ Next we want to include the `org.example.impls.provider` and `osgi.cmpn` bundles
 
 The **Run Requirements** panel should now look like this:
 
-![]($images$15.png)
+![](/images/tutorial/15.png)
 
 Check **Auto-resolve on save** and then save the file. Returning to the **Console** view, type `lb` again:
 
@@ -292,7 +292,7 @@ Finally we will write a component that consumes the Greeting service and publish
 
 First we need to make the Felix shell API available to compile against. Open `bnd.bnd` and change to the **Build** tab. Add `org.apache.felix.gogo.runtime` to the list of build dependencies, and save the file:
 
-![]($images$17.png)
+![](/images/tutorial/17.png)
 
 Now create a new Java package under the `src` folder named `org.example.command`. In this package create a class `GreetingCommand` as follows:
 
