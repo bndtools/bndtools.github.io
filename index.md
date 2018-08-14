@@ -3,7 +3,7 @@
 
 <div class="hero panel radius">
     <h1><img src="images/swirl-128.png" alt="Logo" class="logo"> Bndtools</h1>
-    <p>The easy, powerful and productive way to develop with OSGi. Based on <a href="http://www.aqute.biz/Bnd/Bnd">bnd</a> and Eclipse.</p>
+    <p>The easy, powerful, and productive way to develop with OSGi. Based on <a href="http://bnd.bndtools.org">bnd</a> and <a href="www.eclipse.org">Eclipse</a>.</p>
     <p><a class="button small" href="installation.html">Install now &raquo;</a></p>
 </div>
 
