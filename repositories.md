@@ -69,9 +69,11 @@ The following properties are supported:
 |           |single-quotes if it contains more than one  |                                             |
 |           |entry.                                      |                                             |
 |`cache`  | Local cache directory for remote             | No. Default: `${user.home}/.bnd/cache/`     |
-|         | resources.                                   |                                             |
-|`max.stale`  | The time (in seconds) a cached entry stays in the cache             | No. Default: `1 Year`     |
-|`poll.time`  | The interval (in seconds) the index is polled for updates (Note: The cache will be used)| No. Default: `5 Minutes`     |
+|              | resources.                                   |                                             |
+|`max.stale`  | The time (in seconds) a cached entry stays in| No. Default: `1 Year`     |
+|              | the cache                                   |                             |
+|`poll.time`  | The interval (in seconds) the index is polled| No. Default: `5 Minutes`     |
+|              |  for updates (Note: The cache will be used)   |                             |
 
 The index file may optionally be compressed with gzip. 
 
