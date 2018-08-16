@@ -70,8 +70,10 @@ The following properties are supported:
 |           |entry.                                      |                                             |
 |`cache`  | Local cache directory for remote             | No. Default: `${user.home}/.bnd/cache/`     |
 |         | resources.                                   |                                             |
-|`max.stale`  | The time (in seconds) an cached entry stays in the cache             | No. Default: `1 Year`     |
-|`poll.time`  | The interval (in seconds) the index is polled for updates, using the cache             | No. Default: `1 Year`     |
+|`max.stale`  | The time (in seconds) a cached entry stays in the cache             | No. Default: `1 Year`     |
+|`poll.time`  | The interval (in seconds) the index is polled for updates (Note: The cache will be used)| No. Default: `5 Minutes`     |
+
+The index file may optionally be compressed with gzip. 
 
 Local Indexed Repository
 ------------------------
