@@ -32,6 +32,8 @@ The advantage of using indexed repositories is that they can be used for automat
 Fixed Index Repositories
 ------------------------
 
+**Note! This Repository type is Deprecated and will be removed at some point. Please use the OSGi Repository**
+
 This repository can use an index file which is located anywhere, so long as the location can be addressed in the form of a URL. For example the index can be located on the local filesystem and addressed via a `file:` URL, or it can be located on a remote HTTP(s) server. The locations of the actual resources -- i.e. JAR files -- is specified by URLs embedded in the index file itself, and so they can also be either local or remote. In the case of remote index and/or resources, a local cache is used to avoid repeated downloads and to enable offline builds.
 
 A Fixed Index repository cannot be modified from within bnd or Bndtools.
@@ -49,6 +51,27 @@ The following properties are supported:
 |         | resources.                                   |                                             |
 
 It is not necessary to specify the format of the index -- this will be auto-detected so long as the format is one of those supported by the plugin. The index file may optionally be compressed with gzip. 
+
+OSGiRepositories
+------------------------
+
+The OSGiRepository can use index files compatible to the (OSGi Repository Service Specification)[https://osgi.org/specification/osgi.cmpn/7.0.0/service.repository.html#i3247820], which is located anywhere, so long as the location can be addressed in the form of a URL. For example the index can be located on the local filesystem and addressed via a `file:` URL, or it can be located on a remote HTTP(s) server. The locations of the actual resources -- i.e. JAR files -- is specified by URLs embedded in the index file itself, and so they can also be either local or remote. In the case of remote index and/or resources, a local cache is used to avoid repeated downloads and to enable offline builds.
+
+A OSGiRepository cannot be modified from within bnd or Bndtools.
+
+The following properties are supported:
+
+| Name    | Description                                  | Required?                                   |  
+|---------|----------------------------------------------|---------------------------------------------|
+|`name`   |  Name for the repository.                    | No.                                         |
+|`locations`|Comma-separated list of index URLs.         | No. Default: empty                          |
+|           |**NB:** surround this value with            |                                             |
+|           |single-quotes if it contains more than one  |                                             |
+|           |entry.                                      |                                             |
+|`cache`  | Local cache directory for remote             | No. Default: `${user.home}/.bnd/cache/`     |
+|         | resources.                                   |                                             |
+|`max.stale`  | The time (in seconds) an cached entry stays in the cache             | No. Default: `1 Year`     |
+|`poll.time`  | The interval (in seconds) the index is polled for updates, using the cache             | No. Default: `1 Year`     |
 
 Local Indexed Repository
 ------------------------
