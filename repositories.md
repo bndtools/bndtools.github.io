@@ -29,12 +29,14 @@ Bndtools supports a collection of repositories based on an _index_ file that rep
 
 The advantage of using indexed repositories is that they can be used for automatic Resolution in the bndrun editor. There are two basic types of indexed repositories:
 
-Fixed Index Repositories
+OSGiRepositories / Fixed Index Repositories
 ------------------------
 
-This repository can use an index file which is located anywhere, so long as the location can be addressed in the form of a URL. For example the index can be located on the local filesystem and addressed via a `file:` URL, or it can be located on a remote HTTP(s) server. The locations of the actual resources -- i.e. JAR files -- is specified by URLs embedded in the index file itself, and so they can also be either local or remote. In the case of remote index and/or resources, a local cache is used to avoid repeated downloads and to enable offline builds.
+**Note! The Fixed Index Repository type is Deprecated and currently extends the OSGiRepository without any additional behavior. It will be removed at some point in the future. Please use the OSGiRepository.**
 
-A Fixed Index repository cannot be modified from within bnd or Bndtools.
+The OSGiRepository can use index files compatible to the [OSGi Repository Service Specification](https://osgi.org/specification/osgi.cmpn/7.0.0/service.repository.html#i3247820), which is located anywhere, so long as the location can be addressed in the form of a URL. For example the index can be located on the local filesystem and addressed via a `file:` URL, or it can be located on a remote HTTP(s) server. The locations of the actual resources -- i.e. JAR files -- is specified by URLs embedded in the index file itself, and so they can also be either local or remote. In the case of remote index and/or resources, a local cache is used to avoid repeated downloads and to enable offline builds.
+
+A OSGiRepository can not be modified from within bnd or Bndtools.
 
 The following properties are supported:
 
@@ -46,9 +48,24 @@ The following properties are supported:
 |           |single-quotes if it contains more than one  |                                             |
 |           |entry.                                      |                                             |
 |`cache`  | Local cache directory for remote             | No. Default: `${user.home}/.bnd/cache/`     |
-|         | resources.                                   |                                             |
+|              | resources.                                   |                                             |
+|`max.stale`  | The time (in seconds) a cached entry stays in| No. Default: `1 Year`     |
+|              | the cache                                   |                             |
+|`poll.time`  | The interval (in seconds) the index is polled| No. Default: `5 Minutes`     |
+|              |  for updates (Note: The cache will be used)   |                             |
 
-It is not necessary to specify the format of the index -- this will be auto-detected so long as the format is one of those supported by the plugin. The index file may optionally be compressed with gzip. 
+Example:
+
+```
+aQute.bnd.repository.osgi.OSGiRepository;\
+		locations=https://dl.bintray.com/bnd/dist/4.0.0/index.xml;\
+		name=BND;\
+		poll.time=3600;\
+		max.stale=-1;\
+		cache=${build}/bache/bnd
+```
+
+The index file may optionally be compressed with gzip. 
 
 Local Indexed Repository
 ------------------------
