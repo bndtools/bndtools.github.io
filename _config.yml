@@ -5,7 +5,7 @@ plugins:
 markdown: kramdown
 
 collections:
-  chapters:
+  manual:
     output: true
 
 defaults:
