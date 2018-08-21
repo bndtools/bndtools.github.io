@@ -9,3 +9,12 @@
 table {
     width: 100%;
 }
+
+img { width: auto; max-width: fit-content;}
+
+img.view {
+    border-radius: 10px;
+    border: 1px solid grey;
+    padding: -2px;
+    box-shadow: 5px 5px 2px lightgrey;
+}
