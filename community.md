@@ -19,6 +19,7 @@
 		Bundle Plugin</a> (which uses bnd internally) or the <a
 		href="http://www.aqute.biz/Bnd/Components">bnd annotations for
 		Declarative Services</a>.
+</p>
 <p>
 	<a class="button small"
 		href="http://groups.google.com/group/bndtools-users">View
@@ -26,12 +27,13 @@
 		href="http://groups.google.com/group/bndtools-users/subscribe">Join
 		&raquo;</a>
 </p>
+</li>
 <li class="large-6 medium-6 small-6 columns">
 <h1>Report Issues</h1>
 <p>
-	Bndtools is <a href="http://github.com/bndtools/bndtools">hosted
+	Bndtools is <a href="http://github.com/bndtools/bnd">hosted
 		at GitHub</a> and we use the <a
-		href="http://github.com/bndtools/bndtools/issues">GitHub issue
+		href="http://github.com/bndtools/bnd/issues">GitHub issue
 		tracker</a> system as our principle bug reporting system. If you have
 	found a problem please let us know!
 </p>
@@ -49,8 +51,10 @@
 </p>
 <p>
 <a class="button small"
-	href="https://github.com/bndtools/bndtools/issues">Browse
+	href="https://github.com/bndtools/bnd/issues">Browse
 	Issues&raquo;</a> <a class="button small"
-	href="https://github.com/bndtools/bndtools/issues/new">Raise a
+	href="https://github.com/bndtools/bnd/issues/new">Raise a
 	Bug &raquo;</a>
-</p></li></ul>
+</p>
+</li>
+</ul>

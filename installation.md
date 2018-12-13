@@ -4,7 +4,7 @@
 
 # Install Bndtools 4.1.0
 
-You can install Bndtools via the [Marketplace] or directly install from the [Update Site]
+You can install Bndtools via the [Marketplace](#marketplace) or directly install from the [Update Site](#update-site)
 
 ## Enhancements
 
@@ -32,8 +32,8 @@ The recommended way to install Bndtools via the [Eclipse Marketplace](https://ma
 * When the dialog opens, click the `Add...` button near the top-right.
 * In the Name field enter `Bndtools`. In the Location field enter one of the the following URLs
   * The latest stable release – <https://dl.bintray.com/bndtools/bndtools/latest/>
-  * The development snapshot – <https://bndtools.ci.cloudbees.com/job/bndtools.master/lastSuccessfulBuild/artifact/build/generated/p2/>
-  * Other releases – See the Build history of <https://bndtools.ci.cloudbees.com/job/bndtools.next/>
+  * The development snapshot – <https://bndtools.jfrog.io/bndtools/update>
+  * Other releases – See the available versions at <https://dl.bintray.com/bndtools/bndtools/>
 * Press `Next` and then `Finish`, acknowledging the licenses
 
 ![Install from Update Site](https://media.giphy.com/media/3Fd626YjfdFpPnLmug/giphy.gif)
