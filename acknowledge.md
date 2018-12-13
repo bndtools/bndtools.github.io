@@ -54,14 +54,14 @@
 
 <hr>
 
-<section id="cloudbees">
-	<h2>CloudBees DEV@cloud</h2>
+<section id="jfrog">
+	<h2>JFrog Artifctory</h2>
 	<div class="row">
 		<div class="small-2 columns">
-			<a href="http://www.cloudbees.com/dev.cb"><img src="/images/cloudbees.png"/></a>
+			<a href="https://jfrog.com/open-source/"><img src="images/Powered-by-artifactory_04.png"/></a>
 		</div>
 		<div class="small-10 columns">
-			<p>Bndtools and bnd are continuously built with <a href="http://jenkins-ci.org/">Jenkins</a> provided and managed by <a href="http://www.cloudbees.com/dev.cb">CloudBees DEV@cloud</a> in support of open source software.</p>
+			<p>Bndtools and Bnd build artifacts are hosted by JFrog Artifactory.</p>
 		</div>
 	</div>
 </section>
@@ -70,7 +70,7 @@
 	<h1>YourKit Java Profiler</h1>
 	<div class="row">
 		<div class="small-2 columns">
-			<a href=""><img src="/images/yourkit.png"/></a>
+			<a href=""><img src="images/yourkit.png"/></a>
 		</div>
 		<div class="small-10 columns">
 			YourKit supports open source projects with its full-featured Java Profiler. YourKit,
