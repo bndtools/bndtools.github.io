@@ -31,9 +31,9 @@
 <li class="large-6 medium-6 small-6 columns">
 <h1>Report Issues</h1>
 <p>
-	Bndtools is <a href="http://github.com/bndtools/bnd">hosted
+	Bndtools is <a href="https://github.com/bndtools/bnd">hosted
 		at GitHub</a> and we use the <a
-		href="http://github.com/bndtools/bnd/issues">GitHub issue
+		href="https://github.com/bndtools/bnd/issues">GitHub issue
 		tracker</a> system as our principle bug reporting system. If you have
 	found a problem please let us know!
 </p>
