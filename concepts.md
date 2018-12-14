@@ -21,7 +21,7 @@ Since development is a continuous process, Bndtools also support _baselining_, a
 
 ## bnd 
 
-Bndtools is a user friendly driver of the [bnd](http://bnd.bndtools.org) library. bnd provides an abstract workspace/project model that Bndtools uses to tell Eclipse what to build. Since bnd has been growing up in parallel with OSGi itself it understands OSGi extremely well. It is an invaluable assistent for OSGi developers.
+Bndtools is a user friendly driver of the [bnd](https://bnd.bndtools.org) library. bnd provides an abstract workspace/project model that Bndtools uses to tell Eclipse what to build. Since bnd has been growing up in parallel with OSGi itself it understands OSGi extremely well. It is an invaluable assistent for OSGi developers.
 
 A unique aspect of bnd is that it is an _abstract_ build model. Because it is abstract, projects developed with Bndtools can also be built with Gradle without any extra effort. This is the perfect combination of a user friendly IDE and a solid continuous integration tool. 
 
