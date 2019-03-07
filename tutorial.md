@@ -4,6 +4,8 @@ description: Introduction to component development with Bndtools.
 author: Neil Bartlett
 ---
 
+# THIS TUTORIAL IS OUT OF DATE. WE WILL PROVIDING A NEW TUTORIAL SOON
+
 Introduction
 ============
 
