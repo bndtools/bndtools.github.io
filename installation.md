@@ -2,18 +2,18 @@
 ---
 
 
-# Install Bndtools 4.2.0
+# Install Bndtools 4.3.0
 
 You can install Bndtools via the [Marketplace](#marketplace) or directly install from the [Update Site](#update-site)
 
 ## Enhancements
 
-* On Eclipse Photon or later, Bndtools 4.2 will now configure classpath container items from the `-testpath`
+* On Eclipse Photon or later, Bndtools 4.3 will now configure classpath container items from the `-testpath`
 as **Visible only for test sources** and **Without test code**, which is now supported by Eclipse Photon, 
 when at least one source folder in the project is marked as **Contains test sources**. 
 See <http://www.eclipse.org/photon/noteworthy/index.php#java-views-and-dialogs>.
 
-For Bnd 4.2.0 changes, see <https://github.com/bndtools/bnd/wiki/Changes-in-4.2.0>.
+For Bnd 4.3.0 changes, see <https://github.com/bndtools/bnd/wiki/Changes-in-4.3.0>.
 
 ## Known Issues
 
