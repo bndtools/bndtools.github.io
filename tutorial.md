@@ -4,50 +4,77 @@ description: Introduction to component development with Bndtools.
 author: Neil Bartlett
 ---
 
-# THIS TUTORIAL IS OUT OF DATE. WE WILL PROVIDING A NEW TUTORIAL SOON
 
 Introduction
 ============
 
 In this tutorial we will build a sample application composed of two components and an API. The following diagram shows the bundle architecture (simplified):
 
-![](/images/tutorial/bundles.png)
+![](images/tutorial/bundles.png)
 
 In the tutorial we create the top three bundles (rectangles):
 
  *	The API bundle exports a service interface, `Greeting`.
  *	The Provider bundle imports the interface and publishes an instance of the service.
  *	The Command bundle imports the interface and binds to the service instance, and also publishes a `Command` service that is used by the Felix Shell bundle.
- 
+
 Installing Bndtools
 ===================
 
 Please refer to the [Installation Instructions](installation.html).
 
+
+
+# Create a Bndtools Workspace
+
+If your current workspace is not configured as a Bnd Workspace yet, before creating a project, we need to set up the Bnd OSGi Workspace.  
+
+1.  Switch to the Bndtools view
+
+2.  From the File menu, select **New -> Bnd OSGi Workspace** 
+
+3.  A wizard will open and it should look like the one in the figure
+
+   ![](images/tutorial/18.png)
+
+
+
+ 4. Select the location in your file system to be linked to the workspace (the default one is your current Eclipse workspace location) and then press **Next**
+
+ 5. In the next page of the wizard select from the templates **bndtools/workspace** and press **Next**
+
+ 6. The next page is simply an overview of the files that will be automatically included. Just press **Finish**
+
+ 7.  You should end up with a new **cnf** folder in your workspace. If you expand it, you should see something similar to this figure.
+
+    ![](images/tutorial/19.png)
+
+
+
+If this is the case, you are now ready to create your first Bnd OSGi project!
+
 Create an API Project
 =====================
 
-First we need to create a Bndtools OSGi Project. This is just a standard Eclipse Java Project, with an additional builder for constructing OSGi bundles.
+First we need to create a Bnd OSGi Project. This is just a standard Eclipse Java Project, with an additional builder for constructing OSGi bundles.
 
-1. From the File menu, select **New -> Bndtools OSGi Project**.
+1. From the File menu, select **New -> Bnd OSGi Project**.
 
-	![](/images/tutorial/01.png)
+2. A wizard should open and you should see something which looks like this:
 
-1. On the next page, enter `org.example.api` as the name of the project. Select at least J2SE-1.5 for the JRE execution environment.
+   ![](images/tutorial/20.png)
 
-	![](/images/tutorial/02.png)
+3. As you see, you have the possibility to choose among a series of templates or to create a new project from scratch. For this first tutorial we will start with an empty project, thus, select the **Empty** option and press **Next**
 
-1. Next you are offered a choice of project templates to start off your project. Select **Empty Project** and click **Finish**. The new project will be created.
+4. On the next page, you will be asked to enter the name of the project. Please, enter `org.example.api` in this case. Select then the JRE execution environment (at least J2SE-1.5) and press **Next**
 
-	![](/images/tutorial/03.png)
+   ![](images/tutorial/21.png)
 
-1. If this is the first time you have used Bndtools in this workspace, you will now see the "Welcome" dialog. Click **Next** followed by **Finish** to allow Bndtools to setup a configuration project and import a basic repository. A repository is a place where bundles that you use in your projects are stored. A remote "BndTools hub" repository is created by default that contains some often used bundles.
+5. In the following page you will see an overview of the folders that will be created for this new project. 
 
-	![](/images/tutorial/04.png)
+   ![](images/tutorial/22.png)
 
-	![](/images/tutorial/05.png)
-
-
+6. You can now press **Finish** and your new project will be created.
 
 *Important Points:*
 
@@ -62,13 +89,13 @@ OSGi offers strong decoupling of producers and consumers of functionality. This 
 
 In the `src` directory of the new project, create a package named `org.example.api`. In the new package create a Java interface named `Greeting`, as follows:
 
-~~~~~~ {.Java}
+``` java
 package org.example.api;
 
 public interface Greeting {
     String sayHello(String name);
 }
-~~~~~~
+```
 
 
 Define the Bundle
@@ -76,7 +103,7 @@ Define the Bundle
 
 The project we have created defines a single bundle with a Bundle Symbolic Name (BSN) of `org.example.api` (i.e., the same as the project name). As soon as we created the project, a bundle file named `org.example.api.jar` was created in the `generated` directory, and it will be rebuilt every time we change the bundle definition or its source code.
 
-However, the bundle is currently empty, because we have not defined any Java packages to include in the bundle. This is an important difference of Bndtools with respect to other tools: bundles are always empty until we explicitly add some content. You can verify this by double-clicking the bundle file and viewing its contents: it will only have an `META-INF/MANIFEST.MF` entry.
+However, the bundle is currently empty, because we have not defined any Java packages to include in the bundle. This is an important difference of Bndtools with respect to other tools: bundles are always empty until we explicitly add some content. You can verify this by double-clicking the bundle file and viewing its contents: it will only have a `META-INF/MANIFEST.MF` entry.
 
 We want to add the package `org.example.api` to the exported packages of the bundle. So open the `bnd.bnd` file at the top of the project and select the **Contents** tab. Now the package can be added in one of two ways:
 
@@ -87,15 +114,17 @@ We want to add the package `org.example.api` to the exported packages of the bun
 
 As soon as this is done, a popup dialog appears titled "Missing Package Info". This dialog is related to package versioning: it is asking us to declare the version of this exported package. Click **OK**.
 
-![](/images/tutorial/06.png)
+![](images/tutorial/23.png)
+
+
 
 The **Contents** tab should now appear as in the following screenshot:
 
-![](/images/tutorial/07.png)
+![](images/tutorial/24.png)
 
-Save the file, and the bundle will be rebuilt to include the selected export. We can confirm by opening the **Imports/Exports** view and selecting the bundle file in the **Package Explorer**. Note the package has been assigned version 1.0.0:
 
-![](/images/tutorial/08.png)
+
+Save the file, and the bundle will be rebuilt to include the selected export. 
 
 *Important Points:*
 
@@ -114,9 +143,9 @@ We will now create another project that defines two bundles: a provider and a cl
 Create the Project
 ------------------
 
-Create another Bndtools project, named `org.example.impls`. At the **Project Templates** step, select **Component Development (Declarative Services)** and click **Finish**.
+Create another Bnd OSGi project, named `org.example.impl`. At the **Project Templates** step, select **Component Development** and then proceed as for the previous project.
 
-![](/images/tutorial/09.png)
+![](images/tutorial/25.png)
 
 Add the API as a Build Dependency
 ---------------------------------
@@ -126,65 +155,98 @@ We need to add the API project as a build-time dependency of this new project.
 The `bnd.bnd` file of the newly created project will have opened automatically. Click the **Build** tab and add `org.example.api` in either of the following ways:
 
  *	Click the "+" icon in the toolbar of the **Build Path** panel. Double-click `org.example.api` under "Workspace" in the resulting dialog; it will move over to the right-hand side. Click **Finish**
- 
-	![](/images/tutorial/10.png)
+
+	![](images/tutorial/26.png)
 
  *	**OR** drag-and-drop `org.example.api` from the **Repositories** view into the **Build Path** panel.
 
 In either case, the `org.example.api` bundle will appear in the **Build Path** panel with the version annotation "latest":
 
-![](/images/tutorial/11.png)
+![](images/tutorial/27.png)
 
-Save the file.
+* Save the file.
 
 *Important Points:*
 
  *	Build-time dependencies of the project can be added in the **Build Path** panel of the `bnd.bnd` editor.
- *	Adding dependencies in this way (i.e. rather than via Eclipse's existing "Add to Build Path" menu) ensures that exactly the same dependencies are used when building offline with ANT.
+ *	Adding dependencies in this way (i.e. rather than via Eclipse's existing "Add to Build Path" menu) ensures that exactly the same dependencies are used when building off-line with ANT.
 
 Write an Implementation
 -----------------------
 
-We will write a class that implements the `Greeting` interface. When the project was created from the template, Java source for a class named `org.example.ExampleComponent` was generated. Open this source file now and make it implement `Greeting`:
+We will write a class that implements the `Greeting` interface. When the project was created from the template, a  Java source for a class named `org.example.impl.Example` was generated. Open this source file now and make it implement `Greeting`:
 
-~~~~~~ {.Java}
-package org.example;
+```java
+package org.example.impl;
 
 import org.example.api.Greeting;
 
 import aQute.bnd.annotation.component.Component;
 
 @Component
-public class ExampleComponent implements Greeting {
+public class Example implements Greeting {
 	public String sayHello(String name) {
 		return "Hello " + name;
 	}
 }
-~~~~~~
+```
+
+
 
 Note the use of the `@Component` annotation. This enables our bundle to use OSGi Declarative Services to declare the API implementation class. This means that instances of the class will be automatically created and registered with the OSGi service registry. The annotation is build-time only, and does not pollute our class with runtime dependencies -- in other words, this is a "Plain Old Java Object" or POJO.
 
 Test the Implementation
 -----------------------
 
-We should write a test case to ensure the implementation class works as expected. In the `test` folder, a test case class already exists named `org.example.ExampleComponentTest`. Write a test method as follows:
+We should write a test case to ensure the implementation class works as expected. In the `test` folder, a test case class already exists named `org.example.ExampleTest`. 
 
-~~~~~~ {.Java}
-package org.example;
+```java
+package org.example.impl;
 
-import junit.framework.TestCase;
+import static org.junit.Assert.*;
 
-public class ExampleComponentTest extends TestCase {
-	public void testSaysHello() throws Exception {
-		String result = new ExampleComponent().sayHello("Bob");
+import org.junit.Test;
+
+public class ExampleTest {
+
+	@Test
+	public void test() {
+		fail("Not yet implemented");
+	}
+
+}
+
+```
+
+
+
+Use the already provided test method and substitute its implementation with the following:
+
+```java
+package org.example.impl;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class ExampleTest {
+
+	@Test
+	public void test() throws Exception {
+		String result = new Example().sayHello("Bob");
 		assertEquals("Hello Bob", result);
 	}
+
 }
-~~~~~~
+```
+
+
 
 Now right-click on the file and select **Run As > JUnit Test**.
 
-![](/images/tutorial/12.png)
+![](images/tutorial/12.png)
+
+
 
 Verify that the **JUnit** view shows a green bar. If not, go back and fix the code!
 
@@ -195,13 +257,17 @@ Build the Implementation Bundle
 
 As in the previous project, a bundle is automatically built based on the content of `bnd.bnd`. In the current project however, we want to build *two* separate bundles. To achieve this we need to enable a feature called "sub-bundles".
 
-Right-click on the project `org.example.impls` and select **New > Bundle Descriptor**. In the resulting dialog, type the name `provider` and click **Finish**.
+Right-click on the project `org.example.impl` and select **New > Bundle Descriptor File (.bnd)**. In the resulting dialog,  type the name `provider` for the Bnd File name and click **Finish**.
+
+![](images/tutorial/28.png)
 
 A popup dialog will ask whether to enable sub-bundles. Click **OK**.
 
-![](/images/tutorial/13.png)
+![](images/tutorial/29.png)
 
-Some settings will be moved from `bnd.bnd` into the new `provider.bnd` file. You should now find a bundle in `generated` named `org.example.impls.provider.jar` which contains the `org.example` package and a Declarative Services component declaration in `OSGI-INF/org.example.ExampleComponent.xml`.
+
+
+Some settings will be moved from `bnd.bnd` into the new `provider.bnd` file. Add the package `org.example.impl` to the **Private Package** of this newly created file. You should now find a bundle in `generated` named `org.example.impl.provider.jar` which contains the `org.example` package and a Declarative Services component declaration in `OSGI-INF/org.example.impl.Example.xml`. 
 
 *Important Points:*
 
@@ -212,35 +278,45 @@ Some settings will be moved from `bnd.bnd` into the new `provider.bnd` file. You
 Run an OSGi Framework
 =====================
 
-We'd now like to run OSGi. To achieve this we need to create a "Run Descriptor" that defines the collection of bundles to run, along with some other run-time settings.
+We'd now like to run OSGi. To achieve this we need a "Run Descriptor" that defines the collection of bundles to run, along with some other run-time settings. This file is automatically created with the **Component Development** project template that we have used, and it is named `launch.bndrun`.
 
-Right-click on the project `org.example.impls` and select **New > Run Descriptor**. In the resulting dialog, enter `run` as the file name and click **Next**. The next page of the dialog asks us to select a template; choose **Apache Felix 4 with Gogo Shell** and click **Finish**.
+For creating a new "Run Descriptor", in case you would need more than one, right-click on the project `org.example.impls` and select **New > Run Descriptor File (.bndrun)** . In the resulting dialog you will be asked to select a "Run Descriptor" from a template. Choose the **Felix 4+** option and click **Next**.  
 
-![](/images/tutorial/14.png)
+![](images/tutorial/30.png)
 
-In the editor for the new `run.bndrun` file, click on **Run OSGi** near the top-right corner. Shortly, the Felix Shell prompt "`g! `" will appear in the **Console** view. Type the `lb` command to view the list of bundles:
+
+
+In the next page enter the name of the file and click  **Finish**.
+
+In the editor for your `launch.bndrun` file, click on **Run OSGi** near the top-right corner. Shortly, the Felix Shell prompt "`g! `" will appear in the **Console** view. Type the `lb` command to view the list of bundles:
 
 ~~~~~~~~~~
+Welcome to Apache Felix Gogo
+
 g! lb
 START LEVEL 1
    ID|State      |Level|Name
-    0|Active     |    0|System Bundle (4.0.3)
-    1|Active     |    1|Apache Felix Gogo Runtime (0.10.0)
-    2|Active     |    1|Apache Felix Gogo Shell (0.10.0)
-    3|Active     |    1|Apache Felix Gogo Command (0.12.0)
-g!
+    0|Active     |    0|OSGi System Bundle (3.13.100.v20180827-1536)|3.13.100.v20180827-1536
+    1|Active     |    1|Apache Felix Gogo Runtime (1.0.10)|1.0.10
+    2|Active     |    1|Apache Felix Gogo Shell (1.0.0)|1.0.0
+    3|Active     |    1|Apache Felix Gogo Command (1.0.2)|1.0.2
+g! 
 ~~~~~~~~~~
 
 Next we want to include the `org.example.impls.provider` and `osgi.cmpn` bundles. This can be done as follows:
 
  *	Click the "+" icon in the toolbar of the **Run Requirements** panel to open the 'Add Bundle Requirement' dialog.
  *	Under "Workspace", double-click `org.example.impls.provider`.
- *	Under "Bndtools Hub", double-click `osgi.cmpn`.
+ *	Under "OSGi R7 API", double-click `osgi.cmpn`.
  *	Click **Finish**.
 
 The **Run Requirements** panel should now look like this:
 
-![](/images/tutorial/15.png)
+![](images/tutorial/31.png)
+
+If is not already selected, please, select the **Execution Environment** in the **Core Runtime** session of the file. 
+
+![](images/tutorial/32.png)
 
 Check **Auto-resolve on save** and then save the file. Returning to the **Console** view, type `lb` again:
 
@@ -248,32 +324,32 @@ Check **Auto-resolve on save** and then save the file. Returning to the **Consol
 g! lb
 START LEVEL 1
    ID|State      |Level|Name
-    0|Active     |    0|System Bundle (4.0.3)
-    1|Active     |    1|Apache Felix Gogo Runtime (0.10.0)
-    2|Active     |    1|Apache Felix Gogo Shell (0.10.0)
-    3|Active     |    1|Apache Felix Gogo Command (0.12.0)
-    4|Active     |    1|Apache Felix Configuration Admin Service (1.4.0)
-    5|Active     |    1|Apache Felix Log Service (1.0.1)
-    6|Active     |    1|Apache Felix Declarative Services (1.6.2)
-    7|Active     |    1|org.example.api (0.0.0)
-    8|Active     |    1|org.example.impls.provider (0.0.0)
-    9|Active     |    1|osgi.cmpn (4.2.0.200908310645)
-g!
+    0|Active     |    0|OSGi System Bundle (3.13.100.v20180827-1536)|3.13.100.v20180827-1536
+    1|Active     |    1|Apache Felix Gogo Runtime (1.0.10)|1.0.10
+    2|Active     |    1|Apache Felix Gogo Shell (1.0.0)|1.0.0
+    3|Active     |    1|Apache Felix Gogo Command (1.0.2)|1.0.2
+    4|Active     |    1|Apache Felix Declarative Services (2.1.10)|2.1.10
+    5|Active     |    1|org.example.api (0.0.0)|0.0.0
+    6|Active     |    1|org.example.impl.provider (0.0.0.201910251118)|0.0.0.201910251118
+    7|Active     |    1|osgi.cmpn (4.3.1.201210102024)|4.3.1.201210102024
+g! 
 ~~~~~~~~~~
 
 The provider bundle has been added to the runtime dynamically. Note that the API bundle and Apache Felix Declarative Services are also added because they resolved as dependencies of the provider.
 
-We can now look at the services published by our provider bundle using the command `inspect capability service 8`:
+We can now look at the services published by our provider bundle using the command `inspect capability service 6`:
 
 ~~~~~~~~~~
-g! inspect capability service 8
-org.example.impls.provider [8] provides:
-----------------------------------------
+g! inspect capability service 6
+org.example.impl.provider_0.0.0.201910251121 [6] provides:
+----------------------------------------------------------
 service; org.example.api.Greeting with properties:
-   component.id = 0
-   component.name = org.example.ExampleComponent
-   service.id = 24
-g!
+   service.id = 45
+   service.bundleid = 6
+   service.scope = bundle
+   component.name = org.example.impl.Example
+   component.id = 1
+g! 
 ~~~~~~~~~~
 
 Our bundle now publishes a service under the `Greeting` interface.
@@ -294,25 +370,23 @@ Finally we will write a component that consumes the Greeting service and publish
 
 First we need to make the Felix shell API available to compile against. Open `bnd.bnd` and change to the **Build** tab. Add `org.apache.felix.gogo.runtime` to the list of build dependencies, and save the file:
 
-![](/images/tutorial/17.png)
+![](images/tutorial/33.png)
 
 Now create a new Java package under the `src` folder named `org.example.command`. In this package create a class `GreetingCommand` as follows:
 
-~~~~~~~~~~ {.Java}
+```java
 package org.example.command;
 
 import org.apache.felix.service.command.CommandProcessor;
 import org.example.api.Greeting;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 
-import aQute.bnd.annotation.component.Component;
-import aQute.bnd.annotation.component.Reference;
-
-@Component(properties =	{
-		/* Felix GoGo Shell Commands */
-		CommandProcessor.COMMAND_SCOPE + ":String=example",
-		CommandProcessor.COMMAND_FUNCTION + ":String=greet"
+@Component(property =	{
+		CommandProcessor.COMMAND_SCOPE + "=example",
+		CommandProcessor.COMMAND_FUNCTION + "=greet"
 	},
-	provide = Object.class
+	service=GreetingCommand.class
 )
 public class GreetingCommand {
 	private Greeting greetingSvc;
@@ -326,23 +400,24 @@ public class GreetingCommand {
 		System.out.println(greetingSvc.sayHello(name));
 	}
 }
-~~~~~~~~~~
+
+```
 
 Create a Bundle for the Command Component
 -----------------------------------------
 
 The command component is not part of the provider bundle, because it lives in a package that was not included. We could add it to the provider bundle, but it would make more sense to create a separate bundle for it.
 
-Right-click again on the `org.example.impls` project and select **New > Bundle Descriptor** again. Enter the name as `command` and click **Finish**.
+Right-click again on the `org.example.impls` project and select **New > Bundle Descriptor File (.bnd)** again. Enter the name as `command` and click **Finish**.
 
 Add the package `org.example.command` to the **Private Packages** panel of the newly created file. As before, this can be done using the "+" button in the toolbar or by drag-and-drop.
 
-We also need to declare that the bundle contains Declarative Services components. Change to the **Contents** tab of the editor and in the **Declarative Services** drop-down select **Bnd Annotations**. Now save the file.
+Then save the file.
 
 Add the Command Bundle to the Runtime
 -------------------------------------
 
-Switch back to the editor for `run.bndrun`. In the **Run Requirements** tab, add the `org.example.impls.command` bundle, and save the file.
+Switch back to the editor for `launch.bndrun`. In the **Run Requirements** tab, add the `org.example.impls.command` bundle, and save the file.
 
 The command bundle will now appear in the list of bundles when typing `lb`:
 
@@ -350,18 +425,16 @@ The command bundle will now appear in the list of bundles when typing `lb`:
 g! lb
 START LEVEL 1
    ID|State      |Level|Name
-    0|Active     |    0|System Bundle (4.0.3)
-    1|Active     |    1|Apache Felix Gogo Runtime (0.10.0)
-    2|Active     |    1|Apache Felix Gogo Shell (0.10.0)
-    3|Active     |    1|Apache Felix Gogo Command (0.12.0)
-    4|Active     |    1|Apache Felix Configuration Admin Service (1.4.0)
-    5|Active     |    1|Apache Felix Log Service (1.0.1)
-    6|Active     |    1|Apache Felix Declarative Services (1.6.2)
-    7|Active     |    1|org.example.api (0.0.0)
-    8|Active     |    1|org.example.impls.provider (0.0.0)
-    9|Active     |    1|osgi.cmpn (4.2.0.200908310645)
-   10|Active     |    1|org.example.impls.command (0.0.0)
-g!
+    0|Active     |    0|OSGi System Bundle (3.13.100.v20180827-1536)|3.13.100.v20180827-1536
+    1|Active     |    1|Apache Felix Gogo Command (1.0.2)|1.0.2
+    2|Active     |    1|Apache Felix Gogo Runtime (1.0.10)|1.0.10
+    3|Active     |    1|Apache Felix Gogo Shell (1.0.0)|1.0.0
+    4|Active     |    1|Apache Felix Declarative Services (2.1.10)|2.1.10
+    5|Active     |    1|org.example.api (0.0.0)|0.0.0
+    6|Active     |    1|org.example.impl.provider (0.0.0.201910250834)|0.0.0.201910250834
+    7|Active     |    1|osgi.cmpn (4.3.1.201210102024)|4.3.1.201210102024
+    8|Active     |    1|org.example.impl.command (0.0.0)|0.0.0
+g! 
 ~~~~~~~~~~
 
 Finally, the `greet` command will now be available from the Gogo shell:
