@@ -28,7 +28,6 @@ exclude:
   - 'README.md'
   - 'CONTRIBUTING.md'
   - 'LICENSE'
-  - '.travis.yml'
   - '.gitignore'
   - '.github'
   - '.project'
