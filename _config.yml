@@ -30,6 +30,7 @@ exclude:
   - 'LICENSE'
   - '.travis.yml'
   - '.gitignore'
+  - '.github'
   - '.project'
   - 'run.sh'
   - '/vendor'
