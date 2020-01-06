@@ -4,6 +4,8 @@
 
 # Install Bndtools 4.3.1
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Ry6XNGm7C-k" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 You can install Bndtools via the [Marketplace](#marketplace) or directly install from the [Update Site](#update-site)
 
 ## Enhancements
