@@ -4,9 +4,13 @@
 
 # Install Bndtools 4.3.1
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Ry6XNGm7C-k" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
 You can install Bndtools via the [Marketplace](#marketplace) or directly install from the [Update Site](#update-site)
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Ry6XNGm7C-k" frameborder="1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+To get then started with the [bndtools Workspace model](concepts.html), install a workspace from a template:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/N5pX01XTCBE" frameborder="1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Enhancements
 
