@@ -34,9 +34,11 @@ The recommended way to install Bndtools via the [Eclipse Marketplace](https://ma
 * From the Help menu select `Install New Software...` 
 * When the dialog opens, click the `Add...` button near the top-right.
 * In the Name field enter `Bndtools`. In the Location field enter one of the the following URLs
-  * The latest stable release – <https://bndtools.jfrog.io/bndtools/update-latest>
-  * The development snapshot – <https://bndtools.jfrog.io/bndtools/update-snapshot>
-  * Older releases – See the available versions at <https://dl.bintray.com/bndtools/bndtools>
-* Press `Next` and then `Finish`, acknowledging the licenses
 
-![Install from Update Site](https://media.giphy.com/media/3Fd626YjfdFpPnLmug/giphy.gif)
+| Type                       |URL                                                    |
+|----------------------------|-------------------------------------------------------|
+| Latest stable release      | https://bndtools.jfrog.io/bndtools/update-latest      |
+| Latest release candidate   | https://bndtools.jfrog.io/bndtools/update-rc          |
+| Latest build snapshot      | https://bndtools.jfrog.io/bndtools/update-snapshot    |
+
+* Press `Next` and then `Finish`, acknowledging the licenses
