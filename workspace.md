@@ -27,8 +27,6 @@ Apache Felix Gogo shell.
 At the end of the previous video, we had Gogo running. The following video shows how to write a simple Hello World 
 Gogo command. 
 
-https://www.youtube.com/watch?v=0Z7EklHaugg
-
 <iframe width="560" height="315" src="https://www.youtube.com/embed/0Z7EklHaugg" frameborder="1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
