@@ -8,9 +8,7 @@ You can install Bndtools via the [Marketplace](#marketplace) or directly install
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/Ry6XNGm7C-k" frameborder="1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-To get then started with the [bndtools Workspace model](concepts.html), install a workspace from a template:
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/N5pX01XTCBE" frameborder="1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+To get then started with the [bndtools Workspace model](concepts.html), you can follow some videos that can get you started.
 
 ## Enhancements
 
@@ -42,3 +40,4 @@ The recommended way to install Bndtools via the [Eclipse Marketplace](https://ma
 | Latest build snapshot      | https://bndtools.jfrog.io/bndtools/update-snapshot    |
 
 * Press `Next` and then `Finish`, acknowledging the licenses
+
