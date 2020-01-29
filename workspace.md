@@ -17,7 +17,7 @@ If you try this out, it is recommended to have the Java 1.8 VM installed as defa
 
 ## Install
 
-The following video shows how to install a workspace from a template and start a _palyground_ project with the 
+The following video shows how to install a workspace from a template and start a _playground_ project with the 
 Apache Felix Gogo shell.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/N5pX01XTCBE" frameborder="1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
