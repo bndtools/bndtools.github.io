@@ -29,4 +29,17 @@ Gogo command.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/0Z7EklHaugg" frameborder="1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
+### API & Provider Project
 
+The basic model of OSGi is to develop services that have a distinct, separate, API from the providers. This video shows
+how to create this API and a simple provider and then run the provider in the playground.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/s-erxgdkjlk" frameborder="1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+### External Dependencies
+
+In this video an alternative implementation is developed that uses the API from the previous video but depends on
+Mozilla Rhino to do the execution of the evaluation expression. It shows how to add a dependency from Maven
+Central to the workspace.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/2lbDpldOn9I" frameborder="1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
