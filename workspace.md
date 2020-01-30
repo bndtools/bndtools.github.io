@@ -54,3 +54,13 @@ extract the contents to the file system. As a bonus, the executable JAR is store
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/QYEhlWmvcyU" frameborder="1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
  
+ ### Gradle Integration
+ 
+ Software build on your laptop does not count. To develop software professionally, all artifacts must be buildable on an independent server. This is normally called
+ _continuous integration_ (CI). However, it is not possible to run an IDE on a remote server, you need a _build tool_. With bnd workspaces, there comes an
+ implicit Gradle build. A plugin in Gradle ensures that whatever is done in the IDE is done identically in the CI build by Gradle.
+ 
+ Although you rarely have to use Gradle as a normal developer, this video demonstrates how to run Gradle from the command line.
+ 
+ <iframe width="560" height="315" src="https://www.youtube.com/embed/YtUVSJQ2gwE" frameborder="1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+ 
