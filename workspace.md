@@ -64,3 +64,13 @@ extract the contents to the file system. As a bonus, the executable JAR is store
  
  <iframe width="560" height="315" src="https://www.youtube.com/embed/YtUVSJQ2gwE" frameborder="1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
  
+ 
+ ### Github & Actions
+ 
+ Github provides the almost perfect software engineering environment! In this video we'll take our workspace so far
+ and move it to a Github repository. The workspace template we used, [bndtools.workspace.min](https://github.com/bndtools/bndtools.workspace.min) 
+ contains a `.github/workflows/build.yml` file. This file is a trigger for Github Actions to automatically build the workspace
+ on every pull request or build.
+ 
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/Xuz8vONIzPw" frameborder="1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+ 
