@@ -43,3 +43,14 @@ Mozilla Rhino to do the execution of the evaluation expression. It shows how to 
 Central to the workspace.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/2lbDpldOn9I" frameborder="1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+### Executable JARs
+
+In this video we export the Rhino and Simple Eval providers into an _Executable JAR_. This is a JAR that contains all its
+dependencies, including the framework. For this, we create an application project and an application bndrun file. After
+testing, we export it to an executable JAR. This JAR is then verified from the command line and shown that you can
+extract the contents to the file system. As a bonus, the executable JAR is stored and ran as a Docker container.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/QYEhlWmvcyU" frameborder="1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+ 
