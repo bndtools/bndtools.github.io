@@ -42,8 +42,8 @@ In this video an alternative implementation is developed that uses the API from 
 Mozilla Rhino to do the execution of the evaluation expression. It shows how to add a dependency from Maven
 Central to the workspace.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/2lbDpldOn9I" frameborder="1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
+<iframe width="560" height="315" src="https://www.youtube.com/embed/2lbDpldOn9I" frameborder="1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
 
 ### Executable JARs
 
@@ -52,25 +52,26 @@ dependencies, including the framework. For this, we create an application projec
 testing, we export it to an executable JAR. This JAR is then verified from the command line and shown that you can
 extract the contents to the file system. As a bonus, the executable JAR is stored and ran as a Docker container.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/QYEhlWmvcyU" frameborder="1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/QYEhlWmvcyU" frameborder="1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
  
- ### Gradle Integration
+### Gradle Integration
  
- Software build on your laptop does not count. To develop software professionally, all artifacts must be buildable on an independent server. This is normally called
- _continuous integration_ (CI). However, it is not possible to run an IDE on a remote server, you need a _build tool_. With bnd workspaces, there comes an
- implicit Gradle build. A plugin in Gradle ensures that whatever is done in the IDE is done identically in the CI build by Gradle.
+Software build on your laptop does not count. To develop software professionally, all artifacts must be buildable on an independent server. This is normally called
+_continuous integration_ (CI). However, it is not possible to run an IDE on a remote server, you need a _build tool_. With bnd workspaces, there comes an
+implicit Gradle build. A plugin in Gradle ensures that whatever is done in the IDE is done identically in the CI build by Gradle.
  
- Although you rarely have to use Gradle as a normal developer, this video demonstrates how to run Gradle from the command line.
+Although you rarely have to use Gradle as a normal developer, this video demonstrates how to run Gradle from the command line.
  
- <iframe width="560" height="315" src="https://www.youtube.com/embed/YtUVSJQ2gwE" frameborder="1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/YtUVSJQ2gwE" frameborder="1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
  
  
- ### Github & Actions
+### Github & Actions
+
+Github provides the almost perfect software engineering environment! In this video we'll take our workspace so far
+and move it to a Github repository. The workspace template we used, [bndtools.workspace.min](https://github.com/bndtools/bndtools.workspace.min) 
+contains a `.github/workflows/build.yml` file. This file is a trigger for Github Actions to automatically build the workspace
+on every pull request or build.
  
- Github provides the almost perfect software engineering environment! In this video we'll take our workspace so far
- and move it to a Github repository. The workspace template we used, [bndtools.workspace.min](https://github.com/bndtools/bndtools.workspace.min) 
- contains a `.github/workflows/build.yml` file. This file is a trigger for Github Actions to automatically build the workspace
- on every pull request or build.
- 
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/Xuz8vONIzPw" frameborder="1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Xuz8vONIzPw" frameborder="1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
  
