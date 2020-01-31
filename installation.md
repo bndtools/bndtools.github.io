@@ -8,7 +8,7 @@ You can install Bndtools via the [Marketplace](#marketplace) or directly install
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/Ry6XNGm7C-k" frameborder="1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-To get then started with the [bndtools Workspace model](concepts.html), you can follow some videos that can get you started.
+To get then started with the [bndtools Workspace model](workspace.html), you can follow some videos that can get you started.
 
 ## Enhancements
 

@@ -72,6 +72,6 @@ Github provides the almost perfect software engineering environment! In this vid
 and move it to a Github repository. The workspace template we used, [bndtools.workspace.min](https://github.com/bndtools/bndtools.workspace.min) 
 contains a `.github/workflows/build.yml` file. This file is a trigger for Github Actions to automatically build the workspace
 on every pull request or build.
- 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Xuz8vONIzPw" frameborder="1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/c0OLbr7bwQg" frameborder="1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
  

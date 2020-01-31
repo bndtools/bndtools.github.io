@@ -1,11 +1,13 @@
 ---
 title: Package Explorer
-description: An overview of the Package Explorer with Bndtools
+description: An overview of the Bndtools Explorer
 ---
 
-The [Eclipse Package Explorer][1] provides an overview of the projects and their contents. Icons are used extensively to mark the projects. They are either used as direct icons for an object (e.g. a bnd.bnd file) or are used to decorate existing icons. For example, if a package is exported or not. The following image shows all icons in their context.
+The Bndtools Package Explorer is an extension of the [Eclipse Package Explorer][1]. The explorer provides an overview of the projects and their contents. It is extended with a search bar for projects and some extra filters. You an make simple searches or use the [bnd globbing](https://bnd.bndtools.org/chapters/820-instructions.html#glob). That is, you can wildcards (`example*bar`) but also multiple searches in one, for example, `foo|bar` to find multiple projects.
+
+Icons are used extensively to mark the projects in the explorer. They are either used as direct icons for an object (e.g. a bnd.bnd file) or are used to decorate existing icons. For example, if a package is exported or not. The following image shows all icons in their context.
  
- <img src="/images/package-explorer.png" alt="Package Explorer" style='width:481px' class="view"/>
+ <img src="/images/bndtoolsexplorer.png" alt="Package Explorer" style='width:481px' class="view"/>
 
 Bndtools adds the following icons in the Package Explorer:
 

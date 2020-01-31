@@ -37,7 +37,7 @@ _All_ information to build a workspace (that is, all projects in the workspace) 
 
 The following picture shows the inheritance structure of the different bndand bndrun files.
 
-![bnd property inheritance](https://user-images.githubusercontent.com/200494/44082482-a4970a42-9fb1-11e8-962a-f9304ef4639c.png)
+<img src="https://user-images.githubusercontent.com/200494/44082482-a4970a42-9fb1-11e8-962a-f9304ef4639c.png" style="width:300px;margin-left:auto;margin-right:auto;display:block">
 
 ### Repositories
 
@@ -53,7 +53,7 @@ Repository plugins map the external world into a bundle world. A general concept
 
 Each project can depend on the bundles that are coming from the repositories. These bundles are explicitly listed in the `bnd.bnd` projects files.
 
-![workspace and repositories](https://user-images.githubusercontent.com/200494/44082642-1d1ef876-9fb2-11e8-8498-b1d722953d9a.png)
+<img src="https://user-images.githubusercontent.com/200494/44082642-1d1ef876-9fb2-11e8-8498-b1d722953d9a.png" style="width:300px;margin-left:auto;margin-right:auto;display:block">
 
 
 ### Builders
