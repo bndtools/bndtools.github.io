@@ -20,5 +20,18 @@ img.view {
 }
 
 iframe {
-    margin-bottom: 30px;
+    margin-bottom: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+body { 
+    font-family: Open Sans;
+    font-size: 10pt;
+}
+
+p {
+    font-size: 0.9rem;
+    line-height: 1.6;
 }
