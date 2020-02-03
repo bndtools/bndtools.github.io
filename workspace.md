@@ -13,7 +13,14 @@ with, for example, Github Actions using Gradle is automatically supported.
 This page contains a number of videos that explain how to get started with the workspace model. It is assumed 
 that you have a Java VM installed and that Eclipse is running with the [latest Bndtools](installation.md).
 
-If you try this out, it is recommended to have the Java 1.8 VM installed as default.
+If you try this out, it is highly recommended to have the Java 1.8 VM installed as default.
+
+## TL;DR
+
+If the 15 minute of videos is too much time, you can find a workspace that contains the work done in the
+videos at:
+
+    https://github.com/aQute-os/com.example
 
 ## Install
 
