@@ -22,6 +22,10 @@ videos at:
 
     https://github.com/aQute-os/com.example
 
+## Book?
+
+If you like what you see in the videos, you can also read the [OSGi Starter PDF](assets/osgi-starter-workspace.pdf). This booklet goes a bit deeper into the Workspace model and its capabilities; it follows the same structure as videos.
+
 ## Install
 
 The following video shows how to install a workspace from a template and start a _playground_ project with the 
@@ -82,3 +86,7 @@ on every pull request or build.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/c0OLbr7bwQg" frameborder="1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
  
+ 
+ ## And Now?
+ 
+You could take a look at [OSGi Starter PDF](assets/osgi-starter-workspace.pdf).
