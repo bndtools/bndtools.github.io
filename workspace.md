@@ -87,6 +87,6 @@ on every pull request or build.
 <iframe width="560" height="315" src="https://www.youtube.com/embed/c0OLbr7bwQg" frameborder="1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
  
  
- ## And Now?
+## And Now?
  
 You could take a look at [OSGi Starter PDF](assets/osgi-starter-workspace.pdf).
