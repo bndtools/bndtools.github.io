@@ -117,6 +117,38 @@ The following properties are supported:
 Maven Repositories
 ===========================
 
+## Maven Central ##
+
+Maven Central repository is configured in main bnd config file (`cnf/build.bnd`) as:
+```
+-plugin.6.Central: \
+	aQute.bnd.repository.maven.provider.MavenBndRepository; \
+		releaseUrl=https://repo.maven.apache.org/maven2/; \
+		index=${.}/central.maven; \
+		readOnly=true; \
+		name="Maven Central"
+```
+This repository is one of "indexed" repositories, therefore `index` property poits to `central.maven` file that contains `GAV coordinates` to libraries located in Maven Central.
+
+Hint: When this file is empty, the attempt to view the contents of the repository using the Repositories View in Bndtools, it will appear to be empty as well. 
+
+`central.maven` file doesn't fill itself automatically. Think of this repository like an empty `<dependencies>` section in maven.
+In order to fill it you need to add [GAVs](https://bnd.bndtools.org/plugins/maven.html#coordinates--terminology) (one per line) to it.
+
+Example:
+```
+# List repository contents using GAV coordinates
+org.apache.camel:camel-core:2.23.1
+```
+
+There is also posibility use drag&drop on `pom` file. 
+In order to do that:
+1. Search maven repository https://mvnrepository.com particular jar
+2. Select desired version
+3. Click `View All` under `Files` section
+4. Locate the main pom file and drag&drop it over `Maven Central` repository in `Repositories` view
+This action will fill the file for you.
+
 TODO update for current repository types which support Maven repos.
 
 Maven Repositories (Old Style)
