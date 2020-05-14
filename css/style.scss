@@ -7,31 +7,53 @@
 @import "../_css/docs.scss";
 
 table {
-    width: 100%;
+  width: 100%;
 }
 
-img { width: auto; max-width: fit-content;}
+img {
+  display: block;
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
+}
 
 img.view {
-    border-radius: 10px;
-    border: 1px solid grey;
-    padding: -2px;
-    box-shadow: 5px 5px 2px lightgrey;
+  border-radius: 10px;
+  border: 1px solid grey;
+  padding: -2px;
+  box-shadow: 5px 5px 2px lightgrey;
 }
 
 iframe {
-    margin-bottom: 40px;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
+  margin-bottom: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
 }
 
-body { 
-    font-family: Open Sans;
-    font-size: 10pt;
+html {
+  font-family: Open Sans;
+  font-size: 13pt;
 }
 
 p {
-    font-size: 0.9rem;
-    line-height: 1.6;
+  line-height: 1.6;
+}
+
+tr.item {
+  cursor: pointer;
+  vertical-align: text-top;
+
+  p {
+    font-size: 0.8rem;
+  }
+  h3 {
+    font-size: 1rem;
+    font-weight: bold;
+    text-decoration: underline;
+  }
+}
+signature {
+  margin-left: 4rem;
 }
