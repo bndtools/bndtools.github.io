@@ -15,6 +15,7 @@ img {
   width: auto;
   margin-left: auto;
   margin-right: auto;
+  min-width: 16px;
   max-width: 100%;
 }
 
@@ -56,4 +57,13 @@ tr.item {
 }
 signature {
   margin-left: 4rem;
+}
+
+@media only screen and (min-width: 40.063em) {
+  h2 {
+    font-size: 1.2rem;
+  }
+  h1 {
+    font-size: 2rem;
+  }
 }
