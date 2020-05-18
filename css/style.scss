@@ -33,9 +33,11 @@ iframe {
   display: block;
 }
 
-html {
-  font-family: Open Sans;
-  font-size: 13pt;
+html,
+body {
+  font-family: "Verdana", "Helvetica Neue", "Helvetica", Helvetica, Arial,
+    sans-serif;
+  font-size: 11pt;
 }
 
 p {
