@@ -72,6 +72,17 @@
 
 <div class="row">
     <div class="large-7 medium-6 small-6 columns">
+        <h2>Content Assist</h2>
+        <p>Bndtools leverages bnd's extensive knowledge and understanding of the contents of its bundles to produce useful content assists. Bndtools performs complex analysis of a variety of compiler errors that can potentially caused by missing types, looks for bundles that contain those types, and offers them as suggestions to add to your build or test path. It is even able to offer possible solutions to problems that on the surface are not obviously caused by missing types (such as "missing methods" which are actually caused by superclasses not being present on the classpath) that can be hard to debug.</p>
+    </div>
+    <div class="large-5 medium-6 small-6 columns">
+        <img src="/assets/img/quickfix.png" align="right"/>
+    </div>
+</div>
+<hr/>
+
+<div class="row">
+    <div class="large-7 medium-6 small-6 columns">
         <h2>Macros Everywhere</h2>
         <p>Unlike PDE, bnd stores all build information <em>declaratively</em>, in easy to read plain Java property files called <em>bnd</em> files. These property files are put in an inheritance chain so that there is always one place to define shared information, preventing redundancy. A very powerful macro processor can combine and filter properties so that bug inciting redundancy is further reduced. Hundreds of built-in functions provide very detailed access to the bnd build model, the output JARs, the repositories, environment variables, and can even call system commands.</p>
     </div>
