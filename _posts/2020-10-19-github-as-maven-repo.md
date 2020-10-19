@@ -18,6 +18,24 @@ It turns out that Github provides a concept called _packages_. Packages provide 
 dependencies. One of the type of packages that are supported is maven. I tried it out and it
 seems to work very well with bndtools.
 
+## Maven Stuff
+
+To be able to release to a maven repository with the proper Maven metadata it is necessary to set the `-pom` and `-groupid`
+instructions. When this information is present, bnd will automatically create the required pom and other things that
+Maven needs for a release. If you set the proper OSGi headers, then this metadata is of sufficient quality to
+release to Maven central, including sources and javadoc.
+
+Therefore, enter the following information in the `cnf/build.bnd` file:
+
+```
+-pom:                   version=5.2.0-SNAPSHOT
+-groupid:               biz.aQute.bnd
+```
+
+If you remove the `-SNAPSHOT` from the pom version, the artifact is released to the release repo. If the
+`-SNAPSHOT` is present, it will pushed to the snapshot repo. For this example, we make the snapshot and
+release repo the same.
+
 ## Repository Setup
 
 The Githun Maven package URL has the following structure:
