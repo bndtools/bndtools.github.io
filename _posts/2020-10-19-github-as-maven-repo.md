@@ -45,9 +45,9 @@ https://maven.pkg.github.com/<userid or organization>/<repository>
 ```
 
 Let's define a macro in `cnf/build.bnd` to not get caught in spelling errors:
-
+```
   releaserepo = https://maven.pkg.github.com/Bndtools/bnd
-
+```
 You need to create a repository. This is a Maven Bnd Repository. I recently added a 'Insert Plugin'
 menu entry in Bndtools when you're in a bnd file. You can use this to insert a Maven Bnd Repository
 in the `cnf/build.bnd` file.
