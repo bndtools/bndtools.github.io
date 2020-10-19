@@ -6,7 +6,7 @@ comments: true
 author: Peter Kriens
 ---
 
-![packages](/assets/img/package-cutoff.jpg)
+![packages](/assets/img/packages-cutoff.jpg)
 
 I recently had to setup a maven like repository for a client. Of course there are the standard 
 hosted solutions with JFrog and Sonatype. These solutions work very well and both companies are
