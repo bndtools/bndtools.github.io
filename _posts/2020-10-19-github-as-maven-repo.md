@@ -88,8 +88,9 @@ Some remaining notes:
   name it `-plugin.github`. All files in the `cnf/ext` directory are parsed included before the
   `cnf/build.bnd` file.
 
-
+[Peter Kriens][4]
 
 [1]: https://github.com/settings/tokens/new
 [2]: https://docs.github.com/en/free-pro-team@latest/actions/reference/encrypted-secrets
 [3]: https://bnd.bndtools.org/instructions/connection-settings.html
+[4]: https://twitter.com/pkriens
