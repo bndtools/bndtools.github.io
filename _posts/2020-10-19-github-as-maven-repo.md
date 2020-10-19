@@ -23,7 +23,7 @@ seems to work very well with bndtools.
 The Githun Maven package URL has the following structure:
 
 ```
-https://maven.pkg.github.com/<userid|organization>/<repository>
+https://maven.pkg.github.com/<userid or organization>/<repository>
 ```
 
 Let's define a macro in `cnf/build.bnd` to not get caught in spelling errors:
