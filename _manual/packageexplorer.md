@@ -20,6 +20,18 @@ You can filter on the following additional targets:
 
 Note that you can combine he pseudo targets with the `'|'` operator, e.g. `:e|lib`.
 
+## All Green
+
+The All Green field shows the aggregate status of the workspace. If there is any project with an error, it will be red. If there are no errors, but a project has warnings it will be orange. In all other cases it is green.
+
+## Refresh
+
+The refresh button will refresh all projects from the workspace and will then reload the workspace. This will reinitialize all the repositories and tend to rebuild all projects.
+
+## Pinning
+
+You can _pin_ a project. A pinned project will always be visible.
+
 ## Icons
 
 Bndtools adds the following icons in the Package Explorer:
