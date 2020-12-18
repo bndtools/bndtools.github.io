@@ -71,9 +71,13 @@ Before you can run an OSGi framework it is necessary to create an _assembly_ of 
 
 Bndtools integrates the bnd launcher that is parameterized from the bndrun file. After running the resolver, the bndrun file editor shows a `Run` or `Debug` button that will launch the assembly. This launcher is completely integrated with the Eclipse debugging tools.
 
+The Bndtools OSGi Run Launcher also supports an __Update bundles during runtime__, which causes Bndtools to continue watching for changes to bundles (or your launch file) in your workspace as it is rebuilt. When changes occur to your bundles, it will dynamically re-deploy the changed bundles into the running application once the build is complete. This makes it much easier to dynamically debug and develop your bundles.
+
 ### Testing
 
 Normal JUnit testing is clearly fully supported with Bndtools and will work as expected. However, Bndtools also supports _OSGi integration testing_. In this case, the `bnd.bnd` file defines a set of bundles (which can be assembled with the resolver) that provide the runtime for the test. Except for the menu entry, this kind of integration testing is then identical to normal JUnit testing. That is, the developer can select a test class or test method and execute the test while the results are displayed in the JUnit view.
+
+Bndtools also supports the continuous testing mode of bnd. If you configure your Bndtools launch configuration with __Continue running framework after tests have completed__, then rather than exiting at the end of the test, the framework remains active. The tester listens for newly-started (or re-started) test bundles, and re-runs the tests. With the latest version of the Bnd tester and the __Display JUnit results in IDE every time the tester reruns tests__ option selected, then each re-run of the tests will be displayed in the JUnit view. This feature can be combined with the __Update bundles during runtime__ to significantly speed up the develop-test cycle.
 
 ### Continuous Integration
 
