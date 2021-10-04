@@ -12,8 +12,7 @@ To get then started with the [bndtools Workspace model](workspace.html), you can
 
 ## Enhancements
 
-* Bndtools is built to run on Eclipse 2018-12 or later. So Bndtools 5.0 may not run on older versions of Eclipse.
-* Added a Bndtools Explorer view with a search bar. This can be used to show projects whose name matches the search bar value.
+* Bndtools is built to run on Eclipse 2020-06 or later. So Bndtools 6.0 may not run on older versions of Eclipse.
 
 For more complete information on the changes in the Bndtools release, see <https://github.com/bndtools/bnd/wiki#release-notes>.
 
