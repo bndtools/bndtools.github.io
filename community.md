@@ -23,7 +23,7 @@
 	<a class="button small"
 		href="http://groups.google.com/group/bndtools-users">View
 		Archive &raquo;</a> <a class="button small"
-		href="http://groups.google.com/group/bndtools-users/subscribe">Join
+		href="https://bnd.discourse.group">Join
 		&raquo;</a>
 </p>
 </li>
