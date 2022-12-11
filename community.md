@@ -14,9 +14,9 @@
 		href="https://bnd.discourse.group">discussion group on Discourse</a>. We encourage general discussion about
 	all topics related to building with Bndtools or bnd, including the
 	use of the <a
-		href="http://felix.apache.org/site/apache-felix-maven-bundle-plugin-bnd.html">Maven
+		href="https://felix.apache.org/documentation/subprojects/apache-felix-maven-bundle-plugin-bnd.html">Maven
 		Bundle Plugin</a> (which uses bnd internally) or the <a
-		href="http://www.aqute.biz/Bnd/Components">bnd annotations for
+		href="https://bnd.bndtools.org/chapters/200-components.html">bnd annotations for
 		Declarative Services</a>.
 </p>
 <p>
