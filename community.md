@@ -1,17 +1,15 @@
 ---
+title: Get Involved
+description: Discuss and and report issues with the bndtools community.
 ---
 
-
-<div class="hero">
-	<h1>Get Involved</h1>
-</div>
 
 <ul class="row">
 <li class="large-6 medium-6 small-6 columns">
 <h1>Discuss</h1>
 <p>
 	Bndtools and bnd use a combined <a
-		href="https://bnd.discourse.group">discussion group on Discourse</a>. We encourage general discussion about
+		href="https://bnd.discourse.group">forum / discussion group on Discourse</a>. We encourage general discussion about
 	all topics related to building with Bndtools or bnd, including the
 	use of the <a
 		href="https://felix.apache.org/documentation/subprojects/apache-felix-maven-bundle-plugin-bnd.html">Maven
