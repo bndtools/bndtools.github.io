@@ -1,10 +1,8 @@
 ---
+title: Get Involved
+description: Discuss and and report issues with the bndtools community.
 ---
 
-
-<div class="hero">
-	<h1>Get Involved</h1>
-</div>
 
 <ul class="row">
 <li class="large-6 medium-6 small-6 columns">
