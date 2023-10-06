@@ -2,7 +2,7 @@
 ---
 
 
-# Install Bndtools
+# Install Bndtools 7.0.0
 
 You can install Bndtools via the [Marketplace](#marketplace) or directly install from the [Update Site](#update-site)
 
@@ -12,14 +12,18 @@ To get then started with the [bndtools Workspace model](workspace.html), you can
 
 ## Enhancements
 
-* Bndtools is built to run on Eclipse 2020-06 or later. So Bndtools 6.0 may not run on older versions of Eclipse.
+* Bndtools is built to run on Eclipse 2020-06 or later. So Bndtools 7.0.0 may not run on older versions of Eclipse.
 
 For more complete information on the changes in the Bndtools release, see <https://github.com/bndtools/bnd/wiki#release-notes>.
 
 ## Known Issues
 
-* None at this time.
-
+* This release is based on Java 17. This tends to be not noticed for developmet but there are a number of runtime bundles in the distribution that now also have become Java 17 code. This could generate the error during a bndrun launch or with bnd/OSGi testing when the Execution Environment is set to < 17. The easy fix is to set this to 17. If this is impossible, the previous launchers than run on 1.8 can then be used (if they are available in the repositories). Add
+```
+-runpath \
+    biz.aQute.launcher;version="[6.4.0,7)", \
+    biz.aQute.tester.junit-platform;version="[6.4.0,7)"
+```
 ## Marketplace
 
 The recommended way to install Bndtools via the [Eclipse Marketplace](https://marketplace.eclipse.org/content/bndtools).
