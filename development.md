@@ -58,12 +58,20 @@ Launching Bndtools from Eclipse
 
 To launch bndtools from Eclipse (e.g. to try out a change to debug), use one of the `.bndrun` files from the `bndtools.core` project. There are three launchers, one per architecture, i.e.:
 
-* `bndtools.cocoa.macosx.x86_64.bndrun` for running on Mac OS X (64-bit Intel x86)
+* `bndtools.cocoa.macosx.x86_64.bndrun` for running on MacOS (64-bit Intel x86)
+* `bndtools.cocoa.macosx.aarch64.bndrun` for running on MacOS (64-bit Apple Silicon M1/M2 AArch64)
 * `bndtools.gtk.linux.x86_64.bndrun` for running on Linux (64-bit Intel x86).
 * `bndtools.gtk.linux.x86.bndrun` for running on Linux (32-bit Intel x86).
 * `bndtools.win32.x86.bndrun` for running on Win32 (XP, Vista etc).
 
-Right click on the file that matches your computer's architecture and select "Run As" > "OSGi Run". If none of these files matches the architecture you want to run on, then please create a new one and submit it back as a patch.
+Right click on the file that matches your computer's architecture and select "Run As" > "Bnd OSGi Run Launcher". If none of these files matches the architecture you want to run on, then please create a new one and submit it back as a patch.
+
+
+# Running JUnit Tests
+=====================
+
+The project `biz.aQute.tester.test` contains the unit tests for `biz.aQute.tester` and `biz.aQute.tester.junit-platform`.
+See this project's [README](https://github.com/bndtools/bnd/blob/master/biz.aQute.tester.test/readme.md) for instructions of how to execute tests in Eclipse.
 
 [1]: /tutorial.html "Bndtools Tutorial"
 [2]: http://marketplace.eclipse.org/ "Eclipse Marketplace"
