@@ -62,10 +62,13 @@ signature {
 }
 
 @media only screen and (min-width: 40.063em) {
-  h2 {
-    font-size: 1.2rem;
-  }
   h1 {
     font-size: 2rem;
+  }
+  h2 {
+    font-size: 1.5rem;
+  }
+  h3 {
+    font-size: 1.3rem;
   }
 }
