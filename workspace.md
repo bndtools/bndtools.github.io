@@ -31,21 +31,21 @@ If you like what you see in the videos, you can also read the [OSGi Starter PDF]
 The following video shows how to install a workspace from a template and start a _playground_ project with the 
 Apache Felix Gogo shell.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/N5pX01XTCBE" frameborder="1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/N5pX01XTCBE" frameborder="1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ### Hello World Gogo Command
 
 At the end of the previous video, we had Gogo running. The following video shows how to write a simple Hello World 
 Gogo command. 
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/0Z7EklHaugg" frameborder="1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/0Z7EklHaugg" frameborder="1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ### API & Provider Project
 
 The basic model of OSGi is to develop services that have a distinct, separate, API from the providers. This video shows
 how to create this API and a simple provider and then run the provider in the playground.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/s-erxgdkjlk" frameborder="1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/s-erxgdkjlk" frameborder="1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ### External Dependencies
 
@@ -53,7 +53,7 @@ In this video an alternative implementation is developed that uses the API from 
 Mozilla Rhino to do the execution of the evaluation expression. It shows how to add a dependency from Maven
 Central to the workspace.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/2lbDpldOn9I" frameborder="1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/2lbDpldOn9I" frameborder="1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
 
 ### Executable JARs
@@ -63,7 +63,7 @@ dependencies, including the framework. For this, we create an application projec
 testing, we export it to an executable JAR. This JAR is then verified from the command line and shown that you can
 extract the contents to the file system. As a bonus, the executable JAR is stored and ran as a Docker container.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/QYEhlWmvcyU" frameborder="1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/QYEhlWmvcyU" frameborder="1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
  
 ### Gradle Integration
@@ -74,7 +74,7 @@ implicit Gradle build. A plugin in Gradle ensures that whatever is done in the I
  
 Although you rarely have to use Gradle as a normal developer, this video demonstrates how to run Gradle from the command line.
  
-<iframe width="560" height="315" src="https://www.youtube.com/embed/YtUVSJQ2gwE" frameborder="1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/YtUVSJQ2gwE" frameborder="1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
  
  
 ### Github & Actions
@@ -84,7 +84,7 @@ and move it to a Github repository. The workspace template we used, [bndtools.wo
 contains a `.github/workflows/build.yml` file. This file is a trigger for Github Actions to automatically build the workspace
 on every pull request or build.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/c0OLbr7bwQg" frameborder="1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/c0OLbr7bwQg" frameborder="1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
  
  
 ## And Now?
