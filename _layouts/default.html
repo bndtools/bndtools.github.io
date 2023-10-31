@@ -6,8 +6,17 @@
     {% include nav.htm %}
 
     <div class="row main-container">
+      
+      <!-- Main Content -->
+      <div class="large-9 medium-8 medium-push-4 large-push-3 columns">
+        <div class="hero">
+          <h1>{{ page.title }}</h1>
+        </div>
+        {{content}}
+      </div>
+      
       <!-- Sidebar -->
-      <div class="large-3 medium-4 small-4 columns">
+      <div class="large-3 medium-4 medium-pull-8 large-pull-9 columns">
         <div class="sidebar">
           <nav>
             {% include sidebar.htm %}
@@ -15,13 +24,9 @@
         </div>
       </div>
 
-      <!-- Main Content -->
-      <div class="large-9 medium-8 small-8 columns">
-        <div class="hero">
-          <h1>{{ page.title }}</h1>
-        </div>
-        {{content}}
-      </div>
+      
+
+
     </div>
 
     {% include footer.htm %}
