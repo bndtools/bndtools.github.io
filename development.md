@@ -54,7 +54,7 @@ You should now have all the bndtools projects in your workspace, ready to begin 
 To launch bndtools from Eclipse (e.g. to try out a change to debug), use one of the `.bndrun` files from the `bndtools.core` project. There are three launchers, one per architecture, i.e.:
 
 * `bndtools.cocoa.macosx.x86_64.bndrun` for running on MacOS (64-bit Intel x86)
-* `bndtools.cocoa.macosx.aarch64.bndrun` for running on MacOS (64-bit Apple Silicon M1/M2 AArch64)
+* `bndtools.cocoa.macosx.aarch64.bndrun` for running on MacOS (64-bit Apple Silicon / AArch64)
 * `bndtools.gtk.linux.x86_64.bndrun` for running on Linux (64-bit Intel x86).
 * `bndtools.gtk.linux.x86.bndrun` for running on Linux (32-bit Intel x86).
 * `bndtools.win32.x86.bndrun` for running on Win32 (XP, Vista etc).
@@ -70,3 +70,25 @@ See this project's [README](https://github.com/bndtools/bnd/blob/master/biz.aQut
 
 [1]: /tutorial.html "Bndtools Tutorial"
 [2]: http://marketplace.eclipse.org/ "Eclipse Marketplace"
+
+
+## Creating custom OSGi service wizards
+
+To create a new OSGi service wizard (File->New->Other...) which creates one or multiple services (bundles / projects) you can add a snippet like the following to [bndtools.core/_plugin.xml](https://github.com/bndtools/bnd/blob/master/bndtools.core/_plugin.xml) and have a look at [this PR](https://github.com/bndtools/bnd/pull/5633).
+
+```
+bndtools.core/_plugin.xml:
+
+<wizard
+	category="bndtools.serviceWizardCategory/org.eclipse.ecf.remoteservices.category"
+	finalPerspective="bndtools.perspective"
+	class="org.bndtools.core.ui.wizards.service.NewBndTemplateBasedServiceWizard:grpc"
+	icon="icons/grpc16x16.gif"
+	id="org.eclipse.ecf.bndtools.grpc.ui.grpc"
+	name="gRPC Remote Service (generated api, impl, consumer)"
+	preferredPerspectives="bndtools.perspective"
+	project="true">
+</wizard>
+```
+
+This can be used to create an OSGi service wizard like in [this tutorial](manual/templates-osgi-service.html).
