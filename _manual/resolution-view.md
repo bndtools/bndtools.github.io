@@ -11,7 +11,7 @@ Especially when it comes to resolution issues (e.g. required package cannot be s
 
 ## Example
 
-By selecting a bundle **A** and a repository **R** in the Repository Browser, it allows you to see the aggregated **Requirements and Capabilities** of both. In other words it shows you:
+By selecting a bundle **A** and a repository **R** in the [Repository View](/manual/repositories-view.html), it allows you to see the aggregated **Requirements and Capabilities** of both. In other words it shows you:
 
 * all **requirements** (most commonly packages) the bundle **A** and all bundles in the repository **R** require
 * and all **capabilities** the bundle **A** and all bundles in the repository **R** provide
