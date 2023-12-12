@@ -70,25 +70,3 @@ See this project's [README](https://github.com/bndtools/bnd/blob/master/biz.aQut
 
 [1]: /tutorial.html "Bndtools Tutorial"
 [2]: http://marketplace.eclipse.org/ "Eclipse Marketplace"
-
-
-## Creating custom OSGi service wizards
-
-To create a new OSGi service wizard (File->New->Other...) which creates one or multiple services (bundles / projects) you can add a snippet like the following to [bndtools.core/_plugin.xml](https://github.com/bndtools/bnd/blob/master/bndtools.core/_plugin.xml) and have a look at [this PR](https://github.com/bndtools/bnd/pull/5633).
-
-```
-bndtools.core/_plugin.xml:
-
-<wizard
-	category="bndtools.serviceWizardCategory/org.eclipse.ecf.remoteservices.category"
-	finalPerspective="bndtools.perspective"
-	class="org.bndtools.core.ui.wizards.service.NewBndTemplateBasedServiceWizard:grpc"
-	icon="icons/grpc16x16.gif"
-	id="org.eclipse.ecf.bndtools.grpc.ui.grpc"
-	name="gRPC Remote Service (generated api, impl, consumer)"
-	preferredPerspectives="bndtools.perspective"
-	project="true">
-</wizard>
-```
-
-This can be used to create an OSGi service wizard like in [this tutorial](manual/templates-osgi-service.html).
