@@ -6,17 +6,38 @@
     {% include nav.htm %}
 
     <div class="row main-container">
-      
+
       <!-- Main Content -->
       <div class="large-9 medium-8 medium-push-4 large-push-3 columns">
-        <div class="hero">
-          <h1>{{ page.title }}</h1>
+        <div class="off-canvas-wrap move" data-offcanvas>
+          <div class="inner-wrap">
+        
+            <a role="button" href="#" class="show-for-small-only left-off-canvas-toggle menu-icon" style="background-color: darkgray;" ><span></span></a>
+        
+            <!-- Off Canvas Menu -->
+            <aside id="#" class="left-off-canvas-menu" aria-hidden="true">
+                <!-- whatever you want goes here -->
+                {% include sidebar.htm %}
+            </aside>
+        
+            <!-- main content goes here -->
+            <div class="hero">
+              <h1>{{ page.title }}</h1>
+            </div>
+            {{content}}
+        
+          <!-- close the off-canvas menu -->
+          <a class="exit-off-canvas"></a>
+        
+          </div>
         </div>
-        {{content}}
+
+        
+       
       </div>
       
       <!-- Sidebar -->
-      <div class="large-3 medium-4 medium-pull-8 large-pull-9 columns">
+      <div class="hide-for-small-only large-3 medium-4 medium-pull-8 large-pull-9 columns">
         <div class="sidebar">
           <nav>
             {% include sidebar.htm %}
