@@ -1,9 +1,10 @@
 ---
 title: Resolution View
 description: Provides insight into the requirements and capabilities of the selected bundle
+since: 7.1.0
 ---
 
-<img src="/images/resolution-view.png" style="width:750px" class="view">
+![](/images/resolution-view.png)
 
 The Resolution View is a powerful tool to analyse the requirements and capabilities of bundles and their dependencies. This shows the **requirements and capabilities** side by side of one or multiple selected resources such as JAR file(s), a `bnd.bnd` file or entries in the Repository Browser (bundles in a repository or repositories).
 
@@ -16,7 +17,7 @@ By selecting a bundle **A** and a repository **R** in the [Repository View](/man
 * all **requirements** (most commonly packages) the bundle **A** and all bundles in the repository **R** require
 * and all **capabilities** the bundle **A** and all bundles in the repository **R** provide
 
-If there is a _requirement_ for which _no other_ bundle provides a _capability_, then the Resolve would fail - and you can **make it visible** in the resolution view.
+If there is a _requirement_ for which _no other_ bundle provides a _capability_, then the Resolve would fail - and you can **make that visible** in the resolution view.
 
 This makes it a valueable tool used after a failed resolution (see the *Resolve* button in the [.bnd / .bndrun editor](/manual/bndeditor.html#run)) and its (sometimes cryptic) error message.
 

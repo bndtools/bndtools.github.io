@@ -1,6 +1,7 @@
 ---
 title: Java OSGi Service
 description: Bndtools Template to create an OSGi service consisting of bundles for api, impl, consumer
+since: 7.1.0
 ---
 
 ## Java OSGi Service (api, impl, consumer)
@@ -17,19 +18,19 @@ This template is based on the idea of [this tutorial](../tutorial.html) and will
 
 ### 1. Open the wizard, select File->New->Other...
 
-![](./img/template-osgi-service1.png)
+![](/images/templates/template-osgi-service1.png)
 
 ### 2. Then select OSGi Services -> Java OSGi Service (api, impl, consumer) and Next>
 
-![](img/template-osgi-service2.png)
+![](/images/templates/template-osgi-service2.png)
 
 ### 3. Fill in desired values for the Project Name and the Service Name fields, and make any other desired changes to the execution environment or project set usage on the wizard page.
 
-![](img/template-osgi-service3.png)
+![](/images/templates/template-osgi-service3.png)
 
 ### 4. Click Finish
 
-![](img/template-osgi-service4.png)
+![](/images/templates/template-osgi-service4.png)
 
 There are three projects created org.myorg.test.hello (api), org.myorg.test.hello.impl, and org.myorg.test.hello.consumer.
 
@@ -41,17 +42,17 @@ If desired, the user can use Eclipse refactoring to rename the default service m
 
 Included in the generated `org.myorg.test.hello` project is a `Hello.bndrun` file that can be used to launch a framework, register the HelloServiceImpl, inject (via SCR) into the HelloServiceConsumer and have the HelloServiceConsumer call the service.
 
-![](img/template-osgi-service5.png)
+![](/images/templates/template-osgi-service5.png)
 
 ### 6. Resolving dependencies
 
 Click `Resolve` and the `Update` to let bndtools figure out the bundles to run (-runbundles).
 
-![](img/template-osgi-service6.png)
+![](/images/templates/template-osgi-service6.png)
 
 ### 7. Run the project
 
-![](img/template-osgi-service7.png)
+![](/images/templates/template-osgi-service7.png)
 
 Then clicking on Run OSGi (or Debug OSGi). Results in the service method being called and the console output.
 
