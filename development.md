@@ -54,7 +54,7 @@ You should now have all the bndtools projects in your workspace, ready to begin 
 To launch bndtools from Eclipse (e.g. to try out a change to debug), use one of the `.bndrun` files from the `bndtools.core` project. There are three launchers, one per architecture, i.e.:
 
 * `bndtools.cocoa.macosx.x86_64.bndrun` for running on MacOS (64-bit Intel x86)
-* `bndtools.cocoa.macosx.aarch64.bndrun` for running on MacOS (64-bit Apple Silicon M1/M2 AArch64)
+* `bndtools.cocoa.macosx.aarch64.bndrun` for running on MacOS (64-bit Apple Silicon / AArch64)
 * `bndtools.gtk.linux.x86_64.bndrun` for running on Linux (64-bit Intel x86).
 * `bndtools.gtk.linux.x86.bndrun` for running on Linux (32-bit Intel x86).
 * `bndtools.win32.x86.bndrun` for running on Win32 (XP, Vista etc).
