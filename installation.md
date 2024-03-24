@@ -1,8 +1,7 @@
 ---
+title: Install Bndtools 7.0.0
 ---
 
-
-# Install Bndtools 7.0.0
 
 You can install Bndtools via the [Marketplace](#marketplace) or directly install from the [Update Site](#update-site)
 
