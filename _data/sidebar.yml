@@ -48,6 +48,8 @@ nav:
         url: "/book/680-appnotes.html"
       - name: Services
         url: "/book/400-services.html"
+      - name: Tutorials
+        url: "/book/150-tutorials.html"  
       - name: Examples
         url: "/book/180-examples.html"
       - name: About OSGi
