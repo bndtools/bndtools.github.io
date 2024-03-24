@@ -1,11 +1,11 @@
 ---
-title: Get Involved
+title: Get Involved with the bndtools & OSGi Community
 description: Discuss and and report issues with the bndtools community.
 ---
 
 
 <div >
-<h1>Discuss</h1>
+<h2>Discuss</h2>
 <p>
 	Bndtools and bnd use a combined <a
 		href="https://bnd.discourse.group">forum / discussion group on Discourse</a>. We encourage general discussion about
@@ -18,14 +18,15 @@ description: Discuss and and report issues with the bndtools community.
 </p>
 <p>
 	<a class="button small"
-		href="http://groups.google.com/group/bndtools-users">View
-		Archive &raquo;</a> <a class="button small"
-		href="https://bnd.discourse.group">Join
-		&raquo;</a>
+	href="https://bnd.discourse.group"><b>Visit the forum
+	&raquo;</b></a>
+	<a class="button small"
+		href="http://groups.google.com/group/bndtools-users">View old
+		Archive &raquo;</a> 
 </p>
 </div>
 <div >
-<h1>Report Issues</h1>
+<h2>Report Issues</h2>
 <p>
 	Bndtools is <a href="https://github.com/bndtools/bnd">hosted
 		at GitHub</a> and we use the <a
