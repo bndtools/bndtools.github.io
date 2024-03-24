@@ -1,6 +1,6 @@
 ---
 title: org.osgi.service.log
-layout: default
+layout: service
 version: 1.3
 summary:  An service to log errors, warning, and information to.
 ---

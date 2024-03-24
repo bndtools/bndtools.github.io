@@ -1,6 +1,6 @@
 ---
 title: org.osgi.service.event
-layout: default
+layout: service
 version: 1.0
 summary: A simple publish and subscribe mechanism for generic events 
 ---

@@ -1,6 +1,6 @@
 ---
 title: osgi.enroute.webserver.capabilities
-layout: default
+layout: service
 version: 1.0
 summary: Handles static web pages and OSGi enRoute web resources 
 ---

@@ -1,6 +1,6 @@
 ---
 title: org.osgi.service.cm
-layout: default
+layout: service
 version: 1.5
 summary: Provides a push and pull model to configure components. 
 ---

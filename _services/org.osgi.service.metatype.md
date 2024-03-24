@@ -1,6 +1,6 @@
 ---
 title: org.osgi.service.metatype
-layout: default
+layout: service
 version: 1.1
 summary:  A standard to describe data structures with the intent to create user interfaces from.
 ---

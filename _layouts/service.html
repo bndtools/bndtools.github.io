@@ -1,0 +1,25 @@
+---
+layout: default
+---
+
+{% assign prevurl = "" %}
+	{% assign found = false %}
+	
+	{% for service in site.services %}
+	
+		{%if found %}
+			{% assign found = false %}
+			{% assign next = service.url %}
+		{%endif%}
+		
+		{% if service.url == page.url %}
+			{% assign found = true %}
+			{% assign prev = prevurl %}
+		{%endif%}
+		
+		{% assign prevurl = service.url %}
+	{%endfor%}
+			{{content}}
+			<hr/>
+			<a class=nav-prev href="{{prev}}" {% unless prev %}disabled{%endunless%}>Prev</a>
+			<a class=nav-next href="{{next}}" {% unless next %}disabled{%endunless%}>Next</a> 
