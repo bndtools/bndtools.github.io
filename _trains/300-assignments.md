@@ -1,6 +1,6 @@
 ---
 title: Assignments - Some hints and tips
-layout: default
+layout: prev-next-collection
 summary: How to do the assignments
 ---
 

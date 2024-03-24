@@ -1,6 +1,6 @@
 ---
 title: The OSGi IoT Trains SDK Architecture
-layout: default
+layout: prev-next-collection
 summary: An overview of how the overall infrastructure is designed.
 ---
 

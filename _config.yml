@@ -18,7 +18,17 @@ collections:
   trains:
     output: true
   doc:
-    output: true    
+    output: true
+  tutorial_base:
+    output: true
+  tutorial_rsa:
+    output: true
+  tutorial_iot:
+    output: true
+  tutorial_wrap:
+    output: true
+  tutorial_maven:
+    output: true
 
 defaults:
   -
