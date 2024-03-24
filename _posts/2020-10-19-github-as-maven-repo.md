@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: prev-next-collection
 title: Github Packages as Maven Repo
 description: Github provides a feature called packages that support the maven repository model. This text shows you how to release to this package.
 comments: true
