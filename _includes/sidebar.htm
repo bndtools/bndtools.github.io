@@ -7,7 +7,13 @@
       {% if link.divider %}
         <li class="divider" />
       {% else %}
-        <li class="{% if page.url contains link.url %}active{% endif %}">
+        {% assign isActive = false %}
+        {% if link.url == "/" and page.url == "/" %}
+          {% assign isActive = true %}
+        {% elsif page.url contains link.url and link.url != "/" %}
+          {% assign isActive = true %}
+        {% endif %}
+        <li class="{% if isActive %}active{% endif %}">
           <a href="{{ link.url }}" {% if link.external %}class="external-left"{% endif %}>
             {{ link.name }}
           </a>
