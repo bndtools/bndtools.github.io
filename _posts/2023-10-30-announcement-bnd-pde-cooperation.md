@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: prev-next-collection
 title: Announcement - bnd / bndtools and PDE cooperation
 description: PDE and bndtools unite to make OSGi development better 
 comments: true

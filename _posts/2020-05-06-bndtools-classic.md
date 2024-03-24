@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: prev-next-collection
 title: Bndtools without OSGi?
 description: Bndtools is the premier development tool OSGi applications. However, can it also be used to build plain old Java applications without OSGi?
 comments: true

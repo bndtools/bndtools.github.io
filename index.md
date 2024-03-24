@@ -15,6 +15,8 @@
         <li><a class="item" onclick="location.href='{{page.url}}'">{{page.title}}</a> – {{page.description}}</li>
     {% endfor %}
     </ul>
+
+    <a href="/posts.html">View all posts</a>
     </div>
 </div>
 

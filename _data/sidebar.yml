@@ -5,8 +5,6 @@ nav:
         url: "/"
       - name: Community
         url: "/community.html"
-      - name: Blog Posts
-        url: "/posts.html"
       - divider: true
   - title: Documentation
     links:
