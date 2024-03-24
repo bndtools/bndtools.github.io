@@ -9,6 +9,16 @@ collections:
     output: true
   posts:
     output: true
+  appnotes:
+    output: true
+  book:
+    output: true
+  services:
+    output: true    
+  trains:
+    output: true
+  doc:
+    output: true    
 
 defaults:
   -
