@@ -9,17 +9,23 @@ layout: default
 	
 		{%if found %}
 			{% assign found = false %}
-			{% assign next = service.url %}
+			{% unless forloop.last %}
+				{% assign next = service.url %}
+			{% endunless %}	
 		{%endif%}
 		
 		{% if service.url == page.url %}
 			{% assign found = true %}
-			{% assign prev = prevurl %}
+			{% unless forloop.first %}
+				{% assign prev = prevurl %}
+			{% endunless %}	
 		{%endif%}
-		
+
 		{% assign prevurl = service.url %}
+
 	{%endfor%}
 	{{content}}
 	<hr/>
-	<a class=nav-prev href="{{prev}}" {% unless prev %}disabled{%endunless%}>Prev</a>
-	<a class=nav-next href="{{next}}" {% unless next %}disabled{%endunless%}>Next</a> 
+	
+	{% if prev %}<a class=nav-prev href="{{prev}}" {% unless prev %}disabled{%endunless%}>Prev</a>{%endif%}
+	{% if next %}<a class=nav-next href="{{next}}" {% unless next %}disabled{%endunless%}>Next</a>{%endif%}
