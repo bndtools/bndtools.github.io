@@ -1,6 +1,6 @@
 ---
 title: osgi.enroute.authentication.api
-layout: default
+layout: service
 version: 1.0
 summary: Providing an authenticated id based on variable user credentials.
 ---

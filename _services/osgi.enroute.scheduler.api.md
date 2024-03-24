@@ -1,6 +1,6 @@
 ---
 title: osgi.enroute.scheduler.api
-layout: default
+layout: service
 version: 1.0
 summary: Provides time based functions like delays, (cron and period based) schedules, and timeouts on Promises. 
 ---

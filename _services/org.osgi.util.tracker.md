@@ -1,6 +1,6 @@
 ---
 title: org.osgi.util.tracker
-layout: default
+layout: service
 version: 1.0
 summary:  Utilities to reliably track services and bundles 
 ---
