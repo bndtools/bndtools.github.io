@@ -4,8 +4,7 @@ description: Discuss and and report issues with the bndtools community.
 ---
 
 
-<ul class="row">
-<li class="large-6 medium-6 small-6 columns">
+<div >
 <h1>Discuss</h1>
 <p>
 	Bndtools and bnd use a combined <a
@@ -24,8 +23,8 @@ description: Discuss and and report issues with the bndtools community.
 		href="https://bnd.discourse.group">Join
 		&raquo;</a>
 </p>
-</li>
-<li class="large-6 medium-6 small-6 columns">
+</div>
+<div >
 <h1>Report Issues</h1>
 <p>
 	Bndtools is <a href="https://github.com/bndtools/bnd">hosted
@@ -53,5 +52,4 @@ description: Discuss and and report issues with the bndtools community.
 	href="https://github.com/bndtools/bnd/issues/new">Raise a
 	Bug &raquo;</a>
 </p>
-</li>
-</ul>
+</div>

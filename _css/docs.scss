@@ -23,6 +23,16 @@
 .side-nav .heading {
   text-transform: uppercase;
 }
+
+.side-nav li.active a {
+  color: lightgray;
+  cursor: default;
+}
+
+.side-nav li.active a:before {
+  content: "\25B7\00A0";
+}
+
 a.external-left {
   background: url(/images/external-link.png) 1px center no-repeat;
   padding-left: 14px;
