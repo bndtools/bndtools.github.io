@@ -1,7 +1,7 @@
 ---
 title: About Modularity
 summary: A short overview of what OSGi is about
-layout: tutorial
+layout: default
 lprev: /book/210-doc
 lnext: 100-about-osgi
 ---
