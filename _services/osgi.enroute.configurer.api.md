@@ -1,6 +1,6 @@
 ---
 title: osgi.enroute.configurer.api
-layout: service
+layout: prev-next-collection
 version: 1.0
 summary:  An extender that gets configuration information from a bundle.
 ---

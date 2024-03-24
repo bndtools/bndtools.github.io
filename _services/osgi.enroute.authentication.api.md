@@ -1,6 +1,6 @@
 ---
 title: osgi.enroute.authentication.api
-layout: service
+layout: prev-next-collection
 version: 1.0
 summary: Providing an authenticated id based on variable user credentials.
 ---

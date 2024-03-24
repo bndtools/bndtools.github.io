@@ -1,6 +1,6 @@
 ---
 title: org.osgi.util.promise
-layout: service
+layout: prev-next-collection
 version: 1.0
 summary:  A utility to do asynchronous processing 
 ---

@@ -1,6 +1,6 @@
 ---
 title: osgi.enroute.easse
-layout: service
+layout: prev-next-collection
 version: 1.0
 summary: Dispatches OSGi Event Admin events that match a given topic to the front-end using Javascript's Server Sent Events
 ---

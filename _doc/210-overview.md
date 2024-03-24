@@ -1,7 +1,7 @@
 ---
 title: About enRoute
 summary: An overview of OSGi enRoute
-layout: default
+layout: prev-next-collection
 lprev: 100-about-osgi.html
 lnext: 215-sos.html
 ---

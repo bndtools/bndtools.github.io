@@ -1,6 +1,6 @@
 ---
 title: org.osgi.service.cm
-layout: service
+layout: prev-next-collection
 version: 1.5
 summary: Provides a push and pull model to configure components. 
 ---

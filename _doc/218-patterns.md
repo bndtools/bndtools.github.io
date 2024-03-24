@@ -1,7 +1,7 @@
 ---
 title: Patterns
 summary: OSGi Patterns
-layout: default
+layout: prev-next-collection
 lprev: 217-ds.html
 lnext: /book/210-doc.html
 ---

@@ -1,6 +1,6 @@
 ---
 title: osgi.enroute.jsonrpc.api
-layout: service
+layout: prev-next-collection
 version: 1.0
 summary:  A white-board approach to JSON RPC 
 ---

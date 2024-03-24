@@ -1,6 +1,6 @@
 ---
 title: osgi.enroute.iot.circuit
-layout: service
+layout: prev-next-collection
 version: 1.0
 summary:  A circuit board service to wire IC like components
 ---
