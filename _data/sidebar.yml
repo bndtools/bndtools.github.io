@@ -1,0 +1,69 @@
+nav:
+  - title: null
+    links:
+      - name: Home
+        url: "/"
+      - name: Community
+        url: "/community.html"
+      - name: Blog Posts
+        url: "/posts.html"
+      - divider: true
+  - title: Documentation
+    links:
+      - name: Installation
+        url: "/installation.html"
+      - name: Tutorial
+        url: "/tutorial.html"
+      - name: Video Tour
+        url: "/workspace.html"
+      - name: Concepts
+        url: "/concepts.html"
+      - name: OSGi with bndtools
+        url: "/workspace/osgi-starter.html"
+      - name: FAQ
+        url: "/faq.html"
+      - name: The UI
+        url: "/manual/about.html"
+        sublinks:
+          - name: Bndtools Explorer
+            url: "/manual/packageexplorer.html"
+          - name: Repositories View
+            url: "/manual/repositories-view.html"
+          - name: Resolution View
+            url: "/manual/resolution-view.html"
+          - name: The bnd Editor
+            url: "/manual/bndeditor.html"
+          - name: The JAR Viewer
+            url: "/manual/jareditor.html"
+          - name: Project Templates
+            url: "/manual/templates.html"
+  - title: null
+    links:
+      - name: bnd manual
+        url: "https://bnd.bndtools.org"
+        external: true
+  - title: Knowledge
+    links:
+      - name: App Notes
+        url: "/book/680-appnotes.html"
+      - name: Services
+        url: "/book/400-services.html"
+      - name: Examples
+        url: "/book/180-examples.html"
+      - name: About OSGi
+        url: "/book/210-doc.html"
+  - title: Development
+    links:
+      - name: On Github
+        url: "https://github.com/bndtools/bnd"
+        external: true
+      - name: Issues
+        url: "https://github.com/bndtools/bnd/issues"
+        external: true
+      - name: Contributing
+        url: "https://github.com/bndtools/bnd/blob/master/CONTRIBUTING.md"
+        external: true
+      - name: Developer Guide
+        url: "/development.html"
+      - name: Acknowledgements
+        url: "/acknowledge.html"

@@ -24,11 +24,6 @@
   text-transform: uppercase;
 }
 
-.side-nav li.active a {
-  color: lightgray;
-  cursor: default;
-}
-
 .side-nav li.active a:before {
   content: "\25B7\00A0";
 }
