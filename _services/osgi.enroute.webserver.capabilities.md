@@ -1,6 +1,6 @@
 ---
 title: osgi.enroute.webserver.capabilities
-layout: service
+layout: prev-next-collection
 version: 1.0
 summary: Handles static web pages and OSGi enRoute web resources 
 ---

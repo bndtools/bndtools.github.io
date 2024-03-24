@@ -1,6 +1,6 @@
 ---
 title: osgi.enroute.dto.api
-layout: service
+layout: prev-next-collection
 version: 1.0
 summary:  Support for converting objects to other objects or JSON.
 ---

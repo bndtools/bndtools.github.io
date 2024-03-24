@@ -1,6 +1,6 @@
 ---
 title: osgi.enroute.logger.api
-layout: service
+layout: prev-next-collection
 version: 1.0
 summary:  A facility to manage logging on a platform when not only OSGi logging is used.
 ---

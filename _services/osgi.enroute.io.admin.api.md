@@ -1,6 +1,6 @@
 ---
 title: osgi.enroute.iot.admin
-layout: service
+layout: prev-next-collection
 version: 1.0
 summary:  An Administrative API on the Circuit board
 ---

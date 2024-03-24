@@ -1,6 +1,6 @@
 ---
 title: org.osgi.service.component
-layout: service
+layout: prev-next-collection
 version: 1.3
 summary: An extender for Declarative Services components 
 ---

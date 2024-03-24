@@ -1,6 +1,6 @@
 ---
 title: org.osgi.service.coordinator
-layout: service
+layout: prev-next-collection
 version: 1.0
 summary: A coordinator for thread based requests with the possibility to get a callback at the end of a request. 
 ---

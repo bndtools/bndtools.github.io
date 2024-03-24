@@ -1,6 +1,6 @@
 ---
 title: osgi.enroute.scheduler.api
-layout: service
+layout: prev-next-collection
 version: 1.0
 summary: Provides time based functions like delays, (cron and period based) schedules, and timeouts on Promises. 
 ---

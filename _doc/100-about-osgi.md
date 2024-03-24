@@ -1,7 +1,7 @@
 ---
 title: OSGi Architecture
 summary: A short overview of what OSGi is about
-layout: default
+layout: prev-next-collection
 lprev: 090-modularity
 lnext: 210-overview
 ---

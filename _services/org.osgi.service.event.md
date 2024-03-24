@@ -1,6 +1,6 @@
 ---
 title: org.osgi.service.event
-layout: service
+layout: prev-next-collection
 version: 1.0
 summary: A simple publish and subscribe mechanism for generic events 
 ---

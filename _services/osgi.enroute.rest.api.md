@@ -1,6 +1,6 @@
 ---
 title: osgi.enroute.rest.api
-layout: service
+layout: prev-next-collection
 version: 1.0
 summary: Provides REST end-points that are based on method naming pattern with type safe use of the pay-load, parameters, and result body.
 ---
