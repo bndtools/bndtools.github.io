@@ -1,6 +1,7 @@
 ---
 title: Getting Xcore to work in Bndtools
 summary: How to make an Xcore project work within Bndtools, both via the UI and command line.
+layout: prev-next-collection
 ---
 
 This [example project](https://github.com/CoastalHacking/xcore-bndtools-example) shows

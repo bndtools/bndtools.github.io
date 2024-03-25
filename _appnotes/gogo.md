@@ -1,6 +1,7 @@
 ---
 title: Gogo shell in OSGi enRoute
 summary: A short introduction to the Gogo shell
+layout: prev-next-collection
 ---
 
 The Gogo shell is a bash like shell that closely interacts with the OSGi framework. Gogo was designed because there is a need for a service that allows human users as well as well as programs to interact with on OSGi based system with a line based interface: a shell. This shell should allow interactive and string based programmatic access to the core features of the framework as well as provide access to functionality that resides in bundles.

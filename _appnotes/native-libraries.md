@@ -1,6 +1,7 @@
 ---
 title: Using Native Libraries in a Bundle
 summary: Discusses the issues with native libraries and OSGi
+layout: prev-next-collection
 ---
 
 Sometimes a bundle may contain several native libraries. One may be JNI
