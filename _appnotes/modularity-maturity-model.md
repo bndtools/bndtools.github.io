@@ -1,6 +1,7 @@
 ---
 title: Modulariy Maturiy Model (MMM)
 summary: he <em>Modularity Maturity Model</em> was proposed by Dr Graham Charters at the OSGi Community Event 2011, as a way of describing how far down the modularity path an organisation or project is.
+layout: prev-next-collection
 ---
 
 The <em>Modularity Maturity Model</em> was proposed by Dr Graham

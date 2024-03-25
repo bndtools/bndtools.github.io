@@ -2,6 +2,7 @@
 title: Releasing to a Nexus server
 summary: Shows how the OSGi enRoute bundles and API are released to Maven Central
 version: 2.0.0
+layout: prev-next-collection
 ---
 
 This App note shows how to setup a workspace to release snapshots and stage releases.

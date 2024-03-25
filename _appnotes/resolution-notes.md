@@ -1,6 +1,7 @@
 ---
 title: Notes about Resolution
 summary: Notes regarding resolving bundle capabilities and requirements
+layout: prev-next-collection
 ---
 
 OSGi has an advanced dependency management mechanism based on matching

@@ -1,6 +1,7 @@
 ---
 title: Concurrency
 summary: OSGi is multi-threaded and service calls will happen on different threads. This App note discusses the concurrency issues and provides a number of standard patterns that work well in OSGi (and outside).
+layout: prev-next-collection
 sponsor: SMA
 ---
 

@@ -1,6 +1,7 @@
 ---
 title: Data Transfer Objects (DTO)
 summary: OSGi started to heavily use DTO's since R5. DTOs do not look very object oriented, this application note provides the reasoning why DTOs .
+layout: prev-next-collection
 ---
 
 In the last releases of OSGi specifications Data Transfer Objects (DTOs) have become quite important. This comes as a surprise to people because 

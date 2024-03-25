@@ -1,6 +1,7 @@
 ---
 title: The Bndtools Workspaces
 summary: How to work with workspaces
+layout: prev-next-collection
 ---
 
 A common recurring theme on the Bndtools and OSGi enRoute mailing lists is that people, usually from the Maven world, hate the bnd workspace model. The fact that there is a `cnf` directory (like the `.git` directory in Git) and that the project directories must be on the same level as the `cnf` directory is seen as an (often HUGE) constraint. 
