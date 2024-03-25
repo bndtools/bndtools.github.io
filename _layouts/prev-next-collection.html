@@ -2,30 +2,37 @@
 layout: default
 ---
 
-{% assign prevurl = "" %}
-	{% assign found = false %}
-	
-	{% for service in site[page.collection] %}
-	
-		{%if found %}
-			{% assign found = false %}
-			{% unless forloop.last %}
-				{% assign next = service.url %}
-			{% endunless %}	
-		{%endif%}
-		
-		{% if service.url == page.url %}
-			{% assign found = true %}
-			{% unless forloop.first %}
-				{% assign prev = prevurl %}
-			{% endunless %}	
-		{%endif%}
+{% assign prev = nil %}
+{% assign next = nil %}
+{% assign in_loop = false %}
 
-		{% assign prevurl = service.url %}
+{% for service in site[page.collection] %}
+  {% if in_loop %}
+    {% assign next = service.url %}
+    {% break %}
+  {% endif %}
+  
+  {% if service.url == page.url %}
+    {% assign in_loop = true %}
+    {% continue %}
+  {% endif %}
+  
+  {% if forloop.last == false %}
+    {% assign prev = service.url %}
+  {% endif %}
+{% endfor %}
 
-	{%endfor%}
-	{{content}}
-	<hr/>
-	
-	{% if prev %}<a class=nav-prev href="{{prev}}" {% unless prev %}disabled{%endunless%}>Prev</a>{%endif%}
-	{% if next %}<a class=nav-next href="{{next}}" {% unless next %}disabled{%endunless%}>Next</a>{%endif%}
+{{ content }}
+<hr/>
+
+{% unless forloop.first %}
+  {% if prev %}
+    <a class="nav-prev" href="{{ prev }}">Prev</a>
+  {% endif %}
+{% endunless %}
+
+{% unless forloop.last %}
+  {% if next %}
+    <a class="nav-next" href="{{ next }}">Next</a>
+  {% endif %}
+{% endunless %}
