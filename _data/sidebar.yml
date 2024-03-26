@@ -40,7 +40,7 @@ nav:
       - name: bnd manual
         url: "https://bnd.bndtools.org"
         external: true
-  - title: Knowledge
+  - title: enRoute classic
     links:
       - name: App Notes
         url: "/book/680-appnotes.html"
