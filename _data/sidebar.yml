@@ -40,18 +40,18 @@ nav:
       - name: bnd manual
         url: "https://bnd.bndtools.org"
         external: true
-  - title: Knowledge
+  - title: enRoute classic
     links:
-      - name: App Notes
-        url: "/book/680-appnotes.html"
+      - name: About OSGi
+        url: "/book/210-doc.html"
       - name: Services
         url: "/book/400-services.html"
       - name: Tutorials
         url: "/book/150-tutorials.html"  
+      - name: App Notes
+        url: "/book/680-appnotes.html"
       - name: Examples
         url: "/book/180-examples.html"
-      - name: About OSGi
-        url: "/book/210-doc.html"
   - title: Development
     links:
       - name: On Github

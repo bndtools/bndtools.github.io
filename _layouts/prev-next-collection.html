@@ -1,38 +1,52 @@
 ---
-layout: default
+layout: baselayout
 ---
 
 {% assign prev = nil %}
 {% assign next = nil %}
+{% assign prevTitle = nil %}
+{% assign nextTitle = nil %}
 {% assign in_loop = false %}
 
-{% for service in site[page.collection] %}
+{% for entry in site[page.collection] %}
   {% if in_loop %}
-    {% assign next = service.url %}
+    {% assign next = entry.url %}
+    {% assign nextTitle = entry.title %}
     {% break %}
   {% endif %}
   
-  {% if service.url == page.url %}
+  {% if entry.url == page.url %}
     {% assign in_loop = true %}
     {% continue %}
   {% endif %}
   
   {% if forloop.last == false %}
-    {% assign prev = service.url %}
+    {% assign prev = entry.url %}
+    {% assign prevTitle = entry.title %}
   {% endif %}
 {% endfor %}
 
-{{ content }}
-<hr/>
 
-{% unless forloop.first %}
+
+{% capture navigation_links %}
   {% if prev %}
-    <a class="nav-prev" href="{{ prev }}">Prev</a>
+    <a class="nav-prev" href="{{ prev }}" title="{{prevTitle}}">Prev</a>
   {% endif %}
-{% endunless %}
 
-{% unless forloop.last %}
   {% if next %}
-    <a class="nav-next" href="{{ next }}">Next</a>
+    <a class="nav-next" href="{{ next }}" title="{{nextTitle}}">Next</a>
   {% endif %}
-{% endunless %}
+{% endcapture %}
+
+{{navigation_links}}
+<hr />
+
+{% if page.since %}<span class="secondary round label right" style="margin-bottom:5px;" title="The content below assumes bndtools version {{ page.since }}."><a href="https://github.com/bndtools/bnd/wiki/Changes-in-{{ page.since }}" target="_blank">Since {{ page.since }}</a></span></span>{% endif %}
+<h1>{{ page.title }}</h1>
+
+{{content}}
+<hr />
+
+{{navigation_links}}
+
+  
