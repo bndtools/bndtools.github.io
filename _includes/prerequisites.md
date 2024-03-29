@@ -43,7 +43,7 @@ If you start using enRoute you will likely create a number of workspaces. There 
 
 There is also multi-workspace launcher plugin from Torkild U. Resheim that incorporates Neil Bartlett's task bar badge (above).
 
-> [OS X Eclipse Launcher Utility](http://marketplace.eclipse.org/content/osx-eclipse-launcher)
+> [OS X Eclipse Launcher Utility](https://marketplace.eclipse.org/content/osx-eclipse-launcher)
 
 
 [java8]: http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html

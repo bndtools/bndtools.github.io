@@ -69,4 +69,4 @@ The project `biz.aQute.tester.test` contains the unit tests for `biz.aQute.teste
 See this project's [README](https://github.com/bndtools/bnd/blob/master/biz.aQute.tester.test/readme.md) for instructions of how to execute tests in Eclipse.
 
 [1]: /tutorial.html "Bndtools Tutorial"
-[2]: http://marketplace.eclipse.org/ "Eclipse Marketplace"
+[2]: https://marketplace.eclipse.org/ "Eclipse Marketplace"
