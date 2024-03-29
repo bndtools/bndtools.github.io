@@ -19,25 +19,29 @@ The Event Admin service captures this commonality.
 
 The following code shows a component that handles an event on the topic: `some/topic`. 
 
-	import org.osgi.service.event.Event;
-	import org.osgi.service.event.EventHandler;
-	import org.osgi.service.event.EventConstants;
-	
-	@Component( property= EventConstants.EVENT_TOPIC + "=some/topic")
-	public class SomeListenerImpl implements EventHandler {
-	
-	    @Override
-	    public void handleEvent(Event event) {
-	        System.out.println("Got event " + event);
-	    }
+```java
+import org.osgi.service.event.Event;
+import org.osgi.service.event.EventHandler;
+import org.osgi.service.event.EventConstants;
+
+@Component( property= EventConstants.EVENT_TOPIC + "=some/topic")
+public class SomeListenerImpl implements EventHandler {
+
+	@Override
+	public void handleEvent(Event event) {
+		System.out.println("Got event " + event);
 	}
+}
+```
 
 ## Example Generator
 
 The following code shows a component that sends an event every second using the [scheduler][scheduler]. 
 
-    @Component(property=CronJob.CRON+"=* * * * * ?")
-    public class EventSource {
+```java
+@Component(property=CronJob.CRON+"=* * * * * ?")
+public class EventSource {
+
 	EventAdmin	eventAdmin;
 	
 	public void run(Object object) {
@@ -49,19 +53,24 @@ The following code shows a component that sends an event every second using the 
 	void setEventAdmin( EventAdmin eventAdmin) {
 		this.eventAdmin = eventAdmin;
 	}
-    }
+}
+```
 
 
 
 
 Nearly all the bundles in an OSGi framework must deal with events, either as an event publisher or as an event handler. So far, the preferred mechanism to disperse those events have been the service interface mechanism.
 
-Dispatching events for a design related to X, usually involves a service of type XListener. However, this model does not scale well for fine grained events that must be dispatched to many different handlers. Additionally, the dynamic nature of the OSGi environment introduces several complexi- ties because both event publishers and event handlers can appear and disappear at any time.
+Dispatching events for a design related to _X_, usually involves a service of type _XListener_. However, this model does not scale well for fine grained events that must be dispatched to many different handlers. Additionally, the dynamic nature of the OSGi environment introduces several complexities because both event _publishers_ and event _handlers_ can appear and disappear at any time.
+
+## Summary
 
 The Event Admin service provides an inter-bundle communication mechanism. It is based on a event publish and subscribe model, popular in many message based systems.
 This specification defines the details for the participants in this event model.
 
+## Links
 
+- <https://docs.osgi.org/specification/osgi.cmpn/8.0.0/service.event.html>
 
 
 [scheduler]: /services/osgi.enroute.scheduler.api.html
