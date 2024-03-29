@@ -44,12 +44,15 @@ nav:
     links:
       - name: About OSGi
         url: "/book/210-doc.html"
+        urlprefix: "/doc/"
       - name: Services
         url: "/book/400-services.html"
+        urlprefix: "/services/"
       - name: Tutorials
         url: "/book/150-tutorials.html"  
       - name: App Notes
         url: "/book/680-appnotes.html"
+        urlprefix: "/appnotes/"
       - name: Examples
         url: "/book/180-examples.html"
   - title: Development

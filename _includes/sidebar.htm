@@ -12,6 +12,8 @@
           {% assign isActive = true %}
         {% elsif page.url contains link.url and link.url != "/" %}
           {% assign isActive = true %}
+        {% elsif page.url contains link.urlprefix %}
+          {% assign isActive = true %}  
         {% endif %}
         <li class="{% if isActive %}active{% endif %}">
           <a href="{{ link.url }}" {% if link.external %}class="external-left"{% endif %}>
