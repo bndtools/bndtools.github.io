@@ -1,7 +1,7 @@
 Before you start any of the tutorials you must prepare your environment so that the right tools are installed. This page helps you to achieve this. We need to run the following tools on your computer:
 
-* [Java 8][java8], probably already got it? If not, this is a good time to get started!
-* [Eclipse Mars][mars], if you do not know which variant, pick the _Eclipse Standard_ variant
+* [Java 17+][java17+], probably already got it? If not, this is a good time to get started!
+* [Eclipse][eclipse], if you do not know which variant, pick the _Eclipse Standard_ variant
 * [Git][git], unfortunately the built-in EGit in Eclipse needs some good old command line help
 
 
@@ -37,16 +37,13 @@ Make sure you have a good command line shell available. If you're familiar with 
 
 ### MacOS
 
-If you start using enRoute you will likely create a number of workspaces. There is a very handy utility plugin for Eclipse on MacOS that shows you which workspace is which icon in the task bar:
-
-> [http://njbartlett.name/2011/10/09/workspace-mac-badge.html](http://njbartlett.name/2011/10/09/workspace-mac-badge.html)
-
-There is also multi-workspace launcher plugin from Torkild U. Resheim that incorporates Neil Bartlett's task bar badge (above).
+If you start using enRoute you will likely create a number of workspaces. 
+There is a multi-workspace launcher plugin from Torkild U. Resheim.
 
 > [OS X Eclipse Launcher Utility](https://marketplace.eclipse.org/content/osx-eclipse-launcher)
 
 
-[java8]: http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
-[mars]: https://www.eclipse.org/downloads/
-[git]: http://git-scm.com/book/en/Getting-Started-Installing-Git
-[gitforwindows]: http://msysgit.github.io
+[java17+]: https://adoptium.net/temurin/releases/
+[eclipse]: https://www.eclipse.org/downloads/
+[git]: https://git-scm.com/book/en/Getting-Started-Installing-Git
+[gitforwindows]: https://gitforwindows.org/
