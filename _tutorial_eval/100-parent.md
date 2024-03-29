@@ -105,7 +105,7 @@ plugin will automatically run in m2e to do a lot of magic for you.
 				<plugin>
 					<groupId>biz.aQute.bnd</groupId>
 					<artifactId>bnd-maven-plugin</artifactId>
-					<version>3.3.0</version>
+					<version>7.0.0</version>
 					<executions>
 						<execution>
 							<goals>
@@ -182,7 +182,7 @@ After you created the pom.xml file you should verify that it all is ok.
 	[INFO] Building osgi.enroute.examples.eval 1.0.0-SNAPSHOT
 	[INFO] ------------------------------------------------------------------------
 	[INFO] 
-	[INFO] --- bnd-maven-plugin:3.3.0:bnd-process (default) @ osgi.enroute.examples.eval ---
+	[INFO] --- bnd-maven-plugin:7.0.0:bnd-process (default) @ osgi.enroute.examples.eval ---
 	[INFO] skip project with packaging=pom
 	[INFO] 
 	[INFO] --- maven-install-plugin:2.4:install (default-install) @ osgi.enroute.examples.eval ---

@@ -230,7 +230,7 @@ Make sure you're in the top directory!
 	Require-Capability                       osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
 	Require-Capability                       osgi.extender;filter:="(&(osgi.extender=osgi.component)(version>=1.3.0)(!(version>=2.0.0)))",osgi.service;filter:="(objectClass=org.osgi.service.log.LogService)";effective:=active,osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
 	Service-Component                        OSGI-INF/osgi.enroute.examples.eval.provider.xml
-	Tool                                     Bnd-3.3.0.201609221906                  
+	Tool                                     Bnd-7.0.0                  
 
 	[IMPEXP]
 	Import-Package

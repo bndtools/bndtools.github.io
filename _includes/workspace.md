@@ -8,7 +8,7 @@ go to Bndtools preferences and select `Workspace Templates`.  You should edit th
 OSGi enRoute template and select the `next` branch.
 {: .warning } 
 
-This tutorial requires Bndtools 3.3.0 or later, the workspace templates were added in 3.2.0
+This tutorial requires Bndtools 7.0.0 or later, the workspace templates were added in 3.2.0
 {: .note}
 
 We generally advise you to place things in your home directory (~). However, Eclipse does not recognize the tile (`~`) as a reference to your home directory so different paths are shown in the pictures.
