@@ -9,6 +9,12 @@ This application note was written out of my (Peter Kriens) frustration with many
 
 ## Gogo
 
+<hr />
+
+Note to beginners: An introduction to the Gogo Shell can be found in the [OSGi Starter tutorial](/workspace/osgi-starter.html#gogo).
+
+<hr />
+
 Gogo is a surprising powerful shell in a very tiny package. It is used in virtually all OSGi installations that I meet. Newcomers to OSGi often love the shell to explore and navigate the environment. However, when I look at open source Gogo commands they often look like:
 
 ```java
