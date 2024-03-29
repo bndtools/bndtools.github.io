@@ -27,8 +27,6 @@ collections:
     output: true
   tutorial_iot:
     output: true
-  tutorial_wrap:
-    output: true
   tutorial_eval:
     output: true
   tutorial_maven:
