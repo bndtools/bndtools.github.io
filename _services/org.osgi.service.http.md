@@ -20,25 +20,42 @@ Implementations of the Http Service can be based on:
 
 Alternatively, implementations of this service can support other protocols if these protocols can conform to the semantics of the javax.servlet API. This additional support is necessary because the Http Service is closely related to [3] Java Servlet Technology. Http Service implementations must support at least version 2.1 of the Java Servlet API.
 
-## OSGi HTTP Whiteboard Pattern
 
-The OSGi HTTP Whiteboard pattern provides a declarative way to register servlets and resources with the Http Service, using annotations instead of programmatic registration.
+## Examples
+
+Note: Also see the next page about the [OSGi HTTP Whiteboard Pattern](/services/org.osgi.service.http.whiteboard.html) showing simpler approach than the example code below (less boiler plate code).
+
 
 ### Registering Servlets
 
-To register a servlet using the HTTP Whiteboard pattern, you can use the `@javax.servlet.annotation.WebServlet` annotation on your servlet class. This annotation allows you to specify the URL pattern that the servlet should handle.
+A servlet is a Java object that implements the Java Servlet API. Registering a servlet in the OSGi framework gives it control over some part of the Http Service URI namespace. This allows the servlet to handle HTTP requests and generate dynamic content in response.
+
+Here's an example of how to register a servlet in OSGi:
 
 ```java
-import org.osgi.service.component.annotations.Component;
+import org.osgi.service.http.HttpService;
+import org.osgi.service.http.NamespaceException;
 import javax.servlet.Servlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@Component(service = Servlet.class, property = {
-    "osgi.http.whiteboard.servlet.pattern=/myservlet"
-})
 public class MyServlet implements Servlet {
+    private HttpService httpService;
+
+    public void activate(HttpService httpService) {
+        this.httpService = httpService;
+        try {
+            httpService.registerServlet("/myservlet", this, null, null);
+        } catch (NamespaceException e) {
+            // Handle exception
+        }
+    }
+
+    public void deactivate() {
+        httpService.unregisterServlet(this);
+    }
+
     @Override
     public void service(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.getWriter().write("Hello from MyServlet!");
@@ -46,36 +63,44 @@ public class MyServlet implements Servlet {
 }
 ```
 
-In this example, the `@Component` annotation declares that the `MyServlet` class is a service of type `Servlet`. The `osgi.http.whiteboard.servlet.pattern` property specifies the URL pattern that the servlet should handle, in this case, `/myservlet`.
-
 ### Registering Resources
 
-To register a resource using the HTTP Whiteboard pattern, you can use the `@org.osgi.service.http.whiteboard.HttpWhiteboardConstants.HTTP_WHITEBOARD_RESOURCE_PATTERN` annotation on your resource provider class.
+Registering a resource allows HTML files, image files, and other static resources to be made visible in the Http Service URI namespace by the requesting bundle. This is useful for serving static content, such as web pages, images, and other assets.
+
+Here's an example of how to register a resource in OSGi:
 
 ```java
-import org.osgi.service.component.annotations.Component;
-import org.osgi.service.http.whiteboard.HttpWhiteboardConstants;
+import org.osgi.service.http.HttpService;
+import org.osgi.service.http.NamespaceException;
 
-@Component(property = {
-    HttpWhiteboardConstants.HTTP_WHITEBOARD_RESOURCE_PATTERN + "=/resources/*",
-    HttpWhiteboardConstants.HTTP_WHITEBOARD_RESOURCE_PREFIX + "=/web"
-})
 public class MyResourceProvider {
-    // No implementation needed, the annotations are enough
+    private HttpService httpService;
+
+    public void activate(HttpService httpService) {
+        this.httpService = httpService;
+        try {
+            httpService.registerResources("/resources", "/web", null);
+        } catch (NamespaceException e) {
+            // Handle exception
+        }
+    }
+
+    public void deactivate() {
+        httpService.unregisterResources("/resources", "/web");
+    }
 }
 ```
 
-In this example, the `@Component` annotation declares a resource provider service. The `HttpWhiteboardConstants.HTTP_WHITEBOARD_RESOURCE_PATTERN` property specifies the URL pattern that the resources should be served from, in this case, `/resources/*`. The `HttpWhiteboardConstants.HTTP_WHITEBOARD_RESOURCE_PREFIX` property specifies the directory in the bundle's resources that should be used to serve the static files, in this case, `/web`.
+In this example, the `/resources` URI path is mapped to the `/web` directory in the bundle's resources. This allows the Http Service to serve static files, such as HTML, CSS, and images, from the bundle's web directory.
 
 ## Summary
 
-The OSGi HTTP Whiteboard pattern provides a declarative way to register servlets and resources with the Http Service, using annotations instead of programmatic registration. This approach simplifies the process of exposing HTTP-based services and resources in an OSGi framework, making it easier for bundle developers to create web-based applications on top of the OSGi platform.
+The OSGi Http Service provides a standard way for bundle developers to expose HTTP-based services and resources in an OSGi framework. By registering servlets and resources, developers can create dynamic and static web content that can be accessed by users through a standard web browser. This integration with the Java Servlet API allows for a familiar and powerful way to build web-based applications on top of the OSGi platform.
 
 
 ## Links
 
 - <https://docs.osgi.org/specification/osgi.cmpn/8.0.0/service.http.html>
-- <https://docs.osgi.org/specification/osgi.cmpn/8.0.0/service.http.whiteboard.html>
 
 [1]: HTTP 1.0 Specification RFC-1945, http://www.ietf.org/rfc/rfc1945.txt, May 1996
 [2]: HTTP 1.1 Specification RFC-2616, http://www.ietf.org/rfc/rfc2616.txt, June 1999
