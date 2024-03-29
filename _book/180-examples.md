@@ -13,14 +13,6 @@ This example is quite large since it was used in the 2015 IoT Contest. The OSGi 
 
 [Go to the Trains example](/trains/200-architecture.html)
 
-## Components
-
-Sometimes one could wonder what the initial designers of OSGi were smoking when designing the core APIs. Though the APIs were top from a point of view of specification, consistency, clarity, and power, they sucked quite badly because they required lots of boiler plate. Fortunately, Declarative Services changed all that. DS combines the awesome power of OSGi and type safe Java with the friendliness of a script language. 
-
-This project shows lots of examples of what you can do with OSGi Declarative Services.
-
-[Go to the Component examples](https://github.com/osgi/osgi.enroute.examples/tree/master/osgi.enroute.examples.component.application)
-
 ## Led over MQTT
 
 This example has been donated by Amit Kumar Mondal. It shows how to use OSGi enRoute to turn on a LED over MQTT using the Eclipse server and a Raspberry Pi. It requires the [IoT Tutorial as a base][12]. Very interesting if you are into IoT. (Realize that looking at the predictions IoT is soon into you.)
