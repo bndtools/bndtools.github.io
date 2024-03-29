@@ -50,7 +50,7 @@ A full working example can be found at [OSGi enRoute Examples][easseexample].
  
 ## Description
 
-This service uses [OSGi Event Admin][ea] to forward events from the OSGi Framework towards the front-end using Javascript's [Server Sent Events][sse] (also see [EventSource][EventSource]). Since OSGi eventes are properties, this is quite straightforward.
+This service uses [OSGi Event Admin][ea] to forward events from the OSGi Framework towards the front-end using Javascript's [Server Sent Events][sse] (also see [EventSource][es]). Since OSGi eventes are properties, this is quite straightforward.
 
 The service can be used by annotating the application main class  `RequireEventAdminServerSentEventsWebResource`, this will include the `enEasse` angular module (see the WebResource Namespace for more information).
 
@@ -75,4 +75,4 @@ Since the connection consumes resources it is important to close the connection 
 [ea]: /services/org.osgi.service.event.html
 [easseexample]: https://github.com/osgi/osgi.enroute.examples/tree/master/osgi.enroute.examples.easse.application
 [sse]: http://www.w3schools.com/html/html5_serversentevents.asp
-[EventSource]: https://developer.mozilla.org/en-US/docs/Web/API/EventSource
+[es]: https://developer.mozilla.org/en-US/docs/Web/API/EventSource
