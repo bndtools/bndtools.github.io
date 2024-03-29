@@ -155,7 +155,7 @@ We now build the bundle:
 	Provide-Capability                       osgi.service;objectClass:List<String>="osgi.enroute.examples.eval.api.Eval"
 	Require-Capability                       osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
 	Service-Component                        OSGI-INF/osgi.enroute.examples.eval.parsii.provider.xml
-	Tool                                     Bnd-3.3.0.201609221906                  
+	Tool                                     Bnd-7.0.0                  
 	
 	[IMPEXP]
 	Import-Package

@@ -7,14 +7,7 @@ Before you start any of the tutorials you must prepare your environment so that 
 
 ## Installing bndtools
 
-You can install bndtools from the Eclipse market place, make sure you got version 3.3.0 or later. 
-You can also install bndtools directly from the update site:
-
-	https://dl.bintray.com/bndtools/bndtools/3.3.0
-
-If we update bndtools with a stable release then we will place it here:
-
-	https://dl.bintray.com/bndtools/bndtools/latest
+You can install bndtools from the Eclipse market place or from the update site.
 
 You can find the details how to install bndtools on the [bndtools website](http://bndtools.org/installation.html#update-site)
 
