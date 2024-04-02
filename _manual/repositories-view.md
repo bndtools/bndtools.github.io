@@ -51,8 +51,7 @@ The following properties are supported:
 |           |entry.                                      |                                             |
 |`cache`  | Local cache directory for remote             | No. Default: `${user.home}/.bnd/cache/`     |
 |              | resources.                                   |                                             |
-|`max.stale`  | The time (in seconds) a cached entry stays in| No. Default: `1 Year`     |
-|              | the cache                                   |                             |
+|`max.stale`  | Bnd has it's own download cache. `max.stale` configures for how many _seconds_ the downloaded index file stays in the internal download cache.| No. Default: `1 Year`     |
 |`poll.time`  | The interval (in seconds) the index is polled| No. Default: `5 Minutes`     |
 |              |  for updates (Note: The cache will be used)   |                             |
 
