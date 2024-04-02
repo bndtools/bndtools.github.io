@@ -20,8 +20,7 @@ Repositories are implemented as bnd plug-ins, and can be configured by editing t
 
 Since repositories are implemented as plug-ins, it is theoretically possible to support almost any kind of repository, by developing a new plug-in type; though of course it is more convenient to use an existing repository plug-in. Bnd and Bndtools support the following repository types out-of-the-box.
 
-Indexed Repositories
-====================
+## Indexed Repositories
 
 Bndtools supports a collection of repositories based on an _index_ file that reports the content of the repository along with the capabilities and requirements of each resource listed. There are multiple available formats for the index:
 
@@ -31,8 +30,7 @@ Bndtools supports a collection of repositories based on an _index_ file that rep
 
 The advantage of using indexed repositories is that they can be used for automatic Resolution in the bndrun editor. There are two basic types of indexed repositories:
 
-OSGiRepositories / Fixed Index Repositories
-------------------------
+### OSGiRepositories / Fixed Index Repositories
 
 **Note! The Fixed Index Repository type is Deprecated and currently extends the OSGiRepository without any additional behavior. It will be removed at some point in the future. Please use the OSGiRepository.**
 
@@ -40,95 +38,27 @@ The OSGiRepository can use index files compatible to the [OSGi Repository Servic
 
 A OSGiRepository can not be modified from within bnd or Bndtools.
 
-The following properties are supported:
+[See the configuration properties and examples in the bnd manual](https://bnd.bndtools.org/plugins/osgirepo.html)
 
-| Name    | Description                                  | Required?                                   |  
-|---------|----------------------------------------------|---------------------------------------------|
-|`name`   |  Name for the repository.                    | No.                                         |
-|`locations`|Comma-separated list of index URLs.         | No. Default: empty                          |
-|           |**NB:** surround this value with            |                                             |
-|           |single-quotes if it contains more than one  |                                             |
-|           |entry.                                      |                                             |
-|`cache`  | Local cache directory for remote             | No. Default: `${user.home}/.bnd/cache/`     |
-|              | resources.                                   |                                             |
-|`max.stale`  | Bnd has it's own download cache. `max.stale` configures for how many _seconds_ the downloaded index file stays in the internal download cache.| No. Default: `1 Year`     |
-|`poll.time`  | The interval (in seconds) the index is polled| No. Default: `5 Minutes`     |
-|              |  for updates (Note: The cache will be used)   |                             |
 
-Example:
-
-```
-aQute.bnd.repository.osgi.OSGiRepository;\
-		locations=https://dl.bintray.com/bnd/dist/4.0.0/index.xml;\
-		name=BND;\
-		poll.time=3600;\
-		max.stale=-1;\
-		cache=${build}/bache/bnd
-```
-
-The index file may optionally be compressed with gzip. 
-
-Local Indexed Repository
-------------------------
+### Local Indexed Repository
 
 This repository maintains a local filesystem directory of bundles. The repository is editable from with bnd/Bndtools and the index file is regenerated automatically when bundles are deployed into it.
 
-The following properties are supported:
-
-| Name    | Description                                  | Required?                                   |  
-|---------|----------------------------------------------|---------------------------------------------|
-|`name`   |  Name for the repository.                    | No.                                         |
-|`local`  |  The local filesystem directory.             | Yes. |
-|`type`   |The type (format) of index to generate. See   |No. Default: `R5`|
-|         |note 1 below.                                 |                 |
-|`pretty` |   Whether to generate the index in pretty-   |   No. Default: false|
-|         |  printed format. See note 2 below.           |                     |
-|`readonly` |Whether the repository should be read-only, | No. Default: false |
-|         |  i.e. disabled for editing from Bndtools. | |
-|`mode`   |  Resolution mode: `build`, `runtime` or `any`. |No. Default: `any`|
-|         |  Controls the resolution phase in which this | |
-|         |  repository may be used. | |
-| `locations` | Comma-separated list of *additional* index |  No. Default: empty|
-|            | URLs. **NB:** surround this value with | |
-|            | single-quotes if it contains more than one | |
-|            | entry. | |
-|`cache`     | Local cache directory for remote           |   No. Default: `${local}/.cache`|
-|            | resources. | |
+[See the configuration properties and examples in the bnd manual](https://bnd.bndtools.org/plugins/localindexrepo.html)
 
 
-Note 1: The index is generated by default in R5 format. To request alternative format(s), specify a list of format names separated by the "|" (pipe) character.
-For example, to generate both R5 and OBR formats specify `type=R5|OBR`.
+### File Repository
 
-Note 2: R5 indexes are generated by default with no whitespace/indenting and gzipped, and the default index file name is `index.xml.gz`. Turning on pretty-printing enables indented, uncompressed output into the file `index.xml`. This setting has no effect on OBR indexes, which are always indented/uncompressed and named `repository.xml`.
+This type of repository is based on a very simple file system directory structure. 
 
-File Repository
-===============
+[See the configuration properties and examples in the bnd manual](https://bnd.bndtools.org/plugins/filerepo.html)
 
-This type of repository is based on a very simple file system directory structure. It is editable from within Bndtools. **NB:** it does not support indexing, so repositories of this type cannot participate in resolution of Run Requirements.
 
-The following properties are supported:
+## Maven Repositories
 
-| Name    | Description                                  | Required?                                   |  
-|---------|----------------------------------------------|---------------------------------------------|
-|`name`   |  Name for the repository.                    | No.                                         |
-|`location`  | The local filesystem directory.           |   Yes. |
-|`readonly`  |Whether the repository should be read-only,|  No. Default: false |
-|            |i.e. disabled for editing from Bndtools.| |
+### Maven Central (MavenBndRepository)
 
-Maven Repositories
-===========================
-
-## Maven Central ##
-
-Maven Central repository is configured in main bnd config file (`cnf/build.bnd`) as:
-```
--plugin.6.Central: \
-	aQute.bnd.repository.maven.provider.MavenBndRepository; \
-		releaseUrl=https://repo.maven.apache.org/maven2/; \
-		index=${.}/central.maven; \
-		readOnly=true; \
-		name="Maven Central"
-```
 This repository is one of "indexed" repositories, therefore `index` property poits to `central.maven` file that contains `GAV coordinates` to libraries located in Maven Central.
 
 Hint: When this file is empty, the attempt to view the contents of the repository using the Repositories View in Bndtools, it will appear to be empty as well. 
@@ -150,14 +80,14 @@ In order to do that:
 4. Locate the main pom file and drag&drop it over `Maven Central` repository in `Repositories` view
 This action will fill the file for you.
 
-TODO update for current repository types which support Maven repos.
+[See the configuration properties and examples in the bnd manual](https://bnd.bndtools.org/plugins/maven.html)
 
-Maven Repositories (Old Style)
-==============================
+## Maven Repositories (Old Style)
+
 
 **NB. The repository types in this section are deprecated. Please use the Aether Repository type instead. The following documentation is retained for reference purposes only.**
 
-## Maven Local ##
+### Maven Local
 
 This type of repository is used to access bundles in the Maven local repository, usually found in `$HOME/.m2/repository`. Note that this plug-in accesses the Maven repository directly and does not building with Maven.
 
@@ -174,7 +104,7 @@ Note that if you use the [Bundle Plugin for Maven](http://felix.apache.org/site/
             name='Maven Repo'
 
 
-## Maven Remote ##
+### Maven Remote
 
 This type of repository can be used to access bundles in a remote Maven repository, including Maven Central or any Nexus repository. **NB:** this repository type is not browseable; if you attempt to view the contents of the repository using the Repositories View in Bndtools, it will appear to be empty. However it will be possible to reference JARs from the repository in your `-buildpath` or `-runbundles` if the group ID and artefact ID is known.
 
