@@ -5,7 +5,7 @@
     {% endif %}
     {% for link in section.links %}
       {% if link.divider %}
-        <li class="divider" />
+        <li class="divider"></li>
       {% else %}
         {% assign isActive = false %}
         {% if link.url == "/" and page.url == "/" %}
