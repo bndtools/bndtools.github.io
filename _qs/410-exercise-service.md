@@ -25,9 +25,11 @@ In OSGi enRoute this means the name of the project should end with `.api` and yo
 
 In this new project, we rename the template API to reflect our semantics. So rename the `com.acme.prime.api` package to `com.acme.prime.upper.api` and the `Prime.java` file to `Upper.java`. Then change the `Upper` class so that we can use it to change a word to upper case:
 
-	public interface Upper {
-		String upper(String input);
-	}
+```java
+public interface Upper {
+	String upper(String input);
+}
+```
 
 If you have another API in the future, you can then add it to the same project in another package.
 
@@ -56,20 +58,24 @@ The first thing we need to do is to make sure the Upper Application can see the 
 
 Then we change the `UpperApplication` component class. We must add a setter method for the `Upper` service with a `@Reference` annotation, which means we must import `org.osgi.service.component.annotations.Reference`. No we can add the reference to the end of the class (convention is to place references at the end):
 
-	public class UpperApplication implements REST {
-		...
+```java
+public class UpperApplication implements REST {
+	...
 
-		@Reference
-		Upper upper;
-	}
+	@Reference
+	Upper upper;
+}
+```
 
 The `@Reference` annotation creates a dependency on this service; the `UpperApplication` component is not started until the service registry contains an Upper service. 
 
 The next step is to use the `upper` instance variable that we've just set in the `getUpper` method (so we must import `com.acme.prime.upper.api.Upper` again).
 
-	public String getUpper(String string) {
-		return upper.upper(string);
-	}
+```java
+public String getUpper(String string) {
+	return upper.upper(string);
+}
+```
 
 If the OSGi framework is still running, you likely get errors since we now have an unresolved requirement in our code; we're referring to the `com.acme.prime.upper.api` package which is now not provided by anybody.
 

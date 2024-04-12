@@ -10,36 +10,40 @@ A recurring question on OSGi forums is how to use _interceptors_. The [Spring fr
 
 Let's say we have a function that performs some work. In the following example we need to do some "pre work", "post work", and additionally handle exceptions in similar way:
 
-	void doWork() {
-	    preWork();
-		try {
-		   … do work
-		   postWork();
-		} catch( Throwable t) {
-	       exceptionWork(t);
-		   throw t;
-		}
+```java
+void doWork() {
+	preWork();
+	try {
+		… do work
+		postWork();
+	} catch( Throwable t) {
+		exceptionWork(t);
+		throw t;
 	}
-	
-	void doOtherWork() {
-	    preWork();
-		try {
-		   … do other work
-		   postWork();
-		} catch( Throwable t) {
-	       exceptionWork(t);
-		   throw t;
-		}
+}
+
+void doOtherWork() {
+	preWork();
+	try {
+		… do other work
+		postWork();
+	} catch( Throwable t) {
+		exceptionWork(t);
+		throw t;
 	}
+}
+```
 
 The problem with this approach is that it creates a lot of boiler plate code, and the actual work gets lost. How can we get rid of this noisy and distracting code? 
 
 One possible solution is to use Interceptors. With this approach, you add an annotation and now the caller is ensuring that your annotation is correctly interpreted.
 
-	@Work(SOME_PARAMETER)
-	void doWork() {
-		   … do work
-	}
+```java
+@Work(SOME_PARAMETER)
+void doWork() {
+		… do work
+}
+```
 
 Voila, boiler plate gone! Problem solved. Or is it?
 
@@ -76,9 +80,11 @@ However, we're many years further today then when that model was introduced, and
 
 Since Java 8 we now have lambdas! (About 42 years after Smalltalk.) Lambdas are interceptors turned inside out. In the transaction composition problem the interceptor had to do something before it ran our code, then ran our code, and then handle any exceptions and do some post-processing. With lambdas, we can achieve the same model by the method calling the interceptor and passing the function.
 
-	void doWork() {
-	    interceptor.doWork( () -> ... working );
-	}
+```java
+void doWork() {
+	interceptor.doWork( () -> ... working );
+}
+```
 
 That is, instead of typing an annotation above the method, you just use a method with that name and pass it parameters, one of the parameters being the function you want to check.
 
@@ -90,14 +96,16 @@ An extremely interesting example of this is the work being done on the [Transact
 
 The underlying problem with transactions is that when you get called in a service oriented world it is not always clear how to _compose_ the transactions. I.e. join, reject if on is there, or start. This is a classical problem where you need to do something _before_ and _after_ your actual code. Therefore the transaction control service makes it look like:
 
-       @Reference Store<Person> persons;
-       @Reference TransactionController txc;
+```java
+@Reference Store<Person> persons;
+@Reference TransactionController txc;
 
-       public Person findPerson( long id) {
-            return txc.required( () -> 
-                 persons.find( "select * from Person where id=%s", id )
-            );
-       }
+public Person findPerson( long id) {
+	return txc.required( () -> 
+			persons.find( "select * from Person where id=%s", id )
+	);
+}
+```
      
 Therefore, with the same amount of code (or less) you do not need the magic interceptors.
 
