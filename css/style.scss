@@ -92,3 +92,19 @@ signature {
 code {
   all: revert !important;
 }
+
+div[class*="language-"] {
+  position: relative;
+  margin: 5px 0 ;
+  padding: 1.75rem 0 1.75rem 1rem;
+}
+
+div[class*="language-"] button{
+  position: absolute;
+  top: 35px;
+  right: 5px;
+  border-radius: 8px;
+  background-color: grey;
+  padding: 5px;
+}
+
