@@ -30,48 +30,49 @@ Probably the easiest way is to download the Zookeeper distribution and [start a 
 
 Therefore, create a new project `osgi.enroute.examples.zookeeper.provider` (use your own namespace of course but end in `.provider`). Then we need to replace the ZookeerImpl class with the following code:
 
-	package osgi.enroute.examples.zookeeper.provider;
+```java
+package osgi.enroute.examples.zookeeper.provider;
+
+import java.io.File;
+
+import org.apache.zookeeper.server.ServerConfig;
+import org.apache.zookeeper.server.ZooKeeperServerMain;
+import org.osgi.framework.BundleContext;
+import org.osgi.service.component.annotations.Activate;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Deactivate;
+
+@Component(name = "osgi.enroute.examples.zookeeper")
+public class ZookeeperImpl extends ZooKeeperServerMain {
 	
-	import java.io.File;
-	
-	import org.apache.zookeeper.server.ServerConfig;
-	import org.apache.zookeeper.server.ZooKeeperServerMain;
-	import org.osgi.framework.BundleContext;
-	import org.osgi.service.component.annotations.Activate;
-	import org.osgi.service.component.annotations.Component;
-	import org.osgi.service.component.annotations.Deactivate;
-	
-	@Component(name = "osgi.enroute.examples.zookeeper")
-	public class ZookeeperImpl extends ZooKeeperServerMain {
-		
-		private Thread thread;
-		private ServerConfig config;
-	
-		@Activate
-		void activate(BundleContext context) {
-			File dir = context.getDataFile("zookeeper");
-			config = new ServerConfig();
-			config.parse(new String[] { "6789", dir.getAbsolutePath() });
-			thread = new Thread(this::zk, "osgi.enroute.examples.zookeeper");
-			thread.start();
-		}
-	
-		@Deactivate
-		void deactivate() {
-			shutdown();
-			thread.interrupt();
-		}
-		
-		public void zk() {
-			try {
-				runFromConfig(config);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			System.out.println("ZK Exiting");
-		}
+	private Thread thread;
+	private ServerConfig config;
+
+	@Activate
+	void activate(BundleContext context) {
+		File dir = context.getDataFile("zookeeper");
+		config = new ServerConfig();
+		config.parse(new String[] { "6789", dir.getAbsolutePath() });
+		thread = new Thread(this::zk, "osgi.enroute.examples.zookeeper");
+		thread.start();
 	}
 
+	@Deactivate
+	void deactivate() {
+		shutdown();
+		thread.interrupt();
+	}
+	
+	public void zk() {
+		try {
+			runFromConfig(config);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println("ZK Exiting");
+	}
+}
+```
 This code just binds a Zookeeper server life cycle to the component. It starts a thread for the server when activated and it shuts the server down when deactivated.
 
 ## Build
@@ -100,55 +101,57 @@ In certain cases the file is not downloaded yet and you get compile errors. Wait
 
 It would be convenient if we could check nodes in Zookeeper. We therefore could add the following command:
 
-	package osgi.enroute.examples.zookeeper.provider;
-	
-	import java.io.IOException;
-	import java.util.List;
-	
-	import org.apache.zookeeper.ZooKeeper;
-	import org.osgi.service.component.annotations.Activate;
-	import org.osgi.service.component.annotations.Deactivate;
-	import org.osgi.service.component.annotations.Component;
-	
-	import osgi.enroute.debug.api.Debug;
-	
-	@Component(
-	  property = { 
-	    Debug.COMMAND_SCOPE + "=zk",  
-	    Debug.COMMAND_FUNCTION + "=zk", 
-	    Debug.COMMAND_FUNCTION + "=ls",
-	    Debug.COMMAND_FUNCTION + "=data" 
-	  }, 
-	  service = Command.class
-	)
-	public class Command {
-	
-	  private ZooKeeper zk;
-	
-	  public String zk() {
-	    return
-	      "zk              help\n"
-	    + "ls <path>       list children\n"
-	    + "data <path>     show data of node\n";
-	  }
-	
-	  @Activate void activate() throws IOException {
-	    this.zk = new ZooKeeper("localhost:6789", 10000, null);
-	  }
-			
-	  @Deactivate void deactivate() throws Exception {
-	    this.zk.close();;
-	  }
-		
-	  public List<String> ls(String path) throws Exception {
-	    return zk.getChildren(path, false);
-	  }
-	
-	  public String data(String path) throws Exception {
-	    byte[] data = zk.getData(path, false, null);
-	    return new String(data, "UTF-8");
-	  }
+```java
+package osgi.enroute.examples.zookeeper.provider;
+
+import java.io.IOException;
+import java.util.List;
+
+import org.apache.zookeeper.ZooKeeper;
+import org.osgi.service.component.annotations.Activate;
+import org.osgi.service.component.annotations.Deactivate;
+import org.osgi.service.component.annotations.Component;
+
+import osgi.enroute.debug.api.Debug;
+
+@Component(
+	property = { 
+	Debug.COMMAND_SCOPE + "=zk",  
+	Debug.COMMAND_FUNCTION + "=zk", 
+	Debug.COMMAND_FUNCTION + "=ls",
+	Debug.COMMAND_FUNCTION + "=data" 
+	}, 
+	service = Command.class
+)
+public class Command {
+
+	private ZooKeeper zk;
+
+	public String zk() {
+	return
+		"zk              help\n"
+	+ "ls <path>       list children\n"
+	+ "data <path>     show data of node\n";
 	}
+
+	@Activate void activate() throws IOException {
+	this.zk = new ZooKeeper("localhost:6789", 10000, null);
+	}
+		
+	@Deactivate void deactivate() throws Exception {
+	this.zk.close();;
+	}
+	
+	public List<String> ls(String path) throws Exception {
+	return zk.getChildren(path, false);
+	}
+
+	public String data(String path) throws Exception {
+	byte[] data = zk.getData(path, false, null);
+	return new String(data, "UTF-8");
+	}
+}
+```
 
 ## Running
 

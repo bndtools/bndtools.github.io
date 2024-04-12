@@ -20,19 +20,21 @@ The following code assumes the `osgi.enroute.examples.iot.domotica.application` 
 
 An OSGi enRoute Application project is a full web application with REST but we are first going to ignore those goodies. As always, the easiest app is to say `Hello World` (and on OSGi also `Goodbye World!`). So lets create a component in the `osgi.enroute.examples.iot.domotica.command` package that performs these highly complex actions:
 
-	@Component
-	public class DomoticaCommand {
-	
-		@Activate
-		void activate() {
-			System.out.println("Hello World");
-		}
-	
-		@Deactivate
-		void deactivate() {
-			System.out.println("Goodbye World");
-		}
+```java
+@Component
+public class DomoticaCommand {
+
+	@Activate
+	void activate() {
+		System.out.println("Hello World");
 	}
+
+	@Deactivate
+	void deactivate() {
+		System.out.println("Goodbye World");
+	}
+}
+```
 
 Make sure you add the package to the private packages of the bundle. You can do this by double clicking on the `provider.bnd` file, select the `Contents` tab and drag the package in the `Private Package` list.
 
@@ -118,26 +120,29 @@ You can of course also click on the `+` in the `bnd.bnd`'s file Build tab and it
 
 Let's first do something very naughty: use statics. The Pi4j library has a SystemInfo class that provides lots of information about our Pi.
 
-	@Component
-	public class DomoticaCommand {
-	
-		@Activate
-		void activate() throws Exception {
-			System.out.println(SystemInfo.getBoardType().name() 
-				+ " " + SystemInfo.getSerial());
-		}
-	
-		@Deactivate
-		void deactivate() {
-			System.out.println("Goodbye World");
-		}
+```java
+@Component
+public class DomoticaCommand {
+
+	@Activate
+	void activate() throws Exception {
+		System.out.println(SystemInfo.getBoardType().name() 
+			+ " " + SystemInfo.getSerial());
 	}
+
+	@Deactivate
+	void deactivate() {
+		System.out.println("Goodbye World");
+	}
+}
+```
 
 Save the file Java source file and watch the output:
 
+```
 	Goodbye World!
 	Model2B_Rev1 00000000237a3302
-{: .shell}
+```
 
 ## Real Hardware
 
@@ -169,40 +174,42 @@ You could test the circuit by connecting a temporary wire from the red 3.3V bart
 
 The next step is the software. The following code will start a thread and blink the LED. The details about the API are to be found at the [Pi4j site][pi4j]. We are using the Pi4J API but realize that this API is not how you should use the Raspberry Pi on with OSGi.
 
-	private Scheduler scheduler;
-	private Closeable schedule;
+```java
+private Scheduler scheduler;
+private Closeable schedule;
 
-	@Activate
-	void activate() throws Exception {
-		try {
-			GpioController gpioController = GpioFactory.getInstance();
-			
-			while (!gpioController.getProvisionedPins().isEmpty()) 
-				gpioController.unprovisionPin(gpioController.getProvisionedPins().iterator().next());
+@Activate
+void activate() throws Exception {
+	try {
+		GpioController gpioController = GpioFactory.getInstance();
+		
+		while (!gpioController.getProvisionedPins().isEmpty()) 
+			gpioController.unprovisionPin(gpioController.getProvisionedPins().iterator().next());
 
-			GpioPinDigitalOutput out = gpioController
-					.provisionDigitalOutputPin(RaspiPin.GPIO_00, "LED1",
-							PinState.LOW);
+		GpioPinDigitalOutput out = gpioController
+				.provisionDigitalOutputPin(RaspiPin.GPIO_00, "LED1",
+						PinState.LOW);
 
-			schedule = scheduler.schedule(() -> {
-				boolean high = out.getState().isHigh();
-				out.setState(!high);
-			}, 500);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		schedule = scheduler.schedule(() -> {
+			boolean high = out.getState().isHigh();
+			out.setState(!high);
+		}, 500);
+	} catch (Exception e) {
+		e.printStackTrace();
 	}
+}
 
-	@Deactivate
-	void deactivate() throws IOException {
-		schedule.close();
-		System.out.println("Goodbye World!");
-	}
+@Deactivate
+void deactivate() throws IOException {
+	schedule.close();
+	System.out.println("Goodbye World!");
+}
 
-	@Reference
-	void setScheduler(Scheduler scheduler) {
-		this.scheduler = scheduler;
-	}
+@Reference
+void setScheduler(Scheduler scheduler) {
+	this.scheduler = scheduler;
+}
+```
  
 Save the code, and see how the LED is blinking at you!
 

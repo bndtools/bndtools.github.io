@@ -43,32 +43,35 @@ Clearly the pattern is common and popular because is so easy to implement. Virtu
 
 This example shows a skeleton of a service that listens to a whiteboard service.
 
-	package com.acme.server;
+```java
+package com.acme.server;
+
+@Component
+public class TickerImpl{
+
+	@Reference(policy=DYNAMIC)
+	final List<Tick> ticks = new CopyOnWriteArrayList<>();
 	
-	@Component
-	public class TickerImpl{
+	private Closeable schedule;
 	
-		@Reference(policy=DYNAMIC)
-		final List<Tick> ticks = new CopyOnWriteArrayList<>();
-		
-		private Closeable schedule;
-		
-		@Reference
-		void setScheduler( Scheduler scheduler ) {
-			schedule = scheduler.schedule( () -> {
-				ticks.stream().forEach( t -> t.tick() );
-			}, 1000);
-		}
+	@Reference
+	void setScheduler( Scheduler scheduler ) {
+		schedule = scheduler.schedule( () -> {
+			ticks.stream().forEach( t -> t.tick() );
+		}, 1000);
 	}
+}
+```
 
-
-	package com.acme.client;
-	@Component
-	public class TickWhiteboardImpl implements Tick {
-		public void tick() {
-			System.out.println("I am here!");
-		}
-	} 
+```java
+package com.acme.client;
+@Component
+public class TickWhiteboardImpl implements Tick {
+	public void tick() {
+		System.out.println("I am here!");
+	}
+} 
+```
 	
 ## Extender Pattern
 

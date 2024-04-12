@@ -19,9 +19,11 @@ The webserver therefore provides the possibility to wrap the web resources in bu
 
 In the bundle that requires a web resource:
 
-	@RequireWebserverExtender
-	@Component(name="osgi.enroute.examples.webserver")
-	public class WebserverApplication  { }
+```java
+@RequireWebserverExtender
+@Component(name="osgi.enroute.examples.webserver")
+public class WebserverApplication  { }
+```
 
 Several web resources are declared by the enRoute base API.
 
@@ -46,10 +48,12 @@ A _web resource bundle_ contains resources that must be made available on a webs
 
 A web resource bundle should provide an annotation to require that web resource, or a compatible later version. By placing the web resource bundle on the build path, a contained annotation can be applied to some core application class. For example:
 
-	@RequireAngularWebResource( resource="angular.js" )
-	@RequireWebserverExtender
-	@Component(name="com.example.myapp")
-	public class MyApp  { ... }
+```java
+@RequireAngularWebResource( resource="angular.js" )
+@RequireWebserverExtender
+@Component(name="com.example.myapp")
+public class MyApp  { ... }
+```
 
 During resolving, the required web resource bundles are automatically included in the application. (In their compatible version!) When installed on the OSGi framework, they are actually also resolved. The webserver then uses the resolution wiring to find out the set of web resource bundles that belong to an application. For an application to include then that set of web resources, it uses the standard CSS include or Javascript include mechanism with a magic URL:
 
@@ -84,22 +88,25 @@ A web resource, for example Angular JS, must be wrapped in a bundle. The preferr
 
 The web resource should then provide a capability. This capability name must be the generic path, so in the previous Angular JS example this would be `/google/angular`. It should specify its version and a root attribute. The `root` path must point to a folder in the bundle that contains the resources. In our angular example this would be `/static/google/angular/1.4.4` but it can be anywhere in the bundle. The root path is not required to be publicly available, though it is a recommended practice so that multiple versions do not conflict.
 
-	Provide-Capability: \
-		osgi.enroute.webresource; \
-     		osgi.enroute.webresource=/google/angular; \
-     		version:Version=1.4.4; \
-     		root=/static/google/angular/1.4.4
- 
+```
+Provide-Capability: \
+	osgi.enroute.webresource; \
+		osgi.enroute.webresource=/google/angular; \
+		version:Version=1.4.4; \
+		root=/static/google/angular/1.4.4
+```
+
 Obviously macros should be used in bnd to remove the inevitable redundancy.
 
 A bundle that wants to use a web resource should create a requirement against the provided capability. For example:
 
-	Require-Capability: \
-		osgi.enroute.webresource; \
-     		filter:='(&(osgi.enroute.webresource=/google/angular)(version>=1.4.4)(!(version>=2.0.0)))';
-     		resource:List="angular.js,angular-route.js,angular-resource.js";
-     		priority:Integer=1000
- 
+```
+Require-Capability: \
+	osgi.enroute.webresource; \
+		filter:='(&(osgi.enroute.webresource=/google/angular)(version>=1.4.4)(!(version>=2.0.0)))';
+		resource:List="angular.js,angular-route.js,angular-resource.js";
+		priority:Integer=1000
+```
 The requirement can specify a resource and a priority attribute. The resource attribute is a list if resources in the root folder of the bundle that collectively provide the Web Resource capability. The priority is used to influence the order of inclusion.
 
 In runtime, the webserver creates a virtual URI:
@@ -120,26 +127,30 @@ When building with bnd, macros can be used to synchronize the version and bsn wi
 
 Adding these requirements is of course rather unpleasant and incredibly error prone. It is therefore recommended that each web resource bundle creates a customized requirement annotation that can then be used by its clients. (See manifest annotations.) For example, in the Angular web resource this looks like:
 
-	@RequireCapability(
-		ns = WebResourceNamespace.NS, 
-		filter = "(&(osgi.enroute.webresource=/google/angular)${frange;1.4.4})")
-	@Retention(RetentionPolicy.CLASS)
-	public @interface RequireAngularWebResource {
-	 	String[]resource() default {
-	 			"angular.js", "angular-route.js"
-	 	};	 
-	 	int priority() default 1000;
-	}
- 
+```java
+@RequireCapability(
+	ns = WebResourceNamespace.NS, 
+	filter = "(&(osgi.enroute.webresource=/google/angular)${frange;1.4.4})")
+@Retention(RetentionPolicy.CLASS)
+public @interface RequireAngularWebResource {
+	String[]resource() default {
+			"angular.js", "angular-route.js"
+	};	 
+	int priority() default 1000;
+}
+```
+
 This creates (when using bnd) the `@RequireAngularWebResource` annotation that, when applied anywhere in a bundle, will create the aforementioned requirement.
 
 This makes creating the requirement as simple as applying an annotation. In general there is a single class that represents the application, this class is quite well suited for this purpose. It is recommended that all web resource requirements be placed in the same class.
 
-	@RequireAngular( 
-		resource={"angular.js", 
-					"angular-resource.js" ) 
-	@RequireWebserverExtender
-	public class MyApplication { }
+```java
+@RequireAngular( 
+	resource={"angular.js", 
+				"angular-resource.js" ) 
+@RequireWebserverExtender
+public class MyApplication { }
+```
  
 
 ## Questions & Discussions

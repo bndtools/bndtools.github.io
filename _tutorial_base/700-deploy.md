@@ -28,26 +28,28 @@ An application project should contain no code (or very little) but acts as a spe
 
 By default, an application only contains a Gogo shell command, in this case in the `EvalApplication` class. This one is very similar, and then not really, to the `EvalImpl` class. In the `EvalImpl` class we just made the existing API call, `eval`, available as a Gogo command. In this application project we need to get the service and call the method on that service. Getting a service is made very easy with DS, just add a setter method and add the `@Reference` annotation. So lets replace the code for  the `EvalApplication` code with:
 
-	@Component(
-		service=EvalApplication.class, 
-		property = { 
-			Debug.COMMAND_SCOPE + "=eval",
-			Debug.COMMAND_FUNCTION + "=eval" 
-		},
-		name="com.acme.prime.eval"
-	)
-	public class EvalApplication {
-		private Eval eval;
-	
-		public double eval(String m) throws Exception {
-			return eval.eval(m);
-		}
-		
-		@Reference
-		void setEval( Eval eval) {
-			this.eval= eval;
-		}
+```java
+@Component(
+	service=EvalApplication.class, 
+	property = { 
+		Debug.COMMAND_SCOPE + "=eval",
+		Debug.COMMAND_FUNCTION + "=eval" 
+	},
+	name="com.acme.prime.eval"
+)
+public class EvalApplication {
+	private Eval eval;
+
+	public double eval(String m) throws Exception {
+		return eval.eval(m);
 	}
+	
+	@Reference
+	void setEval( Eval eval) {
+		this.eval= eval;
+	}
+}
+```
 
 This code registers a dummy service that now provides the `eval:eval` command to Gogo shell (notice the imaginative difference between the `test:eval` command we created in the provider.
 

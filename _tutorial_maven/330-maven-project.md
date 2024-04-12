@@ -92,43 +92,46 @@ Note that the Maven plugin by default includes all the classes in the project.
 
 The source code in `src/main/java/` is:
 
-	package osgi.enroute.examples.eval.provider;
+```java
+package osgi.enroute.examples.eval.provider;
 
-	import java.util.List;
+import java.util.List;
 
-	import org.osgi.service.component.annotations.Activate;
-	import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Activate;
+import org.osgi.service.component.annotations.Component;
 
-	import osgi.enroute.examples.eval.api.Eval;
-	import parsii.eval.Expression;
-	import parsii.eval.Function;
-	import parsii.eval.Parser;
-	import parsii.eval.Scope;
+import osgi.enroute.examples.eval.api.Eval;
+import parsii.eval.Expression;
+import parsii.eval.Function;
+import parsii.eval.Parser;
+import parsii.eval.Scope;
 
-	@Component
-	public class EvalImpl implements Eval {
-		Scope scope = new Scope();
+@Component
+public class EvalImpl implements Eval {
+	Scope scope = new Scope();
 
-		public double eval(String expression) throws Exception {
-			Expression expr = Parser.parse(expression);
-			return expr.evaluate();
-		}
+	public double eval(String expression) throws Exception {
+		Expression expr = Parser.parse(expression);
+		return expr.evaluate();
 	}
+}
+```
 
 ## Installing
 
 If you've done everything well (and we as well) then your project should be buildable from the command line:
 
-	mvn install
-	....
-	------------------------------------------------------------------------
-	[INFO] BUILD SUCCESS
-	[INFO] ------------------------------------------------------------------------
-	[INFO] Total time: 1.247 s
-	[INFO] Finished at: 2016-04-08T19:17:48+02:00
-	[INFO] Final Memory: 13M/309M
-	[INFO] ------------------------------------------------------------------------
-{:.shell}
+```
+mvn install
+....
+------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 1.247 s
+[INFO] Finished at: 2016-04-08T19:17:48+02:00
+[INFO] Final Memory: 13M/309M
+[INFO] ------------------------------------------------------------------------
+```
 
 ## Updates
 

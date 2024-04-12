@@ -38,16 +38,18 @@ implement this method.
 In the `osgi.enroute.examples.eval` directory we create a directory called `simple.provider`.
 In this directory we create the POM. 
 
+```
 	osgi.enroute.examples.eval $ mkdir simple.provider
 	osgi.enroute.examples.eval $ cd simple.provider
 	simple.provider $
-{: .shell }
+```
 	
 ## POM
 
+```
 	simple.provider $ vi pom.xml
 	// fill in from next section
-{: .shell }
+```
 
 	<project 
 		xmlns="http://maven.apache.org/POM/4.0.0" 
@@ -94,46 +96,49 @@ make it easy for web apps) but in this case we need the API project as dependenc
 We now need to add an implementation class. In this case we use regular expressions as the parser to 
 implement a very simplistic evaluation parser in the file `src/main/java/osgi/enroute/examples/eval/provider/EvalImpl.java`:
 
+```
 	simple.provider $ mkdir -p src/main/java/osgi/enroute/examples/eval/provider
 	simple.provider $ vi src/main/java/osgi/enroute/examples/eval/provider/EvalImpl.java
-{: .shell }
+```
+
+```java
+package osgi.enroute.examples.eval.provider;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.log.LogService;
+
+import osgi.enroute.examples.eval.api.Eval;
+
+@Component(name = "osgi.enroute.examples.eval.provider")
+public class EvalImpl implements Eval {
+	Pattern EXPR = Pattern.compile( "\\s*(?<left>\\d+)\\s*(?<op>\\+|-)\\s*(?<right>\\d+)\\s*");
 	
-	package osgi.enroute.examples.eval.provider;
+	@Reference
+	LogService log;
 	
-	import java.util.regex.Matcher;
-	import java.util.regex.Pattern;
 	
-	import org.osgi.service.component.annotations.Component;
-	import org.osgi.service.component.annotations.Reference;
-	import org.osgi.service.log.LogService;
-	
-	import osgi.enroute.examples.eval.api.Eval;
-	
-	@Component(name = "osgi.enroute.examples.eval.provider")
-	public class EvalImpl implements Eval {
-		Pattern EXPR = Pattern.compile( "\\s*(?<left>\\d+)\\s*(?<op>\\+|-)\\s*(?<right>\\d+)\\s*");
-		
-		@Reference
-		LogService log;
-		
-		
-		@Override
-		public double eval(String expression) throws Exception {
-			Matcher m = EXPR.matcher(expression);
-			if ( !m.matches()) {
-				log.log(LogService.LOG_WARNING, "Invalid expression " + expression);
-				throw new IllegalArgumentException("Invalid expression " + expression);
-			}
-			
-			double left = Double.valueOf( m.group("left"));
-			double right = Double.valueOf( m.group("right"));
-			switch( m.group("op")) {
-			case "+": return left + right;
-			case "-": return left - right;
-			}
-			return Double.NaN;
+	@Override
+	public double eval(String expression) throws Exception {
+		Matcher m = EXPR.matcher(expression);
+		if ( !m.matches()) {
+			log.log(LogService.LOG_WARNING, "Invalid expression " + expression);
+			throw new IllegalArgumentException("Invalid expression " + expression);
 		}
+		
+		double left = Double.valueOf( m.group("left"));
+		double right = Double.valueOf( m.group("right"));
+		switch( m.group("op")) {
+		case "+": return left + right;
+		case "-": return left - right;
+		}
+		return Double.NaN;
 	}
+}
+```
 
 Ok, ok, simple might still give it too much credit but we're not here to learn parsing. 
 At least it has (some) error handling! Notice that we can only handle trivial additions and 
@@ -152,18 +157,21 @@ to our dependencies.
 To make a proper bundle we need to have a `bnd.bnd` file in the same directory as our POM. This file looks
 like:
 
+```
 	simple.provider $ vi bnd.bnd
 	// fill in content from next section
-{: .shell }
+```
 
-	#
-	# OSGi enRoute Eval Example
-	#
-	
-	Bundle-Description: 				\
-		Provides a simple implementation for an eval parser
-	
-	Export-Package: osgi.enroute.examples.eval.api
+```
+#
+# OSGi enRoute Eval Example
+#
+
+Bundle-Description: 				\
+	Provides a simple implementation for an eval parser
+
+Export-Package: osgi.enroute.examples.eval.api
+```
 
 ## Exporting API
 
@@ -194,51 +202,55 @@ In Maven-terms we've now defined a multi-module project, currently containing tw
 The modules should be defined in an aggregator pom, and often this is done in the parent pom.
 We should add a <modules> section in the pom.xml in the parent folder
 
+```
 	simple.provider $ cd ..
 	osgi.enroute.examples.eval $ vi pom.xml
 	// fill in from next section, right before the <properties> section
-{: .shell }
+```
 
+```xml
 	  <modules>
 	  	<module>api</module>
 	  	<module>simple.provider</module>
 	  </modules>
+```
 
 We now have enough project information to build the bundle. As we've changed the parent pom, it's best to do a clean build from there.
 And then we can take a look at how our module (bundle) really looks like.
 Make sure you're in the top directory!
 
-	osgi.enroute.examples.eval $ mvn clean install
-	...
-	osgi.enroute.examples.eval $ cd simple.provider
-	simple.provider $ bnd print target/osgi.enroute.examples.eval.simple.provider-1.0.0-SNAPSHOT.jar
-	[MANIFEST osgi.enroute.examples.eval.provider-1.0.0-SNAPSHOT]
-	Bnd-LastModified                         1474989660493                           
-	Build-Jdk                                1.8.0_25                                
-	Built-By                                 aqute                                   
-	Bundle-Description                       Provides a simple implementation for an eval parser
-	Bundle-ManifestVersion                   2                                       
-	Bundle-Name                              osgi.enroute.examples.eval.simple.provider      
-	Bundle-SymbolicName                      osgi.enroute.examples.eval.simple.provider      
-	Bundle-Version                           1.0.0.201609271521                      
-	Created-By                               1.8.0_25 (Oracle Corporation)           
-	Export-Package                           osgi.enroute.examples.eval.api;version="1.0.0"
-	Import-Package                           osgi.enroute.examples.eval.api;version="[1.0,1.1)"
-	Manifest-Version                         1.0                                     
-	Private-Package                          osgi.enroute.examples.eval.provider      
-	Provide-Capability                       osgi.service;objectClass:List<String>="osgi.enroute.examples.eval.api.Eval"
-	Require-Capability                       osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
-	Require-Capability                       osgi.extender;filter:="(&(osgi.extender=osgi.component)(version>=1.3.0)(!(version>=2.0.0)))",osgi.service;filter:="(objectClass=org.osgi.service.log.LogService)";effective:=active,osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
-	Service-Component                        OSGI-INF/osgi.enroute.examples.eval.provider.xml
-	Tool                                     Bnd-7.0.0                  
+```
+osgi.enroute.examples.eval $ mvn clean install
+...
+osgi.enroute.examples.eval $ cd simple.provider
+simple.provider $ bnd print target/osgi.enroute.examples.eval.simple.provider-1.0.0-SNAPSHOT.jar
+[MANIFEST osgi.enroute.examples.eval.provider-1.0.0-SNAPSHOT]
+Bnd-LastModified                         1474989660493                           
+Build-Jdk                                1.8.0_25                                
+Built-By                                 aqute                                   
+Bundle-Description                       Provides a simple implementation for an eval parser
+Bundle-ManifestVersion                   2                                       
+Bundle-Name                              osgi.enroute.examples.eval.simple.provider      
+Bundle-SymbolicName                      osgi.enroute.examples.eval.simple.provider      
+Bundle-Version                           1.0.0.201609271521                      
+Created-By                               1.8.0_25 (Oracle Corporation)           
+Export-Package                           osgi.enroute.examples.eval.api;version="1.0.0"
+Import-Package                           osgi.enroute.examples.eval.api;version="[1.0,1.1)"
+Manifest-Version                         1.0                                     
+Private-Package                          osgi.enroute.examples.eval.provider      
+Provide-Capability                       osgi.service;objectClass:List<String>="osgi.enroute.examples.eval.api.Eval"
+Require-Capability                       osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Require-Capability                       osgi.extender;filter:="(&(osgi.extender=osgi.component)(version>=1.3.0)(!(version>=2.0.0)))",osgi.service;filter:="(objectClass=org.osgi.service.log.LogService)";effective:=active,osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Service-Component                        OSGI-INF/osgi.enroute.examples.eval.provider.xml
+Tool                                     Bnd-7.0.0                  
 
-	[IMPEXP]
-	Import-Package
-	  org.osgi.service.log                    {version=[1.3,2)}
-	  osgi.enroute.examples.eval.api          {version=[1.0,1.1)}
-	Export-Package
-	  osgi.enroute.examples.eval.api          {version=1.0.0, imported-as=[1.0,1.1)}
-{: .shell }
+[IMPEXP]
+Import-Package
+	org.osgi.service.log                    {version=[1.3,2)}
+	osgi.enroute.examples.eval.api          {version=[1.0,1.1)}
+Export-Package
+	osgi.enroute.examples.eval.api          {version=1.0.0, imported-as=[1.0,1.1)}
+```
 
 From this we can see the following layout of our provider bundle.
 

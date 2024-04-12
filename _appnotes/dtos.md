@@ -185,29 +185,31 @@ example, in Java you can click on a field and ask who references it, something t
 
 For example, the OSGi enRoute REST service was designed with DTOs in mind. This is all you have to write (really, no further setup) to create a REST API on `/rest/bundle/:id`.
 
-    @Component
-    public class MyManager implements REST {
-        BundleContext context;
-    
-        @Activate
-        void activate(BundleContext context) {
-            this.context = context;
-        }
-    
-        public List<BundleDTO> getBundle() {
-            return Stream.of(context.getBundles())
-                   .map( this::toDTO )
-                   .collect(Collectors.toList());
-        }
-    
-        public BundleDTO getBundle(long id) {
-            return toDTO(context.getBundle(id));
-        }
-    
-        BundleDTO toDTO( Bundle b) {
-            return b.adapt( BundleDTO.class );
-        }
+```java
+@Component
+public class MyManager implements REST {
+    BundleContext context;
+
+    @Activate
+    void activate(BundleContext context) {
+        this.context = context;
     }
+
+    public List<BundleDTO> getBundle() {
+        return Stream.of(context.getBundles())
+                .map( this::toDTO )
+                .collect(Collectors.toList());
+    }
+
+    public BundleDTO getBundle(long id) {
+        return toDTO(context.getBundle(id));
+    }
+
+    BundleDTO toDTO( Bundle b) {
+        return b.adapt( BundleDTO.class );
+    }
+}
+```
 
 ## DTOs Service
 

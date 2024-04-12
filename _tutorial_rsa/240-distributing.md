@@ -105,25 +105,27 @@ We'll update our Chat service to be exported. We can do this because the Chat se
 
 So the only thing we have to do is add the magic property to our `ChatImpl` class.
 
-	@Designate(ocd=Configuration.class, factory=false)
-	@Component(
-		name = "osgi.enroute.examples.chat", 
-		property = {
-			"user.name=osgi",
+```java
+@Designate(ocd=Configuration.class, factory=false)
+@Component(
+	name = "osgi.enroute.examples.chat", 
+	property = {
+		"user.name=osgi",
 ^
-			"service.exported.interfaces=*"
+		"service.exported.interfaces=*"
 ^
-		}
-	)
-	public class ChatImpl implements Chat {
-		
-		@Override
-		public boolean send(Message message) throws Exception {
-			System.out.printf("%s: %s%n", message.from, message.text);
-			return true;
-		}
-	
 	}
+)
+public class ChatImpl implements Chat {
+	
+	@Override
+	public boolean send(Message message) throws Exception {
+		System.out.printf("%s: %s%n", message.from, message.text);
+		return true;
+	}
+
+}
+```
 
 The results are rather underwhelming, nothing happens. 
 

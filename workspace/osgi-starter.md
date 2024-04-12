@@ -741,7 +741,7 @@ The source contains errors because we have not yet added any dependencies. Since
 
 The source now compiles and looks like:
 
-```
+```java
     package com.example.playground.gogo;
     import org.osgi.service.component.annotations.Component;
 
@@ -758,7 +758,7 @@ Bundles add commands to the shell by registering a _service_ with the `osgi.comm
 
 If a component does not implement an interface then it will **not** be registered as a _service_. Since Gogo is looking for services with the previously defined properties to register commands, it would not be able to find this "Hello World" command. Since this "Hello World" component does not implement anything, we need to make the service _explicit_. We use `Hello` class as the service type in the `service()` annotation method on the `@Component` annotation.
 
-```
+```java
     @Component(
         property = {
             "osgi.command.scope=hello",
@@ -805,7 +805,7 @@ In actual systems, the number of Gogo commands tend to get very large. The numbe
 
 In the example, we use `System.out`. This is ok, even if the shell is accessed via SSH or telnet. The Gogo shell redirects `System.out` for the duration of a command. However, using `System.out` makes the command only useful in a shell and the function can not really be called from other services. One of the primary goals of Gogo is to make commands very lightweight. The idea is that normal service implementations can provide commands reusing existing functions. Therefore, we can also just return the String, Gogo will then print the text.
 
-```
+```java
     public String hello() {
         return "Hello World";
     }
@@ -822,7 +822,7 @@ After you’ve made this change and saved the source, we can try it in the shell
 
 Commands can also take parameters by declaring them in the prototype. For example, we can provide a name that is welcomed.
 
-```
+```java
     public String hello(String name) {
         return "Hello " + name;
     }
@@ -835,7 +835,7 @@ Commands can also take parameters by declaring them in the prototype. For exampl
 
 Parameters can use any type they want. Gogo will attempt to coerce the given command to the proper types. For example, we could add a `boolean` argument to upper case the result:
 
-```
+```java
     public int hello(boolean uppercase, String name) {
         String msg = "Hello " + name;
         return uppercase ? msg.toUpperCase() : msg;
@@ -851,7 +851,7 @@ Parameters can use any type they want. Gogo will attempt to coerce the given com
 
 Linux shell commands have a convention to provide _flags_. Specifying, for example, `-a` for the `ls` command lists _all_ files, including the `.` and `..` files. You can mark a parameter with the `@Parameter` annotation to provide a flag.
 
-```
+```java
     public String hello(
         @Parameter(
                 names={"-u", "--uppercase"},
@@ -866,7 +866,7 @@ Linux shell commands have a convention to provide _flags_. Specifying, for examp
 
 The previous code will not compile because we’re missing the bundle that provides the `@Parameter` annotation. You can add the following import line and then use the Quick Fix to add the `org.apache.felix.gogo.runtime` bundle to the _build path_.
 
-```
+```java
     import org.apache.felix.service.command.annotations.Parameter;
 ```
 
@@ -889,7 +889,7 @@ Notice that annotated parameters, like `uppercase`, must come _before_ any unann
 
 An _option_ is a _named_ parameter. Using the `@Parameter` annotation, we can turn a parameter in an option by specifying a set of _names_ and a value when these names are absent. The `absentValue` annotation method can provide this value. There is no need to set the `presentValue` annotation method because we use the actual value given on the command line.
 
-```
+```java
     public String hello(
         @Parameter(
             absentValue="World",
@@ -930,13 +930,13 @@ Gogo provides a `help` command that works out of the box:
 
 We can add a `@Descriptor` annotations to the component to assist the help function. If you import:
 
-```
+```java
     import org.apache.felix.service.command.Descriptor;
 ```
 
 And add the annotation to the method:
 
-```
+```java
     @Descriptor("Friendly welcome")
     public String hello() {
         return "Hello World";
@@ -953,7 +953,7 @@ Then the output of the help command has changed:
 
 You can also apply the `@Descriptor` annotation on the parameters.
 
-```
+```java
     @Descriptor("Friendly welcome command")
     public String hello(
         @Parameter(
@@ -978,7 +978,7 @@ You can also apply the `@Descriptor` annotation on the parameters.
 
 The component properties `osgi.command.scope` and `osgi.command.function` are constructed from strings. This is an error-prone programming pattern. We used this error-prone patter to make more clear what was going on beneath the covers; it also allowed us to get started without importing the Gogo runtime bundle. However, the `org.apache.felix.runtime` bundle, that we use for the `@Descriptor` and `@Parameter` annotations, also contains an annotation to add service properties: `@GogoCommand`. This annotation cleans up the component by defining the Gogo service properties via a simple annotation.
 
-```
+```java
     @GogoCommand(scope="hello", function="hello")
     @Component(service=Object.class)
     public class HelloWorld { ... }
@@ -1022,7 +1022,7 @@ So let’s create an API project.
 *   Update the given `Eval` interface in the package `com.example.eval.api` to:
     
 
-```
+```java
     package com.example.eval.api;
     public interface Eval {
         double eval(String expression) throws Exception;
@@ -1150,7 +1150,7 @@ The `com.example.eval.api` package is _exported_ in the manifest, looking at the
 
 You can export a _package_ by adding an annotation to the `package-info.java` file in that package. This is already prepared for you by the template project.
 
-```
+```java
     @org.osgi.annotation.versioning.Version("1.0.0")
     @org.osgi.annotation.bundle.Export
     package com.example.eval.api;
@@ -1221,7 +1221,7 @@ Using the `Provider Bundle` template, you will be asked for the name for a compo
 
 The template has already provided a component for you. The EvalImpl class should give the following source code:
 
-```
+```java
     package com.example.eval.provider;
     import org.osgi.service.component.annotations.Component;
 
@@ -1274,7 +1274,7 @@ When you save this file, Eclipse will add all bundles on the build path to its i
 
 You can now go back to the `EvalImpl` class and implement the `Eval` interface.
 
-```
+```java
     @Component
     public class EvalImpl implements Eval {}
 ```
@@ -1283,7 +1283,7 @@ Just select the `Eval` name (which is red underlined) and click `Control-1`, sel
 
 Alas, we got rid of the import error but in place of this error, we now get a red underlined `EvalImpl` class. The problem is that we need to provide the `eval` method, as prescribed by the Eval interface that it now implements. Let’s keep it as simple as possible while still doing something not utterly useless:
 
-```
+```java
     @Component
     public class EvalImpl implements Eval {
         Pattern EXPR = Pattern.compile( "\\s*(?<left>\\d+)\\s*(?<op>\\+|-)\\s*(?<right>\\d+)\\s*");
@@ -1339,7 +1339,7 @@ Add `org.apache.felix.gogo.runtime` to the `-buildpath` in the `bnd.bnd` file.
 
 Then add the `@GogoCommand` annotation to the `EvalImpl` class.
 
-```
+```java
     @GogoCommand(scope="simple", function={"eval"})
     @Component
     public class EvalImpl implements Eval {...}
@@ -1398,7 +1398,7 @@ A provider should always have **unit** tests. Unit tests are **white** box tests
 
 The `Provider Bundle` template provided us with a template for the test class: `EvalImplTest` in the `test` folder. This class is set up to run a JUnit 4 test:
 
-```
+```java
     package com.example.eval.simple.provider;
 
     import static org.junit.Assert.assertNotNull;
@@ -1436,7 +1436,7 @@ The template has already set up the `-testpath` with the JUnit dependencies. You
 
 So let’s evaluate a simple expression:
 
-```
+```java
     package com.acme.prime.eval.provider;
     import static org.junit.Assert.assertEquals;
 
@@ -1494,7 +1494,7 @@ Also add the following runbundles:
 
 Change your test class to the following:
 
-```
+```java
     @RunWith(LaunchpadRunner.class)
     public class EvalImplTest {
         static LaunchpadBuilder builder = new LaunchpadBuilder().bndrun("bnd.bnd");
@@ -1516,7 +1516,7 @@ The Launchpad object contains a special _bundle builder_. It provides the same c
 
 The following example shows how to create a bundle with a special header.
 
-```
+```java
     @Test
     public void bundles() throws Exception {
             Bundle b = launchpad.bundle()
@@ -1536,7 +1536,7 @@ With Launchpad, a real framework is running. You can inject services or register
 
 In the following example, we register a service `Foo` and then verify if we can get it. We then unregister the service and see that it no longer exists.
 
-```
+```java
     interface Foo {}
     @Test
     public void services() throws Exception {
@@ -1556,7 +1556,7 @@ The `waitForService` methods take a timeout in milliseconds. Their purpose is to
 
 You can declare fields with the `@Service` annotation and they are injected. However, not all tests use the same types so you can also injection manually. The injection can also happen as often as you want.
 
-```
+```java
     @Test
     public void inject() throws Exception {
         ServiceRegistration<Foo> register = launchpad.register(Foo.class, new Foo() {
@@ -1582,7 +1582,7 @@ Although the of a Bundle-Activator is not recommended, they are singletons, a Bu
 
 We first define the Bundle Activator as a static public inner class of the test class:
 
-```
+```java
     public static class Activator implements BundleActivator {
         @Override
         public void start(BundleContext context) throws Exception {
@@ -1597,7 +1597,7 @@ We first define the Bundle Activator as a static public inner class of the test 
 
 The Launchpad class contains a special _Bundle builder_. This bundle builder is based on bnd and can do everything that bnd can do in a `bnd.bnd` file. In this case, we add the Bundle Activator and start it.
 
-```
+```java
     @Test
     public void activator() throws Exception {
             Bundle start = launchpad.bundle()
@@ -1629,7 +1629,7 @@ You can follow a short video about [External Dependencies](https://bndtools.org/
 
 Rhino is a Javascript interpreter that we can use to evaluate the expressions a bit more professional than the regular expression hack we used in the `com.example.eval.simple.provider`. Looking at the Rhino documentation, we can evaluate an expression with the following method:
 
-```
+```java
     @Override
     public double eval(String expression) throws Exception {
         Context cx = Context.enter();
@@ -1655,7 +1655,7 @@ Using the `Provider Bundle` template, you will be asked for the name for a compo
 
 The template has already provided a component for you. The `RhinoEvalImpl` class should give the following source code:
 
-```
+```java
     package com.example.eval.provider;
     import org.osgi.service.component.annotations.Component;
     @Component
@@ -1664,7 +1664,7 @@ The template has already provided a component for you. The `RhinoEvalImpl` class
 
 You can modify it to:
 
-```
+```java
     package com.example.eval.rhino.provider;
 
     import org.mozilla.javascript.Context;
@@ -1758,7 +1758,7 @@ To exercise this provider, we want to make it a Gogo command. We therefore need 
 
 Then add the `@GogoCommand` annotation to the `EvalImpl` class.
 
-```
+```java
     @GogoCommand(scope="rhino", function={"eval"})
     @Component
     public class RhinoEvalImpl implements Eval {...}
