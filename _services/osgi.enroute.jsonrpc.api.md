@@ -167,9 +167,9 @@ en$jsonrpc.endpoint("be.iminds.iot.firefly").then(
 );
 ```
        
-    **And from then on I call methods on $scope.ff  ...  Probably there is something wrong with this?** 
+* **And from then on I call methods on $scope.ff  ...  Probably there is something wrong with this?** 
     
-    It is related to the roundtrip. Because the Javascript needs the roundtrip to the backend to get the method names, the endpoint is not usable until this happens. The resolveBefore variable is used in the routing table to make sure the view and controller are not activated until the variable is resolved. I do agree the way is a bit strange (I think it is function returning a promise? Would have to look). Initially I had to do something like you did but this was very awkward because you have to do it in ALL controllers. Then a new version of Angular introduced a facility to provide this promise to the router. And I sure hope you use the router :-)
+	It is related to the roundtrip. Because the Javascript needs the roundtrip to the backend to get the method names, the endpoint is not usable until this happens. The resolveBefore variable is used in the routing table to make sure the view and controller are not activated until the variable is resolved. I do agree the way is a bit strange (I think it is function returning a promise? Would have to look). Initially I had to do something like you did but this was very awkward because you have to do it in ALL controllers. Then a new version of Angular introduced a facility to provide this promise to the router. And I sure hope you use the router :-)
 
 
 
