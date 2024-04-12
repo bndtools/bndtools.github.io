@@ -18,4 +18,4 @@ People are urged to write up their experiences in an application note and submit
 
 </table>
 
-[PR on Github]: https://github.com/osgi/osgi.enroute.site/pulls
+[PR on Github]: https://github.com/bndtools/bndtools.github.io/pulls
