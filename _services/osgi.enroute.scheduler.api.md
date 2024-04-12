@@ -28,15 +28,17 @@ Basically the API replaces the `java.util.Timer` and `java.util.concurrent.Sched
 
 This section discusses the Scheduler API. The examples assume the following component:
 
-	@Component
-	public class SchedulerComponent {
-	  Scheduler scheduler;
-	  
-	  @Reference
-	  void setScheduler(Scheduler scheduler) {
-	    this.scheduler = scheduler;
-	  }
-	} 
+```java
+@Component
+public class SchedulerComponent {
+	Scheduler scheduler;
+	
+	@Reference
+	void setScheduler(Scheduler scheduler) {
+	this.scheduler = scheduler;
+	}
+}
+```
 	
 The [OSGi enRoute Examples][1] repository holds the `osgi.enroute.examples.scheduler.application` application project. This application shows variations of all the calls and has a GUI to exercise the API. 
 
@@ -44,18 +46,24 @@ The [OSGi enRoute Examples][1] repository holds the `osgi.enroute.examples.sched
 
 The `after(...)` methods are used to schedule delays. For example, to execute a call after 10 seconds:
 
-	Promise<Instant> promise = scheduler.after( 10000 );
-	promise.onResolve( () -> System.out.println("Result " + promise.getValue() );
+```java
+Promise<Instant> promise = scheduler.after( 10000 );
+promise.onResolve( () -> System.out.println("Result " + promise.getValue() );
+```
 
 This was the most simple version of the after methods, it returns a promise that is resolved with the Instant at resolve time. It is also possible to provide a `Callable<T>` that will be executed after the timeout. In this variation the promise will be resolved with the return value of the callable (or failed with the Exception).  
 
-	Promise<Integer> promise = scheduler.after( () -> return 1, 10000 );
-	promise.onResolve( (p) -> System.out.println("Result " + p.getValue() );
+```java
+Promise<Integer> promise = scheduler.after( () -> return 1, 10000 );
+promise.onResolve( (p) -> System.out.println("Result " + p.getValue() );
+```
 
 To make life easier, there are also convenience variations that take a `java.time.Duration`:
-	
-	Duration duration = Duration.ofSeconds(10);
-	Promise<Instant> promise = scheduler.after(duration);
+
+```java
+Duration duration = Duration.ofSeconds(10);
+Promise<Instant> promise = scheduler.after(duration);
+```
 
 The `after` methods will schedule the event in the background (they are never executed on the same thread). Specifying a delay that is less than 0 will schedule the event immediately. You can therefore also use the `after` methods to off load the current thread.
 
@@ -63,48 +71,56 @@ The `after` methods will schedule the event in the background (they are never ex
 
 If you want to do something at a specific time then the `at` methods are your friends. The are convience methods since they in general will calculate the delay from the current time to the scheduled time.The simplest is of course executing at a given instant time:
 
-	String parameter = "2015-01-13T09:54:42.820Z";
-	LocalDateTime localDateTime = LocalDateTime.parse(parameter, ISODATE);
-	ZonedDateTime zonedDateTime = localDateTime.atZone(ZoneId.of("UTC"));
-	Instant instant = zonedDateTime.toInstant();
-		
-	Promise<Instant> promise = scheduler.at(instant);
-	promise.onResolve( () -> System.out.println("Yes!") );
+```java
+String parameter = "2015-01-13T09:54:42.820Z";
+LocalDateTime localDateTime = LocalDateTime.parse(parameter, ISODATE);
+ZonedDateTime zonedDateTime = localDateTime.atZone(ZoneId.of("UTC"));
+Instant instant = zonedDateTime.toInstant();
+	
+Promise<Instant> promise = scheduler.at(instant);
+promise.onResolve( () -> System.out.println("Yes!") );
+```
 
 ### Canceling
 
 The actual return values of the `after` methods are not `Promise` but `CancellablePromise`. This is a subtype of `Promise`' to add a `cancel()` method. There is of course a race condition between the cancel and the event. The cancel method returns a boolean. If this boolean is `true`, then the event was canceled and will never be executed. If it returns `false` it means the event was already executed or was already executing when the cancel method was called.
 
-	CancellablePromise<Instant> promise = scheduler.after( Duration.ofSeconds(10) );
-	
-	assert promise.cancel() == true; // cannot have been executed yet
-	assert promise.getFailure() == CancelException.SINGLETON;
-	
-	promise.then( (p) -> {
-		System.out.println("Hmm, we should have failed this one");
-		return null;
-	}, (p) -> System.out.println("Happy with failure!" ); 
+```java
+CancellablePromise<Instant> promise = scheduler.after( Duration.ofSeconds(10) );
 
+assert promise.cancel() == true; // cannot have been executed yet
+assert promise.getFailure() == CancelException.SINGLETON;
+
+promise.then( (p) -> {
+	System.out.println("Hmm, we should have failed this one");
+	return null;
+}, (p) -> System.out.println("Happy with failure!" ); 
+
+```
 
 ### Before
 
 Promises are wonderful little creatures but sometimes you need to time them out. Unfortunately, the freshness of certain results are just not what they used to be so after a certain amount of time they become useless. This function is provided with the `before()` method. This method returns a Cancellable Promise that will be canceled with a Timeout Exception (which is also a singleton) when the given timeout has expired. 
 
-	Instant start = Instant.now();
-	Promise<Integer> target = scheduler.at( 10000 );
-	CancellablePromise<Void> before = scheduler.before(promise, 1000);
+```java
+Instant start = Instant.now();
+Promise<Integer> target = scheduler.at( 10000 );
+CancellablePromise<Void> before = scheduler.before(promise, 1000);
 
-	before.then(null, (p) -> 
-		assert p.getFailure() ==  TimeoutException.SINGLETON;
-	);
+before.then(null, (p) -> 
+	assert p.getFailure() ==  TimeoutException.SINGLETON;
+);
+```
 
 ### Fixed Schedules
 
 The next step is to have a repeated event. For example, you need to check a sensor every 5 seconds or do some other polling. The simplest form is the fixed schedule. It takes a number of timeouts and will repeat the last timeout until the schedule is closed. For example:
 
-	Closeable schedule = scheduler.schedule( 
-		()-> System.out.println("tick!"), 100, 200, 300, 400 );
-	scheduler.after( schedule::close, 5000);
+```java
+Closeable schedule = scheduler.schedule( 
+	()-> System.out.println("tick!"), 100, 200, 300, 400 );
+scheduler.after( schedule::close, 5000);
+```
 
 The example will first fire the event after 100 ms, then will delay 200 ms, do the event, delay 300 ms, do the event and then repeat the 400 ms delay. In the example we close the schedule after 5 seconds.
 
@@ -170,9 +186,11 @@ Time to close this down. There is one optional part not appearing: the year. If 
 
 So assuming your highly impressed of this cron expression syntax, how do we use it? Well, we have a method for that:
 
-	String cron = "0 0 0 ? JAN MON#1 2000-2022";
-	Closeable close = scheduler.schedule( () -> Shouldn't you be kissing your partner????"), cron );
-	
+```java
+String cron = "0 0 0 ? JAN MON#1 2000-2022";
+Closeable close = scheduler.schedule( () -> Shouldn't you be kissing your partner????"), cron );
+```
+
 Don't forget to run this every December just before new year. Otherwise it will be a long wait.
 ### Predefined Schedules
 
@@ -189,31 +207,34 @@ Since your convenience is our goal, we've added a number of shortcuts for common
 
 Using the scheduler is good, not using the scheduler is even better! That is why the OSGi Alliance invented the whiteboard pattern. It is often much easier to just register a service and wait to be called. Scheduler, being a good OSGi citizen, supports this model. It will track any Cron Job services that have a `cron` service property and call the Cron Job at the appropriate times. 
 
-	
-	@Component( property=CronJob.CRON+"=0 0 0 ? JAN MON#1 2000-2022"
-	public class ExampleCron implements CronJob<Object> {
-	
-		public void run(Object object) throws Exception {
-			System.out.println("Yes, I am so happy to be discovered");
-		}
-	} 
+```java
+@Component( property=CronJob.CRON+"=0 0 0 ? JAN MON#1 2000-2022"
+public class ExampleCron implements CronJob<Object> {
+
+	public void run(Object object) throws Exception {
+		System.out.println("Yes, I am so happy to be discovered");
+	}
+} 
+```
 
 You know of course that you can use Configuration Admin to set the service properties, so you can override the default scheduler with something more suitable.
 
 But what about that Object parameter? Well, we have not told you yet that you can actually prefix the cron expression with properties. The parser for the cron expression only parses the last line and treats any preceding lines as properties. If you specify and interface then the scheduler will create a proxy on that interface and use the interface's method names as the names of the property. For example:
 
-	interface Foo {
-		long telephone();
+```java
+interface Foo {
+	long telephone();
+}
+
+@Component( property= "telephone=0633982260\n"
+	+CronJob.CRON+"=0 0 0 ? JAN MON#1 2000-2022"
+public class ExampleCron implements CronJob<Object> {
+
+	public void run(Foo foo) throws Exception {
+		System.out.println("Glad you called " foo.telephone());
 	}
-	
-	@Component( property= "telephone=0633982260\n"
-		+CronJob.CRON+"=0 0 0 ? JAN MON#1 2000-2022"
-	public class ExampleCron implements CronJob<Object> {
-	
-		public void run(Foo foo) throws Exception {
-			System.out.println("Glad you called " foo.telephone());
-		}
-	} 
+} 
+```
 
 The scheduler will pick up the interface from the properties from the generic information in the types. This unfortunately does not work for Java 8 lambdas, they mysteriously ignore the generic information. If you're using Declarative Services to register the service then you're ok.
 

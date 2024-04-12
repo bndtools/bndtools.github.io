@@ -37,12 +37,14 @@ Now create a provider project for the Upper API. Call the project `com.acme.prim
 
 We then should change the `UpperImpl` class to implement the `Upper` interface from our API project, so we must import `com.acme.prime.upper.api.Upper`. This class already is marked as a _component_ so that it registers its implemented interface as a service.
 
-	@Component(name = "com.acme.prime.upper")
-	public class UpperImpl implements Upper {
-		public String upper(String input) {
-			return input.toUpperCase();
-		}
+```java
+@Component(name = "com.acme.prime.upper")
+public class UpperImpl implements Upper {
+	public String upper(String input) {
+		return input.toUpperCase();
 	}
+}
+```
 
 In general, a provider bundle should export the API it _provides_; in our case we provide the contract specified in the `com.acme.prime.upper.api` package. Exporting this package is a highly recommended best practice, it makes a lot of things work better later on. You can export this package by selecting the `bnd.bnd` file in the `com.acme.prime.upper.provider` project, and then the `Contents` tab. Notice the import: `com.acme.prime.upper.api`. Drag this import to the export list and save the file. The imports now disappears.
 

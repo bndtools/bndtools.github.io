@@ -96,19 +96,21 @@ Eclipse class path is automatically updated.
 Since now have the PARSII library on our build path, we can use it in our `EvalImpl` class. 
 This small library significantly simplifies our code:
 
-	@Component(
-		name = "com.acme.prime.eval.simple", 
-		property = {
-			Debug.COMMAND_SCOPE + "=test", 
-			Debug.COMMAND_FUNCTION + "=eval" 
-		}
-	)
-	public class EvalImpl implements Eval {
-		@Override
-		public double eval(String expression) throws Exception {
-			return Parser.parse(expression).evaluate();
-		}	
+```java
+@Component(
+	name = "com.acme.prime.eval.simple", 
+	property = {
+		Debug.COMMAND_SCOPE + "=test", 
+		Debug.COMMAND_FUNCTION + "=eval" 
 	}
+)
+public class EvalImpl implements Eval {
+	@Override
+	public double eval(String expression) throws Exception {
+		return Parser.parse(expression).evaluate();
+	}	
+}
+```
 
 When we save this class we suddenly get an error from the Eclipse console, s
 omething like: 'could not resolve ...'. The big grey window that is yelling at 
@@ -171,13 +173,14 @@ Copying packages into your bundle from the class path often creates surprise, di
 
 Since there are now no longer any errors, we can now use our Gogo shell command to test out our efforts. We're now no longer restricted by a single operation so can go wild and find answers to all the (mathematical) questions we always wanted to know but were afraid to ask:
 
-	g! test:eval pi
-	3.141592653589793
-	g! test:eval sin(pi)
-	1.2246467991473532E-16
-	g! test:eval sin(1)*sin(1)+cos(1)*cos(1)
-	1.0
-{: .shell }
+```
+g! test:eval pi
+3.141592653589793
+g! test:eval sin(pi)
+1.2246467991473532E-16
+g! test:eval sin(1)*sin(1)+cos(1)*cos(1)
+1.0
+```
 	
 There is a small chance that you did something different and that the you do not get the prompt. In that case, terminate the running process, goto the Run tab on the `bnd.bnd` file, and click `Run OSGi` again. If this does not resolve the issue, try the next step since this will add some debugging.
 

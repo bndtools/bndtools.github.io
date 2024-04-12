@@ -29,27 +29,30 @@ In this case we want to keep our Chat service a singleton to keep it simple. We'
 
 This turns our implementation class into:
 
-	package com.mycompany.chat.provider;
-	
-	import org.osgi.service.component.annotations.Component;
-	import org.osgi.service.metatype.annotations.Designate;
-	
-	import com.mycompany.chat.api.Chat;
-	import com.mycompany.chat.api.Message;
-	
-	@Designate(ocd=Configuration.class)
-	
-	@Component(
-		name = "osgi.enroute.examples.chat.provider", // CHANGE 
-		property = "user.name=osgi")
-	public class ChatImpl implements Chat {
-	
-	  @Override
-	  public boolean send(Message message) throws Exception {
-	    System.out.printf("%s: %s%n", message.from, message.text);
-	    return true;
-	  }
+```java
+package com.mycompany.chat.provider;
+
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.metatype.annotations.Designate;
+
+import com.mycompany.chat.api.Chat;
+import com.mycompany.chat.api.Message;
+
+@Designate(ocd=Configuration.class)
+
+@Component(
+	name = "osgi.enroute.examples.chat.provider", // CHANGE 
+	property = "user.name=osgi")
+public class ChatImpl implements Chat {
+
+	@Override
+	public boolean send(Message message) throws Exception {
+	System.out.printf("%s: %s%n", message.from, message.text);
+	return true;
 	}
+}
+
+```
 	
 Make sure to change the name of the component to your namespace.
 
@@ -76,10 +79,10 @@ In the list of configurations you should see the entry:
 
 From the `osgi.enroute.examples.chat.provider` bundle. If you click on this entry then you get a small form that contains the entry for the `User name`. In there you can now file in your name. After you saved the configuration, the ChatImpl component will be restarted but now with a new value for the service property. We can now list the local members to see if this worked:
 
+```
 	g! members
 	pkriens
-{: .shell }
-
+```
 
 ## Cleaning Up
 

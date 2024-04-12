@@ -51,17 +51,19 @@ Since REST requests are always copied (they have to move to another process) it 
 
 Therefore, the previous example can be defined as:
 
-	@Component
-	public class UpperApplication implements REST {
-	
-		interface UpperRequest extends RESTRequest {
-			boolean alphaonly();
-		}
-		  
-		public String getUpper( UpperRequest request, String string ) {
-			return string.toUpperCase();
-		}
+```java
+@Component
+public class UpperApplication implements REST {
+
+	interface UpperRequest extends RESTRequest {
+		boolean alphaonly();
 	}
+		
+	public String getUpper( UpperRequest request, String string ) {
+		return string.toUpperCase();
+	}
+}
+```
 	
 Assuming a default root of `/rest`, this will provide a REST end-point of the earlier example URL `GET /rest/upper/<word>?alphaonly=true`.
 
@@ -84,33 +86,36 @@ The Java type of the pay-load is defined by the return type of the `_body()` met
 
 For example, a system has to handle people, so there is a (we know, simplistic) Person record.
 
-	public class Person extends DTO {
-		publci String id;
-		public String name;
-		public String middle;
-		public String surname;
-		public int birthYear;
-	}
-
+```java
+public class Person extends DTO {
+	publci String id;
+	public String name;
+	public String middle;
+	public String surname;
+	public int birthYear;
+}
+```
 In REST protocols, the `PUT` verb would be used to store a new person. To create the proper end-point, we can define the following REST method.
 
-	interface PersonRequest extends RESTRequest {
-		Person _body();
-	}
+```java
+interface PersonRequest extends RESTRequest {
+	Person _body();
+}
+
+Person putPerson( PersonRequest request ) {
+
+	// authorization
 	
-	Person putPerson( PersonRequest request ) {
+	Person p = request._body();
 	
-		// authorization
-		
-		Person p = request._body();
-		
-		// augment
-		// validate
-		// persist, set id
-		
-		return p;
-	}
+	// augment
+	// validate
+	// persist, set id
 	
+	return p;
+}
+```
+
 ## Exceptions
 
 Since the REST methods provide full type safe access to the parameters and remaining URL segments a significant amount of validation is executed by the implementation of this service. These validations will result in the appropriate HTTP error and status code. Implementation should also add explanatory texts to the response.

@@ -68,31 +68,36 @@ an extra dependency for the Parsii parser.
 
 We can use the following source code:
 
+```
 	parsii.provider $ mkdir -p src/main/java/osgi/enroute/examples/eval/parsii/provider
 	parsii.provider $ vi src/main/java/osgi/enroute/examples/eval/parsii/provider/EvalImpl.java
 	// Add the following code
-{: .shell }
+```
 
-	package osgi.enroute.examples.eval.parsii.provider;
+```java
+
+package osgi.enroute.examples.eval.parsii.provider;
+
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.log.LogService;
+
+import osgi.enroute.examples.eval.api.Eval;
+import parsii.eval.Parser;
+
+@Component(name = "osgi.enroute.examples.eval.parsii.provider")
+public class EvalImpl implements Eval {
+
+	@Reference
+	LogService log;
 	
-	import org.osgi.service.component.annotations.Component;
-	import org.osgi.service.component.annotations.Reference;
-	import org.osgi.service.log.LogService;
-	
-	import osgi.enroute.examples.eval.api.Eval;
-	import parsii.eval.Parser;
-	
-	@Component(name = "osgi.enroute.examples.eval.parsii.provider")
-	public class EvalImpl implements Eval {
-	
-		@Reference
-		LogService log;
-		
-		@Override
-		public double eval(String expression) throws Exception {
-			return Parser.parse(expression).evaluate();
-		}
+	@Override
+	public double eval(String expression) throws Exception {
+		return Parser.parse(expression).evaluate();
 	}
+}
+
+```
 
 The reference to the log service is not used. This line was added to solve
 a bug in bnd that should soon be solved. The problem was that for a very simple
@@ -111,15 +116,18 @@ including the required packages from the JAR with bnd's Private-Package instruct
 In this example we've selected the including strategy. The bnd.bnd file therefore looks as
 follows:
 
+```
 	parsii.provider $ vi bnd.bnd
 	// add the following bnd.bnd
-{: .shell }
+```
 
+```
 	Export-Package: osgi.enroute.examples.eval.api
 	
 	Private-Package: \
 		parsii.*, \
 		osgi.enroute.examples.eval.parsii.provider
+```
 
 Just like the simple provider, we've exported the API. However, where we've used
 the default of all classes from the project for the simple provider, here we
@@ -136,6 +144,7 @@ Again, don't forget to add the parsii.provider module to the parent pom.
 
 We now build the bundle:
 
+```
 	parsii.provider $ mvn install
 	...
 	parsii.provider $ bnd print target/osgi.enroute.examples.eval.parsii.provider-1.0.0-SNAPSHOT.jar 
@@ -162,7 +171,7 @@ We now build the bundle:
 	  osgi.enroute.examples.eval.api         {version=[1.0,1.1)}
 	Export-Package
 	  osgi.enroute.examples.eval.api         {version=1.0.0, imported-as=[1.0,1.1)}
-{: .shell }
+```
 
 The Private-Package header added by bnd clearly shows that we've added the `parsii` packages that it found in the bundle. We specified a wild card in the `bnd.bnd` file for Private-Package but in the manifest we can clearly see that there are `parsii.tokenizer` and `parsii.eval` packages on the classpath.
 
@@ -170,54 +179,60 @@ The Private-Package header added by bnd clearly shows that we've added the `pars
 
 We should now switch to the bndrun project.
 
+```
 	parsii.provider $ cd ../bndrun
 	parsii.provider $ vi pom.xml
 	// replace dependencies with next section
-{: .shell }
+```
 
 We first need to replace the simple provider with our newly eval parser in the pom.xml in this project so
 it can be used by the resolver. The dependencies should therefore look like:
 
-          <dependencies>
-                <dependency>
-                        <groupId>org.osgi</groupId>
-                        <artifactId>osgi.enroute.examples.eval.parsii.provider</artifactId>
-                        <version>1.0.0-SNAPSHOT</version>
-                </dependency>
-                <dependency>
-                        <groupId>org.apache.felix</groupId>
-                        <artifactId>org.apache.felix.gogo.shell</artifactId>
-                        <version>1.0.0</version>
-                </dependency>
-                <dependency>
-                        <groupId>org.osgi</groupId>
-                        <artifactId>osgi.enroute.examples.eval.command</artifactId>
-                        <version>1.0.0-SNAPSHOT</version>
-                </dependency>
-                <dependency>
-                        <groupId>org.osgi</groupId>
-                        <artifactId>osgi.enroute.pom.distro</artifactId>
-                        <version>2.0.0</version>
-                </dependency>
-        </dependencies>
+```xml
+	<dependencies>
+		<dependency>
+				<groupId>org.osgi</groupId>
+				<artifactId>osgi.enroute.examples.eval.parsii.provider</artifactId>
+				<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>org.apache.felix.gogo.shell</artifactId>
+				<version>1.0.0</version>
+		</dependency>
+		<dependency>
+				<groupId>org.osgi</groupId>
+				<artifactId>osgi.enroute.examples.eval.command</artifactId>
+				<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+				<groupId>org.osgi</groupId>
+				<artifactId>osgi.enroute.pom.distro</artifactId>
+				<version>2.0.0</version>
+		</dependency>
+</dependencies>
+```
   
 In the bndrun project in the `osgi.enroute.examples.eval.bndrun` file, we need to 
 change the `-runrequires` to use the `parsii.provider` instead of the simple provider:
 
-
+```
 	parsii.provider $ cd ../bndrun
 	bndrun $ vi osgi.enroute.examples.eval.bndrun
 	// Replace the -runrequires
-{: .shell }
+```
 
-	-runrequires: \
-		osgi.identity;filter:='(osgi.identity=org.apache.felix.gogo.shell)',\
-		osgi.identity;filter:='(osgi.identity=org.apache.felix.gogo.command)',\
-		osgi.identity;filter:='(osgi.identity=osgi.enroute.examples.eval.command)',\
-		osgi.identity;filter:='(osgi.identity=osgi.enroute.examples.eval.parsii.provider)'
+```
+-runrequires: \
+	osgi.identity;filter:='(osgi.identity=org.apache.felix.gogo.shell)',\
+	osgi.identity;filter:='(osgi.identity=org.apache.felix.gogo.command)',\
+	osgi.identity;filter:='(osgi.identity=osgi.enroute.examples.eval.command)',\
+	osgi.identity;filter:='(osgi.identity=osgi.enroute.examples.eval.parsii.provider)'
+```
 
 Then resolve, which should give something like:
 
+```
 	bndrun $ mvn install
 	...
 	-runbundles: \
@@ -232,12 +247,13 @@ Then resolve, which should give something like:
 		osgi.enroute.examples.eval.parsii.provider; version='[1.0.0,1.0.1)',\
 		org.apache.felix.gogo.shell; version='[2.0.0,2.0.1)'
 	...
-{: .shell }
+```
 
 And then update the `osgi.enroute.examples.eval.bndrun` file with the returned `-runbundles` and run `mvn install` again. 
 
 We can then run the application:
 
+```
 	bndrun $ java -jar osgi.enroute.examples.eval.jar
 		         ____             _       
 	   ___ _ __ |  _ \ ___  _   _| |_ ___ 
@@ -250,7 +266,7 @@ We can then run the application:
 	G! eval cos(pi)
 	-1.0
 	G! 
-{: .shell }
+```
 
 ## What did We Learn in this Section?
 

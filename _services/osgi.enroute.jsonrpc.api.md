@@ -17,55 +17,65 @@ You can find a fully functioning example in the [examples repository][example];
 
 The JSON RPC implementation in OSGi enRoute consists of a back-end (Java/OSGi) and a front-end part (Javascript/Angular). The following is an example of a back-end service that will provide an endpoint to the front-end named `exampleEndpoint`:
 
-	@Component(name="osgi.enroute.examples.jsonrpc", property=JSONRPC.ENDPOINT + "=exampleEndpoint")
-	public class JsonrpcApplication implements JSONRPC {
-	
-		@Override public Object getDescriptor() throws Exception {
-			return "Welcome!";
-		}
-		
-		public String toUpper(String string) {
-			return string.toUpperCase();
-		}
+```java
+@Component(name="osgi.enroute.examples.jsonrpc", property=JSONRPC.ENDPOINT + "=exampleEndpoint")
+public class JsonrpcApplication implements JSONRPC {
+
+	@Override public Object getDescriptor() throws Exception {
+		return "Welcome!";
 	}
+	
+	public String toUpper(String string) {
+		return string.toUpperCase();
+	}
+}
+```
 
 On the Javascript side we need to configure the `en$jsonrpcProvider` (Since we commonly use the $routeProvider to configure the routes in this place it is also shown since the routes should not be active until the endpoint is initialized) :
-	
-	var resolveBefore = {};
 
-	MODULE.config(function($routeProvider, en$jsonrpcProvider) {
-		resolveBefore.exampleEndpoint = en$jsonrpcProvider.endpoint("exampleEndpoint");
-		$routeProvider.when('/', {
-			controller 	: Controller,
-			templateUrl : '/osgi.enroute.examples.jsonrpc/main/htm/home.htm',
-			resolve 	: resolveBefore
-		});
+```javascript	
+var resolveBefore = {};
+
+MODULE.config(function($routeProvider, en$jsonrpcProvider) {
+	resolveBefore.exampleEndpoint = en$jsonrpcProvider.endpoint("exampleEndpoint");
+	$routeProvider.when('/', {
+		controller 	: Controller,
+		templateUrl : '/osgi.enroute.examples.jsonrpc/main/htm/home.htm',
+		resolve 	: resolveBefore
 	});
-	
+});
+```
+
 Since the endpoint is the object we need to call our methods on we use the same promise to get our endpoint:
 
-	MODULE.run(function($rootScope, en$jsonrpc) {
-		resolveBefore.exampleEndpoint().then(function(exampleEndpoint) {
-			$rootScope.exampleEndpoint = exampleEndpoint;
-		});
+```javascript
+MODULE.run(function($rootScope, en$jsonrpc) {
+	resolveBefore.exampleEndpoint().then(function(exampleEndpoint) {
+		$rootScope.exampleEndpoint = exampleEndpoint;
 	});
+});
+```
 
 Last but not least, the Controller that reacts to the '/' route.
  
-	var Controller = function($scope, en$jsonrpc) {
-		$scope.upper = function(s) {
-			$scope.exampleEndpoint.toUpper(s).then(function(d) {
-				alert({msg: d, type:"info"});
-			});
-		}
-		$scope.welcome = $scope.exampleEndpoint.descriptor
+```javascript
+var Controller = function($scope, en$jsonrpc) {
+	$scope.upper = function(s) {
+		$scope.exampleEndpoint.toUpper(s).then(function(d) {
+			alert({msg: d, type:"info"});
+		});
 	}
+	$scope.welcome = $scope.exampleEndpoint.descriptor
+}
+```
 	
 This example will report errors on the Javascript console. It is possible to register an error function durin the configuration of the en$jsonrpcProvider:
 
-	en$jsonrpcProvider.setNotification({
-		error : function(err) { alert(err); }
-	})
+```javascript
+en$jsonrpcProvider.setNotification({
+	error : function(err) { alert(err); }
+})
+```
 
 ## Description 
 [JSON RPC][jsonrpc] is a protocol that is used to call procedures on another machine. It uses Javascript Object Representation Notation (JSON) to encode the parameters and return types, hence its name. JSON RPC is intended to be used when the front-end (usually Javascript) and the back-end are tightly connected like in for example the case of a single-page web-application. Since the front-end and the back-end evolve simultaneously there is no need to be backward compatible. If the back-end changes then the front-end changes. 
@@ -74,10 +84,12 @@ This example will report errors on the Javascript console. It is possible to reg
 
 To create a JSON RPC  end point, you must register an OSGi service that has the OSGi service property  `JSONRPC.ENDPOINT` set to the endpoint name. An endpoint name must match the bundle symbolic name syntax. For example:
 
-	@Component(name="osgi.enroute.examples.jsonrpc", property=JSONRPC.ENDPOINT + "=exampleEndpoint")
-	public class JsonrpcApplication implements JSONRPC {
-	    public Object getDescriptor() { ... }
-	}
+```java
+@Component(name="osgi.enroute.examples.jsonrpc", property=JSONRPC.ENDPOINT + "=exampleEndpoint")
+public class JsonrpcApplication implements JSONRPC {
+	public Object getDescriptor() { ... }
+}
+```
  
 The `getDescriptor` method is called for each new client. It is possible to return any JSON serializable object; this object will be available in the front-end. In general, these are DTO types. The `toUpper` method can be called from the front-end.  The parameters must also be serializable using JSON. 
 
@@ -87,16 +99,18 @@ The front-end is slightly more complicated because the front-end need to query t
 
 The common pattern therefore looks as follows:
 
-	var resolveBefore = {};
+```javascript
+var resolveBefore = {};
 
-	MODULE.config(function($routeProvider, en$jsonrpcProvider) {
-		resolveBefore.exampleEndpoint = en$jsonrpcProvider.endpoint("exampleEndpoint");
-		$routeProvider.when('/', {
-			controller 	: Controller,
-			templateUrl : '/osgi.enroute.examples.jsonrpc/main/htm/home.htm',
-			resolve 	: resolveBefore
-		});
+MODULE.config(function($routeProvider, en$jsonrpcProvider) {
+	resolveBefore.exampleEndpoint = en$jsonrpcProvider.endpoint("exampleEndpoint");
+	$routeProvider.when('/', {
+		controller 	: Controller,
+		templateUrl : '/osgi.enroute.examples.jsonrpc/main/htm/home.htm',
+		resolve 	: resolveBefore
 	});
+});
+```
 
 ## en$jsonrpcProvider
 
@@ -144,12 +158,14 @@ The `en$jsonrpcProvider` must be configured during Angular configuration (`MODUL
 
 *   **I'm not quite understanding the `resolveBefore` variable that you use in the client code example. I just use something like this in my controller:**
 
-        $scope.ff = {};
-        en$jsonrpc.endpoint("be.iminds.iot.firefly").then(
-               function(ff){
-                   $scope.ff = ff;
-               }
-        );
+```javascript
+$scope.ff = {};
+en$jsonrpc.endpoint("be.iminds.iot.firefly").then(
+		function(ff){
+			$scope.ff = ff;
+		}
+);
+```
        
     **And from then on I call methods on $scope.ff  ...  Probably there is something wrong with this?** 
     

@@ -24,9 +24,11 @@ So let's create a new project with this name. In Eclipse, choose `New/Bndtools/B
 
 Our friendly OSGi enRoute template already has created a `EvalImpl.java` class for us. This is already setup as a Declarative Service (DS) µservice component because the `@Component` annotation was added. If your component class implements one or more interfaces, then these will be registered as OSGi services. So in this case, we want to implement an `Eval` interface so that we're registered as an Eval service. So the first thing we should do is add this `Eval` interface to the class:
 
-	@Component(name = "com.acme.prime.eval")
-	public class EvalImpl implements Eval { }
-	
+```java
+@Component(name = "com.acme.prime.eval")
+public class EvalImpl implements Eval { }
+```
+
 ## Build Path
  
 Unfortunately, this causes an error; Eclipse cannot find the `Eval` class because we're not linked to the `com.acme.prime.eval.api` project yet. Hold your temptation to add this to the Eclipse Build Path because this will then fail later in the continuous integration where there is no Eclipse. Nope, we must add the dependency to bnd to get fidelity between our user friendly Eclipse world and the software engineering world of continuous integration. 
@@ -49,26 +51,28 @@ Bugger, still errors!
 
 Alas, we got rid of the import error but in place of this error we now get a red underlined `EvalImpl` class. The problem is that we need to provide the `eval` method as prescribed by the Eval interface that it now implements. Let's keep it simple:
 
-	@Component(name = "com.acme.prime.eval")
-	public class EvalImpl implements Eval {
-		Pattern EXPR = Pattern.compile( "\\s*(?<left>\\d+)\\s*(?<op>\\+|-)\\s*(?<right>\\d+)\\s*");
+```java
+@Component(name = "com.acme.prime.eval")
+public class EvalImpl implements Eval {
+	Pattern EXPR = Pattern.compile( "\\s*(?<left>\\d+)\\s*(?<op>\\+|-)\\s*(?<right>\\d+)\\s*");
+	
+	@Override
+	public double eval(String expression) throws Exception {
+		Matcher m = EXPR.matcher(expression);
+		if ( !m.matches())
+			throw new IllegalArgumentException("Invalid expression " + expression);
 		
-		@Override
-		public double eval(String expression) throws Exception {
-			Matcher m = EXPR.matcher(expression);
-			if ( !m.matches())
-				throw new IllegalArgumentException("Invalid expression " + expression);
-			
-			double left = Double.valueOf( m.group("left"));
-			double right = Double.valueOf( m.group("right"));
-			switch( m.group("op")) {
-			case "+": return left + right;
-			case "-": return left - right;
-			}
-			return Double.NaN;
+		double left = Double.valueOf( m.group("left"));
+		double right = Double.valueOf( m.group("right"));
+		switch( m.group("op")) {
+		case "+": return left + right;
+		case "-": return left - right;
 		}
+		return Double.NaN;
 	}
- 
+}
+```
+
 Ok, ok, simple might still give it too much credit but we're not here to learn parsing. At least it has (some) error handling! Notice that we can only handle trivial additions and subtractions of constants.
 
 ## Imports

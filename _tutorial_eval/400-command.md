@@ -28,39 +28,41 @@ Make sure you are in the top directory:
 We need to create a directory called `command` in the `osgi.enroute.examples.eval` 
 directory. In this directory we need to create a `pom.xml` file. The POM is quite standard now:
 
+```
+osgi.enroute.examples.eval $ mkdir command
+osgi.enroute.examples.eval $ cd command
+command $ vi pom.xml
+// Add the pom.xml
+```
 
-	osgi.enroute.examples.eval $ mkdir command
-	osgi.enroute.examples.eval $ cd command
-	command $ vi pom.xml
-	// Add the pom.xml
-{: .shell }
 
 And the content:
+```xml
+<project 
+	xmlns="http://maven.apache.org/POM/4.0.0" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+>
+	<modelVersion>4.0.0</modelVersion>
 
-	<project 
-		xmlns="http://maven.apache.org/POM/4.0.0" 
-		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
-	>
-		<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.osgi</groupId>
+		<artifactId>osgi.enroute.examples.eval</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
+	<packaging>jar</packaging>
+
+	<artifactId>osgi.enroute.examples.eval.command</artifactId>
 	
-		<parent>
+	<dependencies>
+		<dependency>
 			<groupId>org.osgi</groupId>
-			<artifactId>osgi.enroute.examples.eval</artifactId>
+			<artifactId>osgi.enroute.examples.eval.api</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
-		</parent>
-		<packaging>jar</packaging>
-	
-		<artifactId>osgi.enroute.examples.eval.command</artifactId>
-		
-		<dependencies>
-			<dependency>
-				<groupId>org.osgi</groupId>
-				<artifactId>osgi.enroute.examples.eval.api</artifactId>
-				<version>1.0.0-SNAPSHOT</version>
-			</dependency>
-		</dependencies>
-	</project>
+		</dependency>
+	</dependencies>
+</project>
+```
 
 We must also add command as module in the parent pom.xml, as we've done for the modules of the previous steps in this tutorial.
 
@@ -86,38 +88,40 @@ injected with the Eval service once it is available.
 The following code implements a command with a scope of `eval` and a function
 of `eval`.
 
-
-	command $ mkdir -p src/main/java/osgi/enroute/examples/eval/command
-	command $ vi src/main/java/osgi/enroute/examples/eval/command/EvalCommand.java
-	// add the Java code
-{: .shell }
+```
+command $ mkdir -p src/main/java/osgi/enroute/examples/eval/command
+command $ vi src/main/java/osgi/enroute/examples/eval/command/EvalCommand.java
+// add the Java code
+```
 
 And the content:
-  	
-	package osgi.enroute.examples.eval.command;
+
+```java  	
+package osgi.enroute.examples.eval.command;
+
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
+
+import osgi.enroute.debug.api.Debug;
+import osgi.enroute.examples.eval.api.Eval;
+
+@Component(property= { 
+	Debug.COMMAND_SCOPE+"=eval", 
+	Debug.COMMAND_FUNCTION+"=eval" },
+	service=EvalCommand.class)
+public class EvalCommand {
+
+	@Reference
+	Eval greeter;
 	
-	import java.util.stream.Collectors;
-	import java.util.stream.Stream;
-	
-	import org.osgi.service.component.annotations.Component;
-	import org.osgi.service.component.annotations.Reference;
-	
-	import osgi.enroute.debug.api.Debug;
-	import osgi.enroute.examples.eval.api.Eval;
-	
-	@Component(property= { 
-		Debug.COMMAND_SCOPE+"=eval", 
-		Debug.COMMAND_FUNCTION+"=eval" },
-		service=EvalCommand.class)
-	public class EvalCommand {
-	
-		@Reference
-		Eval greeter;
-		
-		public double eval(String ... name) throws Exception {
-			return greeter.eval(Stream.of(name).collect(Collectors.joining(" ")));
-		}
+	public double eval(String ... name) throws Exception {
+		return greeter.eval(Stream.of(name).collect(Collectors.joining(" ")));
 	}
+}
+```
 
 ## The bnd.bnd File
 
@@ -146,47 +150,53 @@ included in the enRoute distro.
 The dependency section in the bndrun pom.xml file should
 therefore look like the following.
 
-		<dependencies>
-			<dependency>
-				<groupId>org.osgi</groupId>
-				<artifactId>osgi.enroute.examples.eval.simple.provider</artifactId>
-				<version>1.0.0-SNAPSHOT</version>
-			</dependency>
-			<dependency>
-				<groupId>org.osgi</groupId>
-				<artifactId>osgi.enroute.pom.distro</artifactId>
-				<version>2.0.0-SNAPSHOT</version>
-			</dependency>			
-			<dependency>
-				<groupId>org.osgi</groupId>
-				<artifactId>osgi.enroute.examples.eval.command</artifactId>
-				<version>1.0.0-SNAPSHOT</version>
-			</dependency>		
-			<dependency>
-			    <groupId>org.apache.felix</groupId>
-			    <artifactId>org.apache.felix.gogo.shell</artifactId>
-			    <version>1.0.0</version>
-			</dependency>
-		</dependencies>
+```xml
+<dependencies>
+	<dependency>
+		<groupId>org.osgi</groupId>
+		<artifactId>osgi.enroute.examples.eval.simple.provider</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</dependency>
+	<dependency>
+		<groupId>org.osgi</groupId>
+		<artifactId>osgi.enroute.pom.distro</artifactId>
+		<version>2.0.0-SNAPSHOT</version>
+	</dependency>			
+	<dependency>
+		<groupId>org.osgi</groupId>
+		<artifactId>osgi.enroute.examples.eval.command</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</dependency>		
+	<dependency>
+		<groupId>org.apache.felix</groupId>
+		<artifactId>org.apache.felix.gogo.shell</artifactId>
+		<version>1.0.0</version>
+	</dependency>
+</dependencies>
+```
 
 We also need to add the bundle to our initial requirements in the bndrun file
 in the `osgi.enroute.examples.eval/bndrun` directory:
 
+```
 	bndrun $ vi osgi.enroute.examples.eval.bndrun
 	// replace the -runrequires
-{: .shell }
+```
 
+```
 	-runrequires: \
 		osgi.identity;filter:='(osgi.identity=osgi.enroute.examples.eval.simple.provider)',\
 		osgi.identity;filter:='(osgi.identity=org.apache.felix.gogo.shell)',\
 		osgi.identity;filter:='(osgi.identity=org.apache.felix.gogo.command)',\
 		osgi.identity;filter:='(osgi.identity=osgi.enroute.examples.eval.command)'
+```
 
 And then we run the command to resolve:
 
+```
 	bndrun $ mvn install
 	...
-	
+
 	-runbundles: \
 	    org.apache.felix.configadmin; version='[1.8.8,1.8.9)',\
 	    org.apache.felix.gogo.command; version='[0.16.0,0.16.1)',\
@@ -206,12 +216,13 @@ And then we run the command to resolve:
 	[INFO] ------------------------------------------------------------------------
 	bndrun $ vi osgi.enroute.examples.eval.bndrun
 	// replace the -runbundles with the given list	
-{: .shell }
+```
 	
 And then replace the `-runbundles` in the `osgi.enroute.examples.eval.bndrun`
 file to the list provided by maven. Then we should run maven again to get our
 JAR.
 
+```
 	bndrun $ mvn install
 	...
 	[INFO] ------------------------------------------------------------------------
@@ -230,8 +241,8 @@ JAR.
 	G! eval 3 + 4
 	7.0
 	G! 
-{: .shell }
-	
+```
+
 Yeah!
 
 ## What Have We Learned?

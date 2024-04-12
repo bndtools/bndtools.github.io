@@ -14,14 +14,16 @@ If we create a _provider_ Bndtools project with the OSGi enRoute templates then 
 
 This gives us a bundle with a component like:
 
-	package osgi.enroute.examples.chat.adapter;
-	
-	import org.osgi.service.component.annotations.Component;
-	
-	@Component(name = "osgi.enroute.examples.chat")
-	public class ChatImpl {
-	}
- 
+```java
+package osgi.enroute.examples.chat.adapter;
+
+import org.osgi.service.component.annotations.Component;
+
+@Component(name = "osgi.enroute.examples.chat")
+public class ChatImpl {
+}
+```
+
 ## Buildpath
 
 Our first task is to add the API project to our `-buildpath` so we can add the Chat interface to our implementation. To extend the `-buildpath`, double click on the `bnd.bnd` file and select the `Build` tab. You can then press the `+` button or select the `Source` tab and edit the `-buildpath` instruction. It should look like:
@@ -42,26 +44,28 @@ To finish the implementation there are a number of things necessary.
 
 The code looks then like:
 
-	package osgi.enroute.examples.chat.provider;
-	
-	import org.osgi.service.component.annotations.Component;
-	
-	import osgi.enroute.examples.chat.api.Chat;
-	import osgi.enroute.examples.chat.api.Message;
-	
-	@Component(
-		name = "osgi.enroute.examples.chat", // CHANGE 
-		property = "user.name=osgi"
-	)
-	public class ChatImpl implements Chat {
-	
-		@Override
-		public boolean send(Message message) throws Exception {
-			System.out.printf("%s: %s%n", message.from, message.text);
-			return true;
-		}
-	
+```java
+package osgi.enroute.examples.chat.provider;
+
+import org.osgi.service.component.annotations.Component;
+
+import osgi.enroute.examples.chat.api.Chat;
+import osgi.enroute.examples.chat.api.Message;
+
+@Component(
+	name = "osgi.enroute.examples.chat", // CHANGE 
+	property = "user.name=osgi"
+)
+public class ChatImpl implements Chat {
+
+	@Override
+	public boolean send(Message message) throws Exception {
+		System.out.printf("%s: %s%n", message.from, message.text);
+		return true;
 	}
+
+}
+```
 
 Make sure to change the name of the component to your namespace.
 

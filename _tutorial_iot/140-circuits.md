@@ -24,30 +24,33 @@ The Apache Felix Gogo shell is a very nice way to explore a new environment. So 
 
 So our component should look like:
 
-	@Component(
-		service = IC.class, 
-		property = {
-			Debug.COMMAND_SCOPE+"=domo", 
-			Debug.COMMAND_FUNCTION+"=led"
-		}
-	)
-	public class DomoticaCommand extends ICAdapter<Void, Digital> {
-	
-		public void led(boolean on) throws Exception {
-			out().set(on);	
-		}
-
-		@Reference
-		protected void setCircuitBoard(CircuitBoard cb) {
-			super.setCircuitBoard(cb);
-		}
+```java
+@Component(
+	service = IC.class, 
+	property = {
+		Debug.COMMAND_SCOPE+"=domo", 
+		Debug.COMMAND_FUNCTION+"=led"
 	}
+)
+public class DomoticaCommand extends ICAdapter<Void, Digital> {
+
+	public void led(boolean on) throws Exception {
+		out().set(on);	
+	}
+
+	@Reference
+	protected void setCircuitBoard(CircuitBoard cb) {
+		super.setCircuitBoard(cb);
+	}
+}
+```
 
 On the command line we can now control the led:
 
+```
 	> led true
 	> led false
-{: .shell}
+```
 
 Ok, fooled you. This does not do anything yet since we've not wired our component yet. We need to prepare the environment first.
 
@@ -65,20 +68,21 @@ You can add this bundle in the `osgi.enroute.iot.domotica.bndrun` file. Click on
 
 If things worked out, you now should be able to see our IC:
 
-	> ics
-	{"deviceId":"DomoticaCommand", "type":"osgi.enro...caCommand", \
-		"name":"DomoticaCommand", "icon":null, "inputs":[], \
-		"outputs":[{"name":"set", "type":"boolean", "value":false}]}
-	> wires
-	>
-	> circuit
-		wires                           – Show the existing wires
-		ics                             – Show the current ICs
-		connect <from> <pin> <to> <pin> – Connect two ics
-		gpo <id>                        – Create a test output to the Console
-		clock <id>                      – Create a test clock
-		disconnect id                   – Disconnect a write
-{: .shell }
+```
+> ics
+{"deviceId":"DomoticaCommand", "type":"osgi.enro...caCommand", \
+	"name":"DomoticaCommand", "icon":null, "inputs":[], \
+	"outputs":[{"name":"set", "type":"boolean", "value":false}]}
+> wires
+>
+> circuit
+	wires                           – Show the existing wires
+	ics                             – Show the current ICs
+	connect <from> <pin> <to> <pin> – Connect two ics
+	gpo <id>                        – Create a test output to the Console
+	clock <id>                      – Create a test clock
+	disconnect id                   – Disconnect a write
+```
 
 Feel free to send a pull request to improve the output. That said, the GUI looks better.
 
@@ -106,11 +110,12 @@ We need GPIO00 as an output, so select the `Out` entry in the first popup menu o
 
 If we now look in the Gogo shell we see 2 ICs:
 
-	> ics
-	{"deviceId":"DomoticaCommand", "type":"osgi.enro...caCommand", ...
-	{"deviceId":"GPIO00", "type":"osgi.enro...ev1Impl$1", "name":"1", ...
-	>
-{: .shell }
+```
+> ics
+{"deviceId":"DomoticaCommand", "type":"osgi.enro...caCommand", ...
+{"deviceId":"GPIO00", "type":"osgi.enro...ev1Impl$1", "name":"1", ...
+>
+```
 	
 Note that we create an IC for each pin. The reason is that the GPIO chip in the Raspberry Pi is very flexible. It would be impossible to describe it as one IC since many pins vary significantly in function. How would you parameterize input or output in this model? So each pin (or group of pins) is modeled as its own IC.
 
@@ -119,16 +124,18 @@ Note that we create an IC for each pin. The reason is that the GPIO chip in the 
 
 Time to go back to our LED. If we list the ICs, we can spot the value of the outputs (look at `"value":false`):
 
-	> ics
-	{"deviceId":"DomoticaCommand", "type":"osgi.enro...caCommand", \
-		"name":"DomoticaCommand", "icon":null, "inputs":[], \
-		"outputs":[{"name":"set", "type":"boolean", "value":false}]
-	}
-	>
-{: .shell }
+```
+> ics
+{"deviceId":"DomoticaCommand", "type":"osgi.enro...caCommand", \
+	"name":"DomoticaCommand", "icon":null, "inputs":[], \
+	"outputs":[{"name":"set", "type":"boolean", "value":false}]
+}
+>
+```
  
  So if we execute out `led` command we should be able to change it:
  
+ ```
 	> led true
 	> ics
 	{"deviceId":"DomoticaCommand", "type":"osgi.enro...caCommand", \
@@ -136,27 +143,29 @@ Time to go back to our LED. If we list the ICs, we can spot the value of the out
 		"outputs":[{"name":"set", "type":"boolean", "value":true}]
 	}
 	>
-{: .shell }
+```
 
 So this worked. Now the trick is to connect the `DomoticaCommand` `set` pin to the `GPIO00` `set` pin.
 
+```
 	> connect DomoticaCommand set GPIO00 set
 	{"wireId":1001, "fromDevice":"DomoticaCommand", "fromPin":"set", \
 		 "toDevice":"GPIO00", "toPin":"set", "wired":false}
 	>
-{: .shell }
+```
 
 Miracles! Well, if your LED is now glowing brightly red, otherwise you're in for some debugging.
 
 We can now control the LED with the led command:
 
+```
 	> led false
 	> led true
 	> led false
 	> led true
 	> led false
 	> led true
-{: .shell }
+```
 
 ## Adding the GUI
 
@@ -205,41 +214,43 @@ If you press the button, the state of the GPIO02 IC should change. You can now w
 
 First the code:
 
-	@Component(service = IC.class, property = {Debug.COMMAND_SCOPE+"=domo", Debug.COMMAND_FUNCTION+"=led"})
-	public class DomoticaCommand extends ICAdapter<Digital, Digital> implements Digital {
-	 
-		private AtomicBoolean busy = new AtomicBoolean();
-		private Scheduler scheduler;
-		private int count;
-		private Closeable schedule;
-		
-		@Override
-		public void set(boolean value) throws Exception {
-			
-			if ( value && busy.getAndSet(true) == false) {
-				count = 10;
-				schedule = scheduler.schedule( ()-> {
-					if ( count-- <= 0) {
-						busy.set(false);
-						schedule.close();
-					}
-					led( (count & 1) == 0);
-				}, 500);
-			}
-		}
-		
-		public void led(boolean on) throws Exception { 
-			out().set(on);
-		}
+```java
+@Component(service = IC.class, property = {Debug.COMMAND_SCOPE+"=domo", Debug.COMMAND_FUNCTION+"=led"})
+public class DomoticaCommand extends ICAdapter<Digital, Digital> implements Digital {
 	
-		@Reference protected void setCircuitBoard(CircuitBoard cb) {
-			super.setCircuitBoard(cb);
-		}
+	private AtomicBoolean busy = new AtomicBoolean();
+	private Scheduler scheduler;
+	private int count;
+	private Closeable schedule;
 	
-		@Reference void setScheduler(Scheduler scheduler) {
-			this.scheduler = scheduler;
+	@Override
+	public void set(boolean value) throws Exception {
+		
+		if ( value && busy.getAndSet(true) == false) {
+			count = 10;
+			schedule = scheduler.schedule( ()-> {
+				if ( count-- <= 0) {
+					busy.set(false);
+					schedule.close();
+				}
+				led( (count & 1) == 0);
+			}, 500);
 		}
 	}
+	
+	public void led(boolean on) throws Exception { 
+		out().set(on);
+	}
+
+	@Reference protected void setCircuitBoard(CircuitBoard cb) {
+		super.setCircuitBoard(cb);
+	}
+
+	@Reference void setScheduler(Scheduler scheduler) {
+		this.scheduler = scheduler;
+	}
+}
+```
 
 When we receive an input event (the `set` method), we check if we're already busy and if the button was high. If so, we set a counter and create a schedule. This schedule kills itself after ten times and reverses the output of the LED. Simple.
 

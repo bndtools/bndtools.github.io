@@ -19,17 +19,19 @@ Generally, a bundle that want to control a GPIO provides some functionality that
 
 The following example implements an inverter controlled by configurations. You can create any number of inverters and then these inverters can be wired together. A source, like a counter, can then be inverted.
 
-	@Component(configurationPolicy=ConfigurationPolicy.require)
-	public class Not extends ICAdapter<Digital, Digital> implements Digital {
-		@Override
-		public void set(boolean value) throws Exception {
-			out().set(!value);
-		}
-		
-		@Reference protected void setCircuitBoard(CircuitBoard board) {
-			super.setCircuitBoard(board);
-		}
+```java
+@Component(configurationPolicy=ConfigurationPolicy.require)
+public class Not extends ICAdapter<Digital, Digital> implements Digital {
+	@Override
+	public void set(boolean value) throws Exception {
+		out().set(!value);
 	}
+	
+	@Reference protected void setCircuitBoard(CircuitBoard board) {
+		super.setCircuitBoard(board);
+	}
+}
+```
 
 The `osgi.enroute.iot.circuit` bundle contains a number of standard components and the inverter is already there together with an And, an Or, a Flip and an 8 bit counter. 
  
@@ -37,9 +39,11 @@ The `osgi.enroute.iot.circuit` bundle contains a number of standard components a
 
 This Circuit Board service is the [inevitable extra level of indirection that solves any computing problem][indirection]. This service acts like a _circuit board_ with _ICs_ that are wired together. The IC interface provides a static description of the IC, what pins it has, its name, etc. This information is passed as a DTO so that the IC services can easily be distributed. The description is quite extensive and is non-trivial. For this reason, OSGi enRoute provides an _ICAdapter_ util class that creates these descriptions from an input and an output interface. In the previous 'Example Usage', both the output and input were described by the `Digital` interface. The `Digital` interface looks as follows:
 
-	public interface Digital {
-		void set(boolean value) throws Exception;
-	}
+```java
+public interface Digital {
+	void set(boolean value) throws Exception;
+}
+```
 
 How can this simple interface work both as an input and an output? The reason is that the circuit will call the methods on these interfaces when it has information for the IC but the IC will call the method on a proxy of the circuit board. This model unifies the differences that normally are used to model the "I call you" or "You call me" approach. An IC calls a proxy, the circuit board calls the IC. Simple, unified.
 
@@ -47,43 +51,45 @@ Each method on the interface describes a _pin_. The method should be `void` and 
 
 The following example shows a simple clock that ticks every 500 ms:
 
-	public interface Enabled {
-		void enable(boolean yes) throws Exception;
-	}
+```java
+public interface Enabled {
+	void enable(boolean yes) throws Exception;
+}
 
-	public interface Clock {
-		void tick(boolean value)
+public interface Clock {
+	void tick(boolean value)
+}
+
+@Component
+public class Clock extends ICAdapter<Enabled,Clock> implements Enabled {
+	private Scheduler scheduler;
+	private volatile boolean enable;
+	private Closeable schedule;
+	private boolean tick;
+	
+	@Activate void activate() throws Exception {
+		schedule = scheduler.schedule( 
+			() -> out().tick( enable && (tick = ! tick)), 
+			500
+		); 
+	}
+	@Deactivate void deactivate() throws Exception {
+		schedule.close();
 	}
 	
-	@Component
-	public class Clock extends ICAdapter<Enabled,Clock> implements Enabled {
-		private Scheduler scheduler;
-		private volatile boolean enable;
-		private Closeable schedule;
-		private boolean tick;
-		
-		@Activate void activate() throws Exception {
-			schedule = scheduler.schedule( 
-				() -> out().tick( enable && (tick = ! tick)), 
-				500
-			); 
-		}
-		@Deactivate void deactivate() throws Exception {
-			schedule.close();
-		}
-		
-		public void enable(boolean yes) throws Exception {
-			this.enable = enable;
-		}
-		
-		@Reference void setScheduler( Scheduler scheduler) {
-			this.scheduler = scheduler;
-		}
-		
-		@Reference protected void setCircuitBoard(CircuitBoard board) {
-			super.setCircuitBoard(board);
-		}
+	public void enable(boolean yes) throws Exception {
+		this.enable = enable;
 	}
+	
+	@Reference void setScheduler( Scheduler scheduler) {
+		this.scheduler = scheduler;
+	}
+	
+	@Reference protected void setCircuitBoard(CircuitBoard board) {
+		super.setCircuitBoard(board);
+	}
+}
+```
 
 The circuit model is geared to make it really easy to create small reusable components that are mostly driven by configuration. The IC model was therefore designed to be implemented with Declarative Services (DS). DS components can be created via _factory configurations_. This allows the owner of the device to use Configuration Admin to create the proper set of components. For the configuration, Metatype can be used to describe the configuration so that a tool like Webconsole can create an input form to fill in this configuration. For example, the following picture shows Webconsole editing one of the standard componnents:
 
@@ -96,23 +102,29 @@ An IC is a service but also tracks the Circuit Board service and fires its event
 
 To properly fire requires a bit of coding that is not always trivial. For this reason, the IC Adapter class is provided. A component should extend this class providing an _input_ type and an _output_ type.The component should then implement the input type. 
 
-	@Component
-	public class X extends ICAdapter<Input,Output> implements Input {
-		...
-	}
+```java
+@Component
+public class X extends ICAdapter<Input,Output> implements Input {
+	...
+}
+```
 
 The ICAdapter base class requires a reference to the Circuit Board, it is therefore required to add the following reference to setup the proper dependency:
 
-	@Reference protected void setCircuitBoard(CircuitBoard board) {
-		super.setCircuitBoard(board);
-	}
+```java
+@Reference protected void setCircuitBoard(CircuitBoard board) {
+	super.setCircuitBoard(board);
+}
+```
 
 The IC Adapter uses reflection to get the actual types and create the description for the Circuit Board. The only thing that the creator of the IC has to do is implement the input interface and call the circuit board. Implementing the input interface is easy and your IDE will help. Calling the Circuit Board is also easy because the IC Adapter provides a proxy. You can access this proxy by calling the out() method.
 
-	void update() {
-		out().set( a && b );
-	}
-	
+```java
+void update() {
+	out().set( a && b );
+}
+```
+
 The IC Adapter guarantees that the proxy is not null. 
 
 ## Naming
