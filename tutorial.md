@@ -218,6 +218,8 @@ Verify that the **JUnit** view shows a green bar. If not, go back and fix the co
 
 Note that, since this is a unit test rather than an integration test, we did not need to run an OSGi Framework; the standard JUnit launcher is used. Again, this is possible because the component under test is a POJO.
 
+To learn more about Testing see [this section of the manual](https://bnd.bndtools.org/chapters/310-testing.html) as well as the section about [Testing with Launchpad](https://bnd.bndtools.org/chapters/315-launchpad-testing.html).
+
 ## Build the Implementation Bundle
 
 As in the previous project, a bundle is automatically built based on the content of `bnd.bnd`. In the current project however, we want to build *two* separate bundles. To achieve this we need to enable a feature called "sub-bundles".
