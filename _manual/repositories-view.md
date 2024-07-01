@@ -20,11 +20,13 @@ It may be located anywhere:
 
 Bndtools uses repositories in the following ways:
 
-* To look up bundles specified on the Build Path by Bundle Symbolic Name (BSN) and version;
-* To resolve the Run Requirements list;
-* To look up bundles specified in the Run Bundles list by BSN and version.
+* To look up bundles specified on the Build Path by Bundle Symbolic Name (BSN) and version
+* To resolve the Run Requirements list (see [Resolving Dependencies](https://bnd.bndtools.org/chapters/250-resolving.html#resolving-in-bndtools))
+* To look up bundles specified in the Run Bundles list by BSN and version
 
 Repositories are implemented as [bnd plug-ins](https://bnd.bndtools.org/chapters/870-plugins.html), and can be configured by editing the Plugins sections of the workspace configuration file (*Bndtools* menu » *Open main bnd config*).
+Repostories can be [tagged](https://bnd.bndtools.org/chapters/870-plugins.html#tagging-of-repository-plugins) to control if they are considered for resolving dependencies.
+
 
 ![](/images/concepts/repositories01.png)
 
