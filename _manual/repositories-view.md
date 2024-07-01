@@ -25,7 +25,7 @@ Bndtools uses repositories in the following ways:
 * To look up bundles specified in the Run Bundles list by BSN and version
 
 Repositories are implemented as [bnd plug-ins](https://bnd.bndtools.org/chapters/870-plugins.html), and can be configured by editing the Plugins sections of the workspace configuration file (*Bndtools* menu » *Open main bnd config*).
-Repostories can be [tagged](https://bnd.bndtools.org/chapters/870-plugins.html#tagging-of-repository-plugins) to control if they are considered for resolving dependencies.
+Repostories can be [tagged](https://bnd.bndtools.org/chapters/870-plugins.html#tagging-of-repository-plugins) to control how they are used for resolving dependencies.
 
 
 ![](/images/concepts/repositories01.png)
