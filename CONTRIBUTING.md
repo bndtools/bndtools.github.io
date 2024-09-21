@@ -13,6 +13,36 @@ To run Jekyll locally:
 
     $ ./run.sh
 
+## Setup local docs development environment (MacOS)
+
+If just running `./run.sh` doesn't work out of the box, then most likely you have the wrong ruby version. 
+This installation requires something like ruby 2.7.8
+
+Consider doing the following:
+
+- Install rbenv Ruby Version manager https://github.com/rbenv/rbenv e.g. via brew
+- and then use it to install and use e.g. ruby 2.7.8
+
+```
+brew install rbenv
+rbenv init
+rbenv install 2.7.8
+rbenv global 2.7.8
+# or rbenv local 2.7.8
+./run.sh
+```
+
+After a successfull start of `./run.sh` you see this:
+
+```
+Server address: http://127.0.0.1:4000
+Server running... press ctrl-c to stop.
+```
+
+Open http://127.0.0.1:4000 in your browser to see the result while developing. 
+The server does support hot-reload so you should see changes to `.md` files immediately without restart (there are a few exceptions). Checkout the [jekyll-docs](https://jekyllrb.com/docs/pages/) to get more into the details and features.
+
+
 ## Workflow
 
 We use [git triangular workflow](https://www.sociomantic.com/blog/2014/05/git-triangular-workflow/).
