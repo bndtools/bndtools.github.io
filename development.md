@@ -6,14 +6,22 @@ author: Neil Bartlett
 
 **This page is a tutorial for developers wishing to customise and enhance Bndtools itself.** For general documentation please refer to the [Tutorial][1].
 
+
+There are two ways you can setup a development environment for contributing to Bnd/Bndtools:
+
+1. [Building Bndtools](#building-bndtools) manually: Clone git, build and setup Eclipse.
+2. or install our [Development Setups](#development-setups) with a pre-configured Eclipse instance
+
 ## Building Bndtools
 
-Bndtools is built with Bndtools! If you want to work on the bndtools source code, you have two options:
+Bndtools is built with Bndtools! If you want to work on the bndtools source code, you have three options:
 
 * Install the current public release of bndtools from the [Eclipse Marketplace][2] and start working straight away.
 * Build Bndtools from the command line, then install the build results into your Eclipse IDE.
+* or install one of the pre-configured [development setups](#development-setups) 
 
-## Checking Out from GitHub
+
+### Checking Out from GitHub
 
 First check out the source code from GitHub as follows:
 
@@ -21,9 +29,9 @@ First check out the source code from GitHub as follows:
 
 If you have Bndtools installed in your Eclipse IDE already (e.g. using Marketplace) then skip to **Importing Into Eclipse** below. Otherwise read on...
 
-## Building from the command-line
+### Building from the command-line
 
-Read the document `BUILDING-GRADLE.md` to learn how the build works.
+Read the document [Contribution to Bnd/Bndtools](https://github.com/bndtools/bnd/blob/master/CONTRIBUTING.md#build-environment) to learn how the build works.
 
 Assuming you have Gradle (version 1.11 or better) installed, you can build bndtools from the command line by changing to the root of your checkout and typing:
 
@@ -35,7 +43,7 @@ To install from the generated Update Sites, open the Help menu in Eclipse and se
 
 Back in the update dialog, Bndtools will appear in the category list. Place a check next to it and click Next. Drive the rest of the wizard to completion... congratulations, you have just built and installed bndtools!
 
-## Importing Into Eclipse
+### Importing Into Eclipse
 
 Now you have Bndtools installed in your Eclipse IDE, you can import the bndtools projects into Eclipse to begin working on the source code.
 
@@ -48,6 +56,15 @@ NB: These projects must all be in the same directory!
 Click "Finish"... Eclipse will start to import and build the projects. **If you see a dialog during the import prompting you to "Create a Bnd Configuration Project" click CANCEL.**
 
 You should now have all the bndtools projects in your workspace, ready to begin hacking!
+
+## Development Setups
+
+We also provide pre-configured setups using Eclipse oomph installer, which help you getting started quickly. 
+This way you get a dedicated Eclipse instance with pre-installed bndtools source code with a simple one-click installer.
+
+Find our different setups and P2 Repositories at:
+<https://bndtools.org/bndtools.p2.repo/>
+
 
 ## Launching Bndtools from Eclipse
 

@@ -8,33 +8,34 @@ nav:
       - divider: true
   - title: Documentation
     links:
-      - name: Installation
+      - name: Getting Started
         url: "/installation.html"
-      - name: Tutorial
-        url: "/tutorial.html"
-      - name: Video Tour
-        url: "/workspace.html"
       - name: Concepts
         url: "/concepts.html"
+      - name: Video Tour
+        url: "/workspace.html"
+      - name: Tutorial
+        url: "/tutorial.html"
       - name: OSGi with bndtools
         url: "/workspace/osgi-starter.html"
       - name: FAQ
         url: "/faq.html"
-      - name: The UI
+  - title: User Interface
+    links:
+      - name: Introduction
         url: "/manual/about.html"
-        sublinks:
-          - name: Bndtools Explorer
-            url: "/manual/packageexplorer.html"
-          - name: Repositories View
-            url: "/manual/repositories-view.html"
-          - name: Resolution View
-            url: "/manual/resolution-view.html"
-          - name: The bnd Editor
-            url: "/manual/bndeditor.html"
-          - name: The JAR Viewer
-            url: "/manual/jareditor.html"
-          - name: Project Templates
-            url: "/manual/templates.html"
+      - name: Bndtools Explorer
+        url: "/manual/packageexplorer.html"
+      - name: Repositories View
+        url: "/manual/repositories-view.html"
+      - name: Resolution View
+        url: "/manual/resolution-view.html"
+      - name: The bnd Editor
+        url: "/manual/bndeditor.html"
+      - name: The JAR Viewer
+        url: "/manual/jareditor.html"
+      - name: Project Templates
+        url: "/manual/templates.html"
   - title: null
     links:
       - name: bnd manual
