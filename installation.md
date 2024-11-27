@@ -1,5 +1,5 @@
 ---
-title: Installation & Getting Started with Bndtools 7.0.0
+title: Installation & Getting Started with Bndtools 7.1.0
 ---
 
 There are different flavors you can install Bndtools.
@@ -35,7 +35,7 @@ The recommended way to install Bndtools via the [Eclipse Marketplace](https://ma
 
 | Type                       |URL                                                    |alt. URL|
 |----------------------------|-------------------------------------------------------|--|
-| Latest stable release      | `https://bndtools.org/bndtools.p2.repo/7.0.0/`       | via [jfrog](https://bndtools.jfrog.io/bndtools/update-latest)  |
+| Latest stable release      | `https://bndtools.org/bndtools.p2.repo/7.1.0/`       | via [jfrog](https://bndtools.jfrog.io/bndtools/update-latest)  |
 | Latest release candidate   | `https://bndtools.jfrog.io/bndtools/update-rc`          ||
 | Latest build snapshot      | `https://bndtools.jfrog.io/bndtools/update-snapshot`    ||
 
@@ -57,7 +57,7 @@ For more complete information on the changes in the Bndtools release, see <https
 
 ## Known Issues
 
-* Bndtools is built to run on Eclipse 2020-06 or later. So Bndtools 7.0.0 may not run on older versions of Eclipse.
+* Bndtools is built to run on Eclipse 2022-09 or later. So Bndtools 7.1.0 may not run on older versions of Eclipse.
 
 * This release is based on Java 17. This tends to be not noticed for developmet but there are a number of runtime bundles in the distribution that now also have become Java 17 code. This could generate the error during a bndrun launch or with bnd/OSGi testing when the Execution Environment is set to < 17. The easy fix is to set this to 17. If this is impossible, the previous launchers than run on 1.8 can then be used (if they are available in the repositories). Add
 ```
