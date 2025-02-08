@@ -5,7 +5,7 @@ title: Installation & Getting Started with Bndtools 7.1.0
 There are now three ways to Install Bndtools 7.1.0+
 
 ## New: Install Via Pre-Configured Setups
-There are now setups that will install and configure all of Eclipse, all other components used by Bndtools (e.g. git support), and Bndtools 7.1.0 itself.  The setups *do not* require having a previously installed version of Eclipse, and so can be helpful for new users to get a working Bndtools environment quickly and easily.
+There are now setups that will install and configure all of Eclipse, other components used by Bndtools (e.g. git, other Eclipse plugins), and Bndtools 7.1.0 itself.  The setups *do not* require having a previously installed version of Eclipse, and so can be helpful for new users to get a working Bndtools environment quickly and easily.
 
 Bndtools 7.1.0 setups [found here](https://bndtools.org/bndtools.p2.repo/)
 
