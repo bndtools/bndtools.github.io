@@ -1,5 +1,3 @@
-installation.md
-
 ---
 title: Installation & Getting Started with Bndtools 7.1.0
 ---
