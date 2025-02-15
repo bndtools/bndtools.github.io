@@ -62,7 +62,8 @@ exclude:
   - '.gitignore'
   - '.github'
   - '.project'
-  - 'run.sh'
+  - '*.sh'
   - '/vendor'
-  - '/pagefind'
+  - 'pagefind'
+
 
