@@ -12,4 +12,4 @@ bundle exec jekyll build
 curl -L https://github.com/CloudCannon/pagefind/releases/download/v1.3.0/pagefind-v1.3.0-aarch64-apple-darwin.tar.gz -o pagefind.tar.gz
 tar xzf pagefind.tar.gz
 chmod +x pagefind
-./pagefind --site _site --serve
+./pagefind --site _site --serve --output-subdir pagefindindex
