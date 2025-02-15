@@ -49,5 +49,21 @@ jobs:
     - name: Build
       run: |
         ./.github/scripts/docs.sh
+    
+    - name: Upload artifact
+    # Automatically uploads an artifact from the './_site' directory by default
+    uses: actions/upload-pages-artifact@v3
 
     
+# Deployment job
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: GitHub_Pages
+    if: github.ref == 'refs/heads/master'  # <= Restrict deploy to master
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
