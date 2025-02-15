@@ -64,4 +64,5 @@ exclude:
   - '.project'
   - 'run.sh'
   - '/vendor'
+  - '/pagefind'
 

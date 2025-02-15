@@ -36,6 +36,18 @@ jobs:
       with:
         ruby-version: 2.7
         bundler-cache: true
+    
+    # Download and install the Pagefind binary
+    # see releases: https://github.com/CloudCannon/pagefind/releases
+    - name: Install Pagefind for Search
+      run: |
+        curl -L https://github.com/CloudCannon/pagefind/releases/download/v1.3.0/pagefind-v1.3.0-x86_64-unknown-linux-musl.tar.gz \
+          -o pagefind.tar.gz
+        tar xzf pagefind.tar.gz
+        chmod +x pagefind
+    
     - name: Build
       run: |
         ./.github/scripts/docs.sh
+
+    

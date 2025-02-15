@@ -7,6 +7,15 @@
 
     <div class="row main-container">
 
+      <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+      <script src="/pagefind/pagefind-ui.js"></script>
+      <div id="search"></div>
+      <script>
+          window.addEventListener('DOMContentLoaded', (event) => {
+              new PagefindUI({ element: "#search", showSubResults: true });
+          });
+      </script>
+
       <!-- Main Content -->
       <div class="large-9 medium-8 medium-push-4 large-push-3 columns">
         <div class="off-canvas-wrap move" data-offcanvas>
@@ -21,8 +30,9 @@
             </aside>
             
             <!-- main content goes here -->
+            <main data-pagefind-body>
             {{content}}
-            
+            </main>
           <!-- close the off-canvas menu -->
           <a class="exit-off-canvas"></a>
         
