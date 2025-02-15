@@ -6,3 +6,4 @@
 /vendor/
 /bundler/
 .jekyll-metadata
+pagefind*

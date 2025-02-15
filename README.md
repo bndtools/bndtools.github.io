@@ -16,6 +16,40 @@ This should install jekyll and start a local webserver at:
 
 Start editing markdown `.md` files. Jekyll will auto-detect changes and reload the website. Some changes require a restart (e.g. changes to `_config.yml`)
 
+## Local development with Pagefind search
+
+We use https://pagefind.app/ for our search field full text search. 
+But it is currently not automatically working when using `./run.sh` above, because it works on the 
+actual build-output on the `_site` folder (which contains the actual `.html` pages). 
+
+To test the search locally based on the `_site` folder content, run:
+
+
+`./run-pagefind-linux.sh`
+
+or
+
+`run-pagefind-macos.sh`
+
+depending on which operating system you are using. 
+
+The result should look like:
+
+`Serving "_site" at http://localhost:1414`
+
+
+The script will download and execute the pagefind executable binary after the build.
+Then it will start a small server where you test the result. 
+Note, that this is different than the `./run.sh` and does not support real-time editing of the content.
+
+Feel free to adjust / extend the start-scripts if you have a different architecture 
+or to use a different `pagefind` version. 
+
+### pagefind for production build via github actions
+
+See the files `.github/workflows/cibuild.yml` and `.github/scripts/docs.sh` for how 
+building the site and executing `pagefind` is done in the final build on github.
+
 ### CSS Styling for Code Highlighter
 
 - jekyll uses `rouge` code highlighter
