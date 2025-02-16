@@ -40,6 +40,8 @@ collections:
     output: true
   tutorial_maven:
     output: true
+  tutorial_wrap:
+    output: true  
   videos:
     output: true  
 
