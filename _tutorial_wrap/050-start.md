@@ -1,8 +1,6 @@
 ---
 title: JAR Wrapping Tutorial
 layout: prev-next-collection
-lnext: /tutorial_wrap/100-shouldyou
-lprev: /book/150-tutorials
 noindex: true
 ---
 

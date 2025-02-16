@@ -1,6 +1,7 @@
 ---
 title: Service Catalog
 layout: prev-next-collection
+summary: Services available in OSGi.
 ---
 
 This is the OSGi enRoute Base Profile service catalog. The following services are currently available and documented.

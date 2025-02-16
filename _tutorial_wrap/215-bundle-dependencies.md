@@ -2,8 +2,6 @@
 title: Handling Dependencies on OSGi Bundles 
 summary: When a dependency is already provided as a proper bundle we should probably not include it.
 layout: prev-next-collection
-lnext: 220-optional-dependencies
-lprev: 212-conditional-package
 ---
 
 

@@ -1,6 +1,7 @@
 ---
 title: Videos
 layout: prev-next-collection
+summary: Some video tutorials or presentations.
 ---
 
 <div>

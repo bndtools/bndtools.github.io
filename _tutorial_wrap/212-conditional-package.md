@@ -2,8 +2,6 @@
 title: Static linking our Dependencies (Conditional Package) 
 summary: In our first attempt we statically link the imported packages recursively
 layout: prev-next-collection
-lnext: 215-bundle-dependencies
-lprev: 210-dependencies
 ---
 
 The bnd tool contains a nifty feature that it inherited from old school C. In those days, the link phase searched for missing symbols in libraries and automatically included those functions from the library in your code. This was called [static linking](https://kb.iu.edu/d/akqn). Neil Bartlett wrote a [blog] about the subject.

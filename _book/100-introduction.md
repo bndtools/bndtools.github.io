@@ -2,6 +2,7 @@
 title: Introduction about OSGi enRoute Classic
 layout: prev-next-collection
 summary: Is OSGi enRoute for You?
+noindex: true
 ---
 
 The enRoute Classic section is a collection of content helping to get you started into the OSGi mindset.
@@ -9,8 +10,8 @@ The enRoute Classic section is a collection of content helping to get you starte
 <div>
 <table>
 
-{% for book in site.book %}<tr><td><a href="{{book.url}}">{{book.title}}</a></td><td>{{book.summary}}</td></tr>
-{% endfor %}
+{% for book in site.book %}{%unless book.noindex%}<tr><td><a href="{{book.url}}">{{book.title}}</a></td><td>{{book.summary}}</td></tr>
+{%endunless%}{% endfor %}
 
 </table>
 </div>
