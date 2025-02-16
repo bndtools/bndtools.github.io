@@ -1,6 +1,6 @@
 ---
 title: Service Catalog
-layout: default
+layout: prev-next-collection
 ---
 
 This is the OSGi enRoute Base Profile service catalog. The following services are currently available and documented.

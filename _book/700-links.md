@@ -1,6 +1,6 @@
 ---
 title: Where to Find Stuff
-layout: default
+layout: prev-next-collection
 ---
 
 ## Where to Find Stuff 

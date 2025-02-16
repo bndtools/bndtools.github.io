@@ -28,6 +28,8 @@ collections:
     output: true
   doc:
     output: true
+  faq:
+    output: true  
   tutorial_base:
     output: true
   tutorial_rsa:
@@ -38,6 +40,8 @@ collections:
     output: true
   tutorial_maven:
     output: true
+  videos:
+    output: true  
 
 defaults:
   -

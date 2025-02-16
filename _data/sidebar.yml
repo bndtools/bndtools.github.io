@@ -43,6 +43,8 @@ nav:
         external: true
   - title: enRoute classic
     links:
+      - name: Introduction
+        url: "/book/100-introduction.html"
       - name: About OSGi
         url: "/book/210-doc.html"
         urlprefix: "/doc/"

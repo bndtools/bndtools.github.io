@@ -1,7 +1,20 @@
 ---
-title: Guide
-layout: default
+title: Introduction about OSGi enRoute Classic
+layout: prev-next-collection
+summary: Is OSGi enRoute for You?
 ---
+
+The enRoute Classic section is a collection of content helping to get you started into the OSGi mindset.
+
+<div>
+<table>
+
+{% for book in site.book %}<tr><td><a href="{{book.url}}">{{book.title}}</a></td><td>{{book.summary}}</td></tr>
+{% endfor %}
+
+</table>
+</div>
+
 
 We _strongly_ believe that OSGi's Service Oriented Systems is the best paradigm available today for software development. But we are also frustrated when we see how hard it is for people to cross the chasm to reach that new paradigm. Out of this frustration, the OSGi enRoute project was born.
 
@@ -38,7 +51,7 @@ We're here to prime the pump.
 
 ## How to Get Started?
 
-If you're new to OSGi we suggest you follow the [quick start tutorial](200-quick-start.html) and then the more [complete tutorial](220-tutorial-base.html). If you're already into OSGi, you can check out the [data sheets](400-services.html).
+If you're new to OSGi we suggest you follow the [tutorials](/book/150-tutorials.html). If you're already into OSGi, you can check out the [services catalog](/book/400-services.html).
 
-[enroute-doc]: https://github.com/osgi/osgi.enroute.site
+[enroute-doc]: https://github.com/bndtools/bndtools.github.io/tree/master/_book
 

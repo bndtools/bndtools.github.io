@@ -1,6 +1,6 @@
 ---
 title: Videos
-layout: default
+layout: prev-next-collection
 ---
 
 <div>

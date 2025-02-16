@@ -1,6 +1,6 @@
 ---
 title: Example Projects
-layout: default
+layout: prev-next-collection
 ---
 
 This section is an entry to the hopefully growing collection of examples that OSGi enRoute provides. If you want to develop an additional example, please submit a PR.
