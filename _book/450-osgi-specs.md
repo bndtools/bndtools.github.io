@@ -1,6 +1,7 @@
 ---
 title: OSGi Specifications 
 summary: Provides an overview of the OSGi Specifications with links
+layout: prev-next-collection
 ---
 
 OSGi technology is a set of

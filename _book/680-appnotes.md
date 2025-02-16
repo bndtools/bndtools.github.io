@@ -1,6 +1,7 @@
 ---
 title: App Notes
-layout: default
+layout: prev-next-collection
+summary: Application notes are documenting a design or a tool in a way that is useful for people that implement application.
 ---
 Application notes are documenting a design or a tool in a way that is useful for people that implement application. They often show how to do things with the whole system. 
 

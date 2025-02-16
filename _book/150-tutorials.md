@@ -1,6 +1,7 @@
 ---
 title: Tutorials
-layout: default
+layout: prev-next-collection
+summary: List of tutorials.
 ---
 
 This section is an entry to the hopefully growing collection of tutorials that OSGi enRoute provides. If you want to develop an additional tutorial, please submit a PR.
@@ -86,7 +87,9 @@ The Maven Bnd Repository Plugin provides full bi-drectional access to the local 
 
 Quite often you need to use a dependency (a JAR file) which is  not yet an OSGi bundle. To use this dependency in an OSGi project you need to learn how to _wrap_ a JAR to become a Bundle. Wrapping a JAR means that we need add the required OSGi manifest headers but also _design_ the contents of the bundle. bnd and bndtools provide tooling to make this process relatively simple.
 
-[Go to the JAR Wrapping section](https://bnd.bndtools.org/chapters/390-wrapping.html) of the bnd manual.
+[Go to the JAR Wrapping Tutorial](/tutorial_wrap/050-start.html)
+
+Or alternativly [visit the JAR Wrapping section](https://bnd.bndtools.org/chapters/390-wrapping.html) of the bnd manual.
 
 {: style='clear:both;' }
 

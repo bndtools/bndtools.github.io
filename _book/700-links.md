@@ -1,6 +1,7 @@
 ---
 title: Where to Find Stuff
-layout: default
+layout: prev-next-collection
+summary: List of interesting links
 ---
 
 ## Where to Find Stuff 
