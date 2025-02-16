@@ -400,3 +400,7 @@ g! greet BndTools
 Hello BndTools
 g!
 ```
+
+## More tutorials
+
+For more tutorials and examples, have a look at the [enroute Classic section](/book/100-introduction.html).

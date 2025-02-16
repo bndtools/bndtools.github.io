@@ -5,7 +5,7 @@ summary: Is OSGi enRoute for You?
 noindex: true
 ---
 
-The enRoute Classic section is a collection of content helping to get you started into the OSGi mindset.
+The enRoute Classic section is a collection of in-depth tutorials and examples, helping you developing OSGi applications with bnd / bndtools.
 
 <div>
 <table>
@@ -16,6 +16,7 @@ The enRoute Classic section is a collection of content helping to get you starte
 </table>
 </div>
 
+## Why OSGi enRoute exists
 
 We _strongly_ believe that OSGi's Service Oriented Systems is the best paradigm available today for software development. But we are also frustrated when we see how hard it is for people to cross the chasm to reach that new paradigm. Out of this frustration, the OSGi enRoute project was born.
 

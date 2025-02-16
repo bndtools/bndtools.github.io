@@ -41,7 +41,8 @@ To get started with Bnd/Bndtools we recommend:
 - the [Concepts](concepts.html) behind bndtools
 - our [Video Tour](/workspace.html)
 - our [Tutorial](tutorial.html) building a sample application
-- and our [Project Templates](/manual/templates.html)
+- our [Project Templates](/manual/templates.html)
+- and if you feel like more tutorials and examples, check out the [enroute Classic section](/book/100-introduction.html).
 
 ## Developers and Contributors: To contribute to Bndtools development 
 
