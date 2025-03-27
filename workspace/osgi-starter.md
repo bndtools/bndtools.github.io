@@ -976,7 +976,7 @@ You can also apply the `@Descriptor` annotation on the parameters.
 
 ### Property Annotation
 
-The component properties `osgi.command.scope` and `osgi.command.function` are constructed from strings. This is an error-prone programming pattern. We used this error-prone patter to make more clear what was going on beneath the covers; it also allowed us to get started without importing the Gogo runtime bundle. However, the `org.apache.felix.runtime` bundle, that we use for the `@Descriptor` and `@Parameter` annotations, also contains an annotation to add service properties: `@GogoCommand`. This annotation cleans up the component by defining the Gogo service properties via a simple annotation.
+The component properties `osgi.command.scope` and `osgi.command.function` are constructed from strings. This is an error-prone programming pattern. We used this error-prone patter to make more clear what was going on beneath the covers; it also allowed us to get started without importing the Gogo runtime bundle. However, the `org.apache.felix.gogo.runtime` bundle, that we use for the `@Descriptor` and `@Parameter` annotations, also contains an annotation to add service properties: `@GogoCommand`. This annotation cleans up the component by defining the Gogo service properties via a simple annotation.
 
 ```java
     @GogoCommand(scope="hello", function="hello")
