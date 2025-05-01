@@ -3,7 +3,7 @@
 There is a new project template an simple 'hello' example using the [ECF Python.Java Distribution Provider](https://github.com/ECF/Py4j-RemoteServicesProvider) for 
 microservice<->microservice interaction between a Java/OSGi process, and a Python process.
 
-This enables a standard way (via [RSA](https://docs.osgi.org/specification/osgi.cmpn/7.0.0/service.remoteserviceadmin.html)) to discover and use OSGi Remote Services
+OSGi Remote Service Admin enables a standard way (via [RSA](https://docs.osgi.org/specification/osgi.cmpn/7.0.0/service.remoteserviceadmin.html)) to discover and use OSGi Remote Services
 between the OSGi service registry and [iPOPO](https://ipopo.readthedocs.io/en/3.1.0/), an OSGi-like service registry, component 
 model, and dynamic injection framework for Python 3.9+.  See also [here](https://ipopo.readthedocs.io/en/3.1.0/tutorials/index.html) for iPOPO tutorials for the 
 Python side-RSA impl,
@@ -38,6 +38,7 @@ Running Python Example Program
 
 2. In a command shell or IDE, navigate to the project directory and run the run_python_example.py script
 
+
 ```
 python run_python_example.py
 ```
@@ -46,5 +47,5 @@ discovered, and imported by the java process or the python process.
 
 ![bndtoolspython](https://github.com/user-attachments/assets/d5bbd4e4-d57c-412a-a198-fe16ed76a95d)
 
-Most of the code that produces output is available in the example project. For java: src/main/java/.../hello/*.java 
-and python: python-src/samples/rsa
+Most of the code that produces output is available inside the example project. For java: src/main/java/.../hello/*.java 
+and for the python code: python-src/samples/rsa
