@@ -1,4 +1,10 @@
-# Project Template for Python.Java Remote Services
+---
+layout: prev-next-collection
+title: New Project Template for Python.Java Remote Services
+description: Allows interaction between python and Java/OSGi.
+comments: true
+author: Scott Lewis
+---
 
 There is a new project template an simple 'hello' example using the [ECF Python.Java Distribution Provider](https://github.com/ECF/Py4j-RemoteServicesProvider) for 
 microservice<->microservice interaction between a Java/OSGi process, and a Python process.
