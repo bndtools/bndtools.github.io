@@ -32,7 +32,7 @@ Repostories can be [tagged](https://bnd.bndtools.org/chapters/870-plugins.html#t
 
 Since repositories are implemented as plug-ins, it is theoretically possible to support almost any kind of repository, by developing a new plug-in type; though of course it is more convenient to use an existing repository plug-in. Bnd and Bndtools support the following repository types out-of-the-box.
 
-The special repo `bnd-cache` (added in 7.2.0) is a [mini cache repo](https://bnd.bndtools.org/chapters/150-build.html#the-cnfcache-directory) that is expanded in the `cnf` directory to cache some intermediate files and holds e.g. [default plugins for the Project Launcher and Project Tester](https://bnd.bndtools.org/chapters/150-build.html#overriding-the-plugins).
+The special repo `bnd-cache` is a [mini cache repo](https://bnd.bndtools.org/chapters/150-build.html#the-cnfcache-directory) that is expanded in the `cnf` directory to cache some intermediate files and holds e.g. [default plugins for the Project Launcher and Project Tester](https://bnd.bndtools.org/chapters/150-build.html#overriding-the-plugins).
 
 ## Indexed Repositories
 
