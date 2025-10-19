@@ -4,11 +4,6 @@ title: Installation & Getting Started with Bndtools 7.1.0
 
 There are now three ways to Install Bndtools 7.1.0+
 
-## New: Install Via Pre-Configured Setups
-There are now setups that will install and configure all of Eclipse, other components used by Bndtools (e.g. git, other Eclipse plugins), and Bndtools 7.1.0 itself.  The setups *do not* require having a previously installed version of Eclipse, and so can be helpful for new users to get a working Bndtools environment quickly and easily.
-
-Bndtools 7.1.0 setups [found here](https://bndtools.org/bndtools.p2.repo/)
-
 ## Eclipse Marketplace Install
 
 Note that Eclipse and the Marketplace Client Plugin for Eclipse must be installed prior to using this installation method
@@ -34,6 +29,18 @@ Note that Eclipse must be previously installed prior to using this installation 
 | Latest build snapshot      | `https://bndtools.jfrog.io/bndtools/update-snapshot`    ||
 
 * Press `Next` and then `Finish`, acknowledging the licenses
+
+
+## New: Install Via Pre-Configured Setups
+
+If you want to start fresh with a clean Eclipse installation, this option is for you.
+
+The pre-configured setups automatically **install and configure Eclipse**, along with **all required components** for Bndtools — such as Git support, recommended Eclipse plugins, and **Bndtools 7.1.0** itself.
+
+These setups **do not require an existing Eclipse installation**, making them an easy way for new users to get a fully working Bndtools environment in just a few steps.
+
+**Download the Bndtools Oomph setups** from the [official repository](https://bndtools.org/bndtools.p2.repo/).
+
 
 ## Getting Started Materials
 
