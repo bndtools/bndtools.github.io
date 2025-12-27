@@ -24,7 +24,7 @@ Note that Eclipse must be previously installed prior to using this installation 
 
 | Type                       |URL                                                    |alt. URL|
 |----------------------------|-------------------------------------------------------|--|
-| Latest stable release      | `https://bndtools.org/bndtools.p2.repo/7.2.0/`       | via [jfrog](https://bndtools.jfrog.io/bndtools/update-latest)  |
+| Latest stable release      | `https://bndtools.org/bndtools.p2.repo/latest/`       | via [jfrog](https://bndtools.jfrog.io/bndtools/update-latest)  |
 | Latest release candidate   | `https://bndtools.jfrog.io/bndtools/update-rc`          ||
 | Latest build snapshot      | `https://bndtools.jfrog.io/bndtools/update-snapshot`    ||
 
