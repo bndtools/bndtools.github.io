@@ -17,6 +17,12 @@ In the tutorial we create the top three bundles (rectangles):
 * The Provider bundle imports the interface and publishes an instance of the service.
 * The Command bundle imports the interface and binds to the service instance, and also publishes a `Command` service that is used by the Felix Shell bundle.
 
+**Note:** This tutorial has been updated for Bndtools 7.2.1+ and reflects changes in recent versions. Some screenshots may show older versions of the UI. Key differences from older versions include:
+- Updated cnf directory structure with `cache/` and `ext/` folders
+- Use of standard OSGi annotations (`org.osgi.service.component.annotations`) instead of legacy aQute annotations
+- Changes in default bundle behavior and template availability
+- Different default file associations for `bnd.bnd` files
+
 # Installing Bndtools
 
 Please refer to the [Installation Instructions](installation.html).
@@ -42,6 +48,13 @@ If your current workspace is not configured as a Bnd Workspace yet, before creat
 7. You should end up with a new **cnf** folder in your workspace. If you expand it, you should see something similar to this figure.
 
    ![](images/tutorial/19.png)
+   
+   **Note:** In Bndtools 7.2.1+, the cnf directory structure has been updated and now typically includes:
+   - **cache/** - for caching downloaded artifacts
+   - **ext/** - for workspace extension configuration files (like `build.mvn`, `central.mvn`, etc.)
+   - **build.bnd** - the main workspace configuration file
+   
+   This is slightly different from older versions but provides better organization for workspace settings.
 
 If this is the case, you are now ready to create your first Bnd OSGi project!
 
@@ -55,7 +68,9 @@ First we need to create a Bnd OSGi Project. This is just a standard Eclipse Java
 
    ![](images/tutorial/20.png)
 
-3. As you see, you have the possibility to choose among a series of templates or to create a new project from scratch. For this first tutorial we will start with an empty project, thus, select the **Empty** option and press **Next**
+3. As you see, you have the possibility to choose among a series of templates or to create a new project from scratch. For this first tutorial we will start with an empty project, thus, select the **«Empty»** option (shown as «Empty» 1.0.0 — [built-in]) and press **Next**
+   
+   **Note:** The available templates may vary depending on your Bndtools version and installed template bundles. In version 7.2.1+, you may see fewer templates initially compared to older versions
 
 4. On the next page, you will be asked to enter the name of the project. Please, enter `org.example.api` in this case. Select then the JRE execution environment (at least J2SE-1.5) and press **Next**
 
@@ -91,9 +106,13 @@ public interface Greeting {
 
 The project we have created defines a single bundle with a Bundle Symbolic Name (BSN) of `org.example.api` (i.e., the same as the project name). As soon as we created the project, a bundle file named `org.example.api.jar` was created in the `generated` directory, and it will be rebuilt every time we change the bundle definition or its source code.
 
-However, the bundle is currently empty, because we have not defined any Java packages to include in the bundle. This is an important difference of Bndtools with respect to other tools: bundles are always empty until we explicitly add some content. You can verify this by double-clicking the bundle file and viewing its contents: it will only have a `META-INF/MANIFEST.MF` entry.
+**Note:** In recent versions of Bndtools (7.0+), the bundle behavior has changed. Even with an empty `bnd.bnd` file, the bundle may include compiled classes from your source packages. The bundle is no longer completely empty by default. However, to make packages available to other bundles, you still need to explicitly export them via the **Export Packages** panel. Without explicit exports, the packages remain private to your bundle.
 
-We want to add the package `org.example.api` to the exported packages of the bundle. So open the `bnd.bnd` file at the top of the project and select the **Contents** tab. Now the package can be added in one of two ways:
+We want to add the package `org.example.api` to the exported packages of the bundle. So open the `bnd.bnd` file at the top of the project. 
+
+**Note:** In recent Eclipse/Bndtools versions, double-clicking `bnd.bnd` may open the source editor directly instead of the Bundle Editor UI. If this happens, right-click on `bnd.bnd` and select **Open With > Bnd Bundle Editor** to access the graphical editor.
+
+Once the editor is open, select the **Contents** tab. Now the package can be added in one of two ways:
 
 * Click the "+" icon in the header of the **Export Packages** section, then select `org.example.api` from the dialog and click **OK**... *or*
 * Drag-and-drop the package `org.example.api` from Eclipse's Package Explorer view into the **Export Packages** list.
@@ -103,6 +122,8 @@ We want to add the package `org.example.api` to the exported packages of the bun
 As soon as this is done, a popup dialog appears titled "Missing Package Info". This dialog is related to package versioning: it is asking us to declare the version of this exported package. Click **OK**.
 
 ![](images/tutorial/23.png)
+
+**Note on Package Versioning:** When you click OK, Bndtools will create a `package-info.java` file (for Java 9+) or `packageinfo` file (for older Java versions) in your package. The `package-info.java` file will contain OSGi package versioning annotations. If you see compilation errors in this file (such as missing `org.osgi.annotation.bundle` or `org.osgi.annotation.versioning` packages), you may need to add the OSGi annotation bundle to your build path. This can be resolved by adding the appropriate OSGi compendium dependency to your `bnd.bnd` file's build path, or the errors may be cosmetic and not affect the actual build.
 
 The **Contents** tab should now appear as in the following screenshot:
 
@@ -123,9 +144,18 @@ We will now create another project that defines two bundles: a provider and a cl
 
 ## Create the Project
 
-Create another Bnd OSGi project, named `org.example.impl`. At the **Project Templates** step, select **Component Development** and then proceed as for the previous project.
+Create another Bnd OSGi project, named `org.example.impl`. At the **Project Templates** step:
+
+- **If available**, select **Component Development** template from the OSGi Standard Templates category
+- **If the Component Development template is not visible**, you can:
+  - Select the **«Empty»** template and manually create the necessary files, or
+  - Use the **API Project** template as an alternative starting point
+
+Then proceed as for the previous project.
 
 ![](images/tutorial/25.png)
+
+**Note:** In some Bndtools installations (particularly version 7.2.1+), the **Component Development** template may not appear in the template list. This can happen if template bundles are not fully loaded. If you don't see this template, you can use the Empty template and create the component structure manually as shown in this tutorial.
 
 ## Add the API as a Build Dependency
 
@@ -152,14 +182,18 @@ In either case, the `org.example.api` bundle will appear in the **Build Path** p
 
 ## Write an Implementation
 
-We will write a class that implements the `Greeting` interface. When the project was created from the template, a  Java source for a class named `org.example.impl.Example` was generated. Open this source file now and make it implement `Greeting`:
+We will write a class that implements the `Greeting` interface. 
+
+**If you used the Component Development template:** A Java source file for a class named `org.example.impl.Example` should have been generated. Open this source file now and make it implement `Greeting`.
+
+**If you used the Empty template:** Create a new package `org.example.impl` in the `src` folder, then create a new Java class named `Example` in that package. Then make it implement `Greeting` as shown below:
 
 ```java
 package org.example.impl;
 
 import org.example.api.Greeting;
 
-import aQute.bnd.annotation.component.Component;
+import org.osgi.service.component.annotations.Component;
 
 @Component
 public class Example implements Greeting {
@@ -169,11 +203,19 @@ public class Example implements Greeting {
 }
 ```
 
-Note the use of the `@Component` annotation. This enables our bundle to use OSGi Declarative Services to declare the API implementation class. This means that instances of the class will be automatically created and registered with the OSGi service registry. The annotation is build-time only, and does not pollute our class with runtime dependencies -- in other words, this is a "Plain Old Java Object" or POJO.
+Note the use of the `@Component` annotation from `org.osgi.service.component.annotations`. This enables our bundle to use OSGi Declarative Services to declare the API implementation class. This means that instances of the class will be automatically created and registered with the OSGi service registry. The annotation is build-time only, and does not pollute our class with runtime dependencies -- in other words, this is a "Plain Old Java Object" or POJO.
+
+**Note:** Modern Bndtools versions use the standard OSGi annotations from `org.osgi.service.component.annotations` package instead of the legacy `aQute.bnd.annotation.component` annotations. Make sure to use the correct import as shown above.
 
 ## Test the Implementation
 
-We should write a test case to ensure the implementation class works as expected. In the `test` folder, a test case class already exists named `org.example.ExampleTest`. 
+We should write a test case to ensure the implementation class works as expected. 
+
+**If you used the Component Development template:** In the `test` folder, a test case class should already exist named `org.example.impl.ExampleTest`.
+
+**If you used the Empty template:** Create a new package `org.example.impl` in the `test` folder, then create a new JUnit test class named `ExampleTest` in that package.
+
+The test class structure should look like this: 
 
 ```java
 package org.example.impl;
@@ -279,6 +321,16 @@ The **Run Requirements** panel should now look like this:
 If is not already selected, please, select the **Execution Environment** in the **Core Runtime** session of the file.
 
 ![](images/tutorial/32.png)
+
+**Note on OSGi Framework Selection:** By default, you may only see the Felix framework in the OSGi Framework dropdown. If you want to use Equinox instead:
+
+1. Add the Equinox OSGi framework to one of your repositories (e.g., in `cnf/ext/central.mvn`):
+   ```
+   org.eclipse.platform:org.eclipse.osgi:3.23.200
+   ```
+   (You can find the latest version on [Maven Central](https://central.sonatype.com/artifact/org.eclipse.platform/org.eclipse.osgi))
+
+2. After adding it to your repository configuration, Equinox should appear as an option in the OSGi Framework dropdown in your run configuration.
 
 Check **Auto-resolve on save** and then save the file. Returning to the **Console** view, type `lb` again:
 
