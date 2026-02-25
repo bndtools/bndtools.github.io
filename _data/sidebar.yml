@@ -34,6 +34,8 @@ nav:
         url: "/manual/bndeditor.html"
       - name: The JAR Viewer
         url: "/manual/jareditor.html"
+      - name: Bundle Graph
+        url: "/manual/bundlegraph.html"
       - name: Project Templates
         url: "/manual/templates.html"
   - title: null
