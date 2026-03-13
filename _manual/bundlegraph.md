@@ -1,6 +1,7 @@
 ---
 title: Bundle Graph
 description: Visualises the dependency graph of OSGi bundles
+layout: prev-next-collection
 since: 7.3.0
 ---
 

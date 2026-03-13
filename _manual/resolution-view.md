@@ -2,6 +2,7 @@
 title: Resolution View
 description: Provides insight into the requirements and capabilities of the selected bundle
 since: 7.1.0
+layout: prev-next-collection
 ---
 
 ![](/images/resolution-view.png)

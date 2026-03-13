@@ -1,6 +1,7 @@
 ---
 title: Bndtools Explorer
 description: An overview of the Bndtools Explorer
+layout: prev-next-collection
 ---
 
 The Bndtools Package Explorer is an extension of the [Eclipse Package Explorer][1]. The explorer provides an overview of the projects and their contents. It is extended with a search bar for projects and some extra filters. You an make simple searches or use the [bnd globbing](https://bnd.bndtools.org/chapters/820-instructions.html#glob). That is, you can wildcards (`example*bar`) but also multiple searches in one, for example, `foo|bar` to find multiple projects.

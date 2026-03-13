@@ -1,6 +1,7 @@
 ---
 title: Introduction
 description: An overview of the Bndtools manual
+layout: prev-next-collection
 ---
 
 Bndtools is an Eclipse Plugin based on [bnd][1] with the goal to make programming for OSGi easier than in 

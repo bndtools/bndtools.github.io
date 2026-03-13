@@ -1,6 +1,7 @@
 ---
 title: JAR Viewer
 description: Shows the content of a JAR file with extra attention for OSGi information
+layout: prev-next-collection
 ---
 
 Double clicking a JAR or ZIP file wil open the Bndtools JAR Editor. It will display the JAR file's content with the following tabs:

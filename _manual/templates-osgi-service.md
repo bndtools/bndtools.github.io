@@ -2,6 +2,7 @@
 title: Java OSGi Service
 description: Bndtools Template to create an OSGi service consisting of bundles for api, impl, consumer
 since: 7.1.0
+layout: prev-next-collection
 ---
 
 ## Java OSGi Service (api, impl, consumer)
