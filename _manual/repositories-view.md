@@ -2,6 +2,7 @@
 title: Repositories View
 description: Shows the repositories and their contents
 author: Neil Bartlett
+layout: prev-next-collection
 ---
 
 <img src="/images/repositories-view.png" style="width:461px" class="view">

@@ -1,6 +1,7 @@
 ---
 title: Project Templates
 description: Get started faster with Bnd Project templates.
+layout: prev-next-collection
 ---
 
 The Bndtools supports wizard-based creation of various elements required for OSGi development. There are templates for Bnd-Workspaces, Projects , Components, .bnd and .bndrun files and even for creating services consisting of multiple bundles.

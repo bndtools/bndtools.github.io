@@ -118,6 +118,18 @@
 
 <div class="row">
     <div class="large-7 medium-6 small-6 columns">
+        <h2>Bundle Graph</h2>
+        <p>The <a href="/manual/bundlegraph.html">Bundle Graph view</a> gives you an interactive, visual picture of how OSGi bundles depend on each other based on their MANIFEST's Imports and Exports. This helps with understanding dependency chains or
+        debugging a failed resolution.</p>
+    </div>
+    <div class="large-5 medium-6 small-6 columns">
+        <img src="/images/bundle-graph.png" align="right"/>
+    </div>
+</div>
+<hr/>
+
+<div class="row">
+    <div class="large-7 medium-6 small-6 columns">
         <h2>Dynamic Debugging</h2>
         <p>The instant builder will keep all artifacts build at all times. When you launch an application from Bndtools, it will extend this dynamism to the launched runtime. Any bundle that changes in Eclipse, will be updated in the runtime dynamically. This gives Bndtools a very light weight feeling while still providing all the software engineering from Java.</p>
     </div>

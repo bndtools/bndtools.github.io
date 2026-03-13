@@ -1,6 +1,7 @@
 ---
 title: Bnd Editor
 description: The Bnd properties editor for bnd files
+layout: prev-next-collection
 ---
 
 The bnd editor provides a number of tabs with graphic editors. The following tabs are available:
