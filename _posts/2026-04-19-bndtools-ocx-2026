@@ -1,0 +1,32 @@
+---
+layout: prev-next-collection
+title: Bndtools @ OCX 2026
+description: Bndtools 7.2.0 and Beyond: Two Years of Innovation in the OSGi Tooling Ecosystem
+comments: true
+author: Christoph Rüger
+---
+
+## Join us at OCX 2026 in Brussels
+
+We’re excited to share that the Bndtools team will be presenting at Open Community Experience 2026 next week in Brussels.
+OCX is the Eclipse Foundation’s flagship open source conference, bringing together developers, architects, researchers, and industry leaders for three days of collaboration and technical exchange ([newsroom.eclipse.org][1]).
+
+### Our session Bndtools 7.2.0 and Beyond
+
+In our session (23 April 2026 14:00-14:15 CET) covers the latest improvements in bndtools / bnd which happened during the last two years since our last presentation:
+- Java 24/25/26 support
+- Smarter bnd analysis & tooling
+- New Eclipse + CLI workflows
+- A first look at 7.3.0
+
+Check out the full session details here: https://www.ocxconf.org/event/2026/agenda?session=a34d563a-8a47-4698-87f8-73290ce9222a&shareLink=true
+
+### Why OCX?
+
+OCX 2026 features around 150 sessions across multiple tracks—including tooling, AI, automotive, compliance, and research—making it a key meeting point for the European open source ecosystem ([newsroom.eclipse.org][1]).
+
+If you’re attending, we’d love to connect—whether you’re already using Bndtools or just curious about modular development and OSGi.
+
+See you in Brussels!
+
+[1]: https://newsroom.eclipse.org/news/announcements/eclipse-foundation-unveils-full-agenda-ocx-2026 "Eclipse Foundation unveils full agenda for OCX 2026"
