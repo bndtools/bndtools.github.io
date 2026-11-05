@@ -21,7 +21,7 @@ permissions:  # added using https://github.com/step-security/secure-workflows
 jobs:
   GitHub_Pages:
     name: GitHub Pages
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     env:
       BUNDLE_GEMFILE: Gemfile
       BUNDLE_PATH: vendor/bundle
